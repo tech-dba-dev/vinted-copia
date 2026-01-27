@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Entrar - Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbe6df] bg-white dark:bg-background-dark px-6 md:px-10 py-3">
+<div class="flex items-center gap-4 text-[#111813] dark:text-white">
+<div class="size-6 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V44Z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Marketplace</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="hidden md:flex items-center gap-9">
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Explorar</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Sobre</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Ajuda</a>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 flex items-center justify-center p-6">
+<div class="w-full max-w-[480px] bg-white dark:bg-[#1a2e20] shadow-sm rounded-xl p-8 md:p-10 border border-[#dbe6df] dark:border-[#2a3f31]">
+<!-- Headline Text -->
+<div class="mb-8">
+<h1 class="text-[#111813] dark:text-white tracking-tight text-[32px] font-bold leading-tight text-center">Entrar</h1>
+<p class="text-[#61896f] text-center text-sm mt-2">Bem-vindo de volta ao seu marketplace favorito</p>
+</div>
+<!-- Login Form -->
+<form class="space-y-4">
+<!-- E-mail Field -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111813] dark:text-white text-base font-medium leading-normal">E-mail</label>
+<input class="form-input flex w-full rounded-xl text-[#111813] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] dark:border-[#2a3f31] bg-white dark:bg-[#1a2e20] h-14 placeholder:text-[#61896f] px-4 text-base font-normal" placeholder="seu@email.com" type="email"/>
+</div>
+<!-- Password Field -->
+<div class="flex flex-col gap-2">
+<label class="text-[#111813] dark:text-white text-base font-medium leading-normal">Senha</label>
+<div class="relative flex items-stretch">
+<input class="form-input flex w-full rounded-xl text-[#111813] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] dark:border-[#2a3f31] bg-white dark:bg-[#1a2e20] h-14 placeholder:text-[#61896f] px-4 pr-12 text-base font-normal" placeholder="Sua senha" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-[#61896f] hover:text-primary" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<!-- Forgot Password -->
+<div class="text-right">
+<a class="text-[#61896f] dark:text-primary/80 text-sm font-normal leading-normal hover:underline" href="#">Esqueci minha senha</a>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary text-[#111813] font-bold h-14 rounded-xl hover:bg-primary/90 transition-all text-lg mt-4" type="submit">
+                    Entrar
+                </button>
+</form>
+<!-- Social Login Divider -->
+<div class="relative flex py-8 items-center">
+<div class="flex-grow border-t border-[#dbe6df] dark:border-[#2a3f31]"></div>
+<span class="flex-shrink mx-4 text-[#61896f] text-sm font-medium">ou entre com</span>
+<div class="flex-grow border-t border-[#dbe6df] dark:border-[#2a3f31]"></div>
+</div>
+<!-- Social Login Buttons -->
+<div class="grid grid-cols-1 gap-3">
+<button class="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] dark:border-[#2a3f31] bg-white dark:bg-[#1a2e20] text-[#111813] dark:text-white font-medium hover:bg-background-light dark:hover:bg-[#2a3f31] transition-colors">
+<img alt="" class="w-5 h-5" data-alt="Google colorful logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJj3ZfX--bmO7qKIH6reNmfwHuNiNwZySBNsMMqIVDpvajh1FgIwiUDmvnwDLcvsaE0-4vUMFZdqHPahV8nxykw4c1mNnxM5o-cX3csbCrNGlW-XhdvyI1RmQ6dWew_2jM6lfLvA_U94hDqfVj_m4mKc-0qtTCFRIpEqzmbZ4fZvnIBYcxRRDqwZbOF0IeUxSzjiaq15JmFCq28mwH18L83xIcjpwUan4sYRkKE19RNLnLMI_XAxFXYXGdjbYxLKID3UXjwgzYGV8"/>
+<span>Continuar com Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] dark:border-[#2a3f31] bg-white dark:bg-[#1a2e20] text-[#111813] dark:text-white font-medium hover:bg-background-light dark:hover:bg-[#2a3f31] transition-colors">
+<span class="material-symbols-outlined text-[#1877F2]">social_leaderboard</span>
+<span>Continuar com Facebook</span>
+</button>
+<button class="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] dark:border-[#2a3f31] bg-white dark:bg-[#1a2e20] text-[#111813] dark:text-white font-medium hover:bg-background-light dark:hover:bg-[#2a3f31] transition-colors">
+<span class="material-symbols-outlined">ios</span>
+<span>Continuar com Apple</span>
+</button>
+</div>
+<!-- Footer Link -->
+<div class="mt-10 text-center">
+<p class="text-[#111813] dark:text-white text-sm">
+                    Não tem uma conta? 
+                    <a class="text-primary font-bold hover:underline ml-1" href="#">Cadastre-se</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Simple Footer for legal -->
+<footer class="py-6 px-10 text-center text-[#61896f] text-xs">
+<div class="flex justify-center gap-4 mb-2">
+<a class="hover:text-primary" href="#">Termos de Uso</a>
+<a class="hover:text-primary" href="#">Privacidade</a>
+<a class="hover:text-primary" href="#">Cookies</a>
+</div>
+<p>© 2024 Marketplace C2C. Todos os direitos reservados.</p>
+</footer>
+</body></html>
+
+<!-- User Messages & Chat -->

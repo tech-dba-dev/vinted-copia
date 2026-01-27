@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Resultados de Busca e Filtros | VintedClone</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111813] dark:text-white min-h-screen">
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-[#f0f4f2] dark:border-[#1a2e1e] px-4 md:px-10 py-3">
+<div class="max-w-[1440px] mx-auto flex items-center justify-between gap-8">
+<div class="flex items-center gap-4">
+<div class="size-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-xl font-bold tracking-tight hidden lg:block">VintedClone</h2>
+</div>
+<div class="flex-1 max-w-2xl">
+<div class="relative flex items-center h-10 w-full">
+<span class="material-symbols-outlined absolute left-3 text-[#61896f]">search</span>
+<input class="w-full h-full pl-10 pr-4 rounded-lg bg-[#f0f4f2] dark:bg-[#1a2e1e] border-none focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Pesquisar por itens, marcas ou utilizadores"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center px-4 py-2 bg-primary text-[#111813] text-sm font-bold rounded-lg hover:bg-opacity-90 transition-colors">
+                Vender agora
+            </button>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg bg-[#f0f4f2] dark:bg-[#1a2e1e] hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+</button>
+<button class="p-2 rounded-lg bg-[#f0f4f2] dark:bg-[#1a2e1e] hover:bg-primary/20 transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 size-2 bg-red-500 rounded-full border-2 border-white"></span>
+</button>
+<div class="size-10 rounded-full bg-gray-200 overflow-hidden border border-[#f0f4f2] cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkTvygHmEsBZyfk9pE9sKzAyJRLPSptvhuFqikfGuxuBgj8B0GEZSogMJdjvhwh3Hrtkz2keOI5Q3u-t_0fOSoJneixpkgZhqBrS6oKcCsnO1PFfGJSzsvaEgjQag-4jZPh6fZV_Rnk8wDC3aGNLHnw1YTt4NU_iMw6h_dReIa6QFvcdIryYY4Mh3I9lpT6TgEH2dFL2encHpF2BvEmyUsZL1e0kfvfCn_aAlFjuZSLilulpeB4ipwpG_Uwm-yJs7dFElekVbopiw"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto flex gap-8 px-4 md:px-10 py-6">
+<aside class="w-64 shrink-0 hidden lg:block sticky top-24 h-[calc(100vh-120px)] overflow-y-auto pr-4 scrollbar-hide">
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold">Filtros</h3>
+<button class="text-xs font-semibold text-primary hover:underline">Limpar tudo</button>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Categoria</p>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 text-sm cursor-pointer hover:text-primary transition-colors">
+<input checked="" class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Sapatos de Mulher</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer hover:text-primary transition-colors">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Sapatilhas</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer hover:text-primary transition-colors">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Botas</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Preço</p>
+<div class="flex items-center gap-2">
+<input class="w-full p-2 bg-white dark:bg-[#1a2e1e] border border-[#f0f4f2] dark:border-[#2a3e2e] rounded-lg text-sm" placeholder="Mín" type="number"/>
+<span class="text-gray-400">-</span>
+<input class="w-full p-2 bg-white dark:bg-[#1a2e1e] border border-[#f0f4f2] dark:border-[#2a3e2e] rounded-lg text-sm" placeholder="Máx" type="number"/>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Tamanho</p>
+<div class="grid grid-cols-3 gap-2">
+<button class="p-2 border border-primary bg-primary/10 text-xs font-bold rounded-lg">38</button>
+<button class="p-2 border border-[#f0f4f2] dark:border-[#2a3e2e] text-xs rounded-lg hover:border-primary">39</button>
+<button class="p-2 border border-[#f0f4f2] dark:border-[#2a3e2e] text-xs rounded-lg hover:border-primary">40</button>
+<button class="p-2 border border-[#f0f4f2] dark:border-[#2a3e2e] text-xs rounded-lg hover:border-primary">41</button>
+<button class="p-2 border border-[#f0f4f2] dark:border-[#2a3e2e] text-xs rounded-lg hover:border-primary">42</button>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Marca</p>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-2 top-2 text-xs text-gray-400">search</span>
+<input class="w-full pl-8 p-2 bg-white dark:bg-[#1a2e1e] border border-[#f0f4f2] dark:border-[#2a3e2e] rounded-lg text-xs mb-2" placeholder="Pesquisar marcas" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input checked="" class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Nike</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Adidas</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Zara</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Condição</p>
+<div class="flex flex-col gap-2">
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input checked="" class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Novo com etiquetas</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Muito bom</span>
+</label>
+<label class="flex items-center gap-2 text-sm cursor-pointer">
+<input class="rounded border-gray-300 text-primary focus:ring-primary" type="checkbox"/>
+<span>Bom</span>
+</label>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<p class="text-sm font-bold uppercase tracking-wider text-[#61896f]">Cor</p>
+<div class="flex flex-wrap gap-2">
+<div class="size-6 rounded-full bg-white border border-gray-300 cursor-pointer hover:scale-110 transition-transform ring-2 ring-primary"></div>
+<div class="size-6 rounded-full bg-black cursor-pointer hover:scale-110 transition-transform"></div>
+<div class="size-6 rounded-full bg-red-500 cursor-pointer hover:scale-110 transition-transform"></div>
+<div class="size-6 rounded-full bg-blue-500 cursor-pointer hover:scale-110 transition-transform"></div>
+<div class="size-6 rounded-full bg-green-500 cursor-pointer hover:scale-110 transition-transform"></div>
+<div class="size-6 rounded-full bg-yellow-400 cursor-pointer hover:scale-110 transition-transform"></div>
+</div>
+</div>
+<button class="w-full mt-4 py-3 bg-[#111813] dark:bg-primary text-white dark:text-[#111813] font-bold rounded-lg hover:opacity-90 transition-opacity">
+                Aplicar filtros
+            </button>
+</div>
+</aside>
+<div class="flex-1 flex flex-col gap-4">
+<div class="flex items-center gap-2 text-sm">
+<a class="text-[#61896f] hover:text-primary transition-colors" href="#">Início</a>
+<span class="material-symbols-outlined text-xs text-[#61896f]">chevron_right</span>
+<span class="text-[#111813] dark:text-gray-300">Moda Feminina</span>
+<span class="material-symbols-outlined text-xs text-[#61896f]">chevron_right</span>
+<span class="font-bold">Sapatos</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2">
+<div class="flex flex-col gap-1">
+<h1 class="text-3xl font-bold tracking-tight">Sapatos de Mulher</h1>
+<p class="text-[#61896f] text-sm">1.240 resultados para a sua pesquisa</p>
+</div>
+<div class="flex items-center gap-3">
+<p class="text-sm font-medium whitespace-nowrap">Ordenar por:</p>
+<div class="relative min-w-[180px]">
+<select class="w-full pl-3 pr-10 py-2 rounded-lg bg-white dark:bg-[#1a2e1e] border border-[#f0f4f2] dark:border-[#2a3e2e] text-sm focus:ring-primary appearance-none cursor-pointer">
+<option>Mais recentes</option>
+<option>Preço: mais baixo</option>
+<option>Preço: mais alto</option>
+<option>Mais populares</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-2 pointer-events-none text-gray-500">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 py-2">
+<div class="flex items-center gap-1 px-3 py-1.5 bg-primary/20 text-[#111813] dark:text-white rounded-full text-xs font-semibold">
+                Tamanho: 38
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-500">close</span>
+</div>
+<div class="flex items-center gap-1 px-3 py-1.5 bg-primary/20 text-[#111813] dark:text-white rounded-full text-xs font-semibold">
+                Marca: Nike
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-500">close</span>
+</div>
+<div class="flex items-center gap-1 px-3 py-1.5 bg-primary/20 text-[#111813] dark:text-white rounded-full text-xs font-semibold">
+                Condição: Novo
+                <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-red-500">close</span>
+</div>
+<button class="text-xs font-bold text-[#61896f] hover:text-primary px-2">Limpar tudo</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mt-4">
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Red Nike running shoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKk_y8Zh6bXCnpY0WHW-iScR08xY0EqkBbdrE8grMjY_uGbr4Yd1LBACjZfzSWn8lUQgqLdKPZ4AzAWYPoH6ECGen7KlvVI7038MYOuvu1f7FhXUOp4okG2SDz93OgGdvCvXxkweRn34cMN74uRJyJ5KLHVLmVVEvkJYHu9Ahzp_u6auAptPAK4qxZDxjcgUUkvymSOFQ9S7E0ZnFZPyQjevEvmSYpgMf7xdf0-AscQRiy7loyA_YZvwkFz_tNWFhkmn5vHB9j-X0"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">45.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-gray-200"></span>
+<span class="text-[10px] text-gray-500 font-medium">sneakerhead_99</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Air Zoom Pegasus 38</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Pastel colored lifestyle sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgpKbWDe8yxpHG6BmZ941YAYlQVmwsdy6KjONKtyShJI4nec8IsuR0O7E1jR_h6-TFCbkO8Qa4A95yyE03EoeQsYAT8f67-Q9cZ8wNsJb5m_Czb0q9IX43ulEHzDJc1CpZkAUoMwjKf5J7Y1BBSNMb8yZ0fiyGR4AlU7qT99KZqS4gyiSDTqfYE9XPjdNfWMg_LDPx_AkJ8iBUIxtbSGqB_wFDyUfQdCzYfGB8yRaA_MgKKtmN-3BhThn4xtl49mHIiVOb-YTkOPI"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">89.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-primary/30"></span>
+<span class="text-[10px] text-gray-500 font-medium">fashionista_xo</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Air Force 1 Custom</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Neon green running shoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADLprbmOj1qf_s2ZX_MIya_Sc8wHQEbSTzkEtUUv1yCF09Zvt8fNiatyF_AhCEMX2FYjgXTspKZfZpN9lUjv45TfWCUuZaFNAC40TfmtgSAMF3GM2489FSJ3rgiPAY0SNiVR_M3O1atxrjSaJwx53CaVkMP0-Pi2Ub4Vo9v7Gm_0WdK2PiMHibSu8VqvDG13hR0WzU51AUvnGAyl4Q0TOXHQKPISG_uxHHWp-hRz1vqF7TB6k4caT9_Y2e3i9Vi0cXvoS90LPWrKw"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">32.50€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-blue-100"></span>
+<span class="text-[10px] text-gray-500 font-medium">alex_market</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Revolution 6 Next Nature</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Classic white leather shoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtSEQdMnwapqh5nWrDjMnRkU-y0B-H_8zjiDW-W1697NjnR5FvYhy-XHwfpCegnZFAhiCm7waOFQ9SuXvNT0O2rjY7koDHjYi45UXSDQePN-lD8Axyz_lgwyQa6WIfYkBWlqY43FrV9XAaxvcMUFNapceXQnmzKOPbLYuAXproZ6Y-pFxGrZio2-1C4JR73fPpZxJWeTdjALWPTLQ4kStKKBIB6KhJ8xFakiV69JU3nWOH6Un3qAQ5jY0PyEtqgC8KqXuRbAWt6Lk"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">120.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-yellow-100"></span>
+<span class="text-[10px] text-gray-500 font-medium">luxe_resale</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Blazer Mid '77 Vintage</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Colorful retro sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSjjjQgm5kM_v1ytX9JI4ny9ySxwMlX5l2of52LsrYwZWTrU9n13oQQavDzL8VRRnAFPGT75bT0rFpLwERwPBvhsnhM-voa93RW16KSdvzL5-JDEyjahlkidNVuBSEQDq9-6MuCF5lieKfrl5j-Cqe3KY0tZqVYRhGs7-Z7nRmCQtUBmSr6T6hhqc0KXmLmnKAxRGAIKlV8m_xPbfFtOlcG0cJylD1euS3iCrVMsnV77Qc163zVYc9s7BJr3o5IYajdW8N8G0IDwI"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">55.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-red-100"></span>
+<span class="text-[10px] text-gray-500 font-medium">vinted_vibes</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Retro Colorblock Sneakers</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist white leather sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyPdU4oV1_xDSv30cUMWqC632U3W8SPOZpjLVKYjbjSpoib_zCg2rv5Ga9qkuqy2yGeRIKk6q3AqvuarcvY6C9sRzGsYN5CWJa4eejMKx14GZuvLvON3bjHIw-AVtJdf8d8NP5a8_M8uDt6M6zws0Sf11UzCgooLjQtWhSCKAYRLJKYiMsdn7_sA1lnjSHOqWtgGwmi7_34q5oQKITcDqrXo8GDLFEjFfxNGH3KNY45BvXUCY8xrSQ0PuzcBYWEgCqi14T0QlasZo"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">60.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-green-100"></span>
+<span class="text-[10px] text-gray-500 font-medium">minimal_style</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Court Vision Low</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Brown leather boots" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWUYGdmsp2udvnHVGizmrNVhdiHcEA65kdquSCjddBH0liSJO55zl_tcj6arcPSUVfdlIRcITElL-JHQpgad04hNd1O8mlSm3ly1TODrSFVglOncpdn4xaFH74QK5vv-CGasOoUZgn65ZcEu2FA06Vqok6-rSlmoqYrgN5898lnYwNpIx6Nt--KVxirzmb6KcG0t8B_jsWCrDtVKJli-T9VfZ5-FR-d6J3tX8vCihdMz0lVzyLuS5uSf02hoamGfjOE2v0bk7BFEQ"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">145.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-purple-100"></span>
+<span class="text-[10px] text-gray-500 font-medium">leather_crafts</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike ACG Mountain Fly</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3 bg-white dark:bg-[#1a2e1e] p-3 rounded-xl border border-[#f0f4f2] dark:border-[#2a3e2e] hover:shadow-xl transition-all cursor-pointer">
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden bg-gray-100">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Classic black sports shoes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYJQC2lsA4VLqhm11XZG1-eayV-IMsbPGwRUks4tJRfTO593TAmLBOEqfPEqHNVKeFeQ_QGRHsyIzDFRacjIkUo6S-j15dLr3rpcCi3ytbsO5gGYfW0LG6mzBfMnTWAadJwYrE7-8qEc-jqQjhkqG_uxQzeTAU_P4GAlgvFvtZAZrW_fcDe_Jb7uHphoVnuqeOZ09JwppoiCox6u01Fi56HkiLVJTKvhlsbO7XhpS7J8EMKy7e4mc1lfM07yz51K857wvNqW5t4X4"/>
+<button class="absolute top-2 right-2 p-1.5 rounded-full bg-white/80 backdrop-blur hover:bg-white text-gray-600 hover:text-red-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px] leading-none">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<p class="text-lg font-bold">28.00€</p>
+<div class="flex items-center gap-1.5">
+<span class="size-4 rounded-full bg-blue-200"></span>
+<span class="text-[10px] text-gray-500 font-medium">thrifty_shopper</span>
+</div>
+</div>
+<p class="text-xs text-[#61896f] font-medium">38 • Nike</p>
+<p class="text-sm text-gray-800 dark:text-gray-200 truncate">Nike Tanjun Black/White</p>
+</div>
+</div>
+</div>
+<div class="flex justify-center items-center gap-2 py-10 mt-4">
+<button class="flex items-center justify-center size-10 rounded-lg border border-[#f0f4f2] dark:border-[#2a3e2e] hover:bg-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="size-10 rounded-lg bg-primary text-[#111813] font-bold">1</button>
+<button class="size-10 rounded-lg border border-[#f0f4f2] dark:border-[#2a3e2e] hover:bg-primary/20 transition-colors">2</button>
+<button class="size-10 rounded-lg border border-[#f0f4f2] dark:border-[#2a3e2e] hover:bg-primary/20 transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="size-10 rounded-lg border border-[#f0f4f2] dark:border-[#2a3e2e] hover:bg-primary/20 transition-colors">42</button>
+<button class="flex items-center justify-center size-10 rounded-lg border border-[#f0f4f2] dark:border-[#2a3e2e] hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<button class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 flex items-center justify-center size-14 bg-primary text-[#111813] rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-[28px]">chat_bubble</span>
+<span class="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white border-2 border-white">3</span>
+</button>
+
+</body></html>
+
+<!-- Recuperação de Senha em Português -->

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Meus Favoritos - MarketFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .heart-active { color: #13ec5b; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111813] dark:text-[#f6f8f6] min-h-screen">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e5e7eb] dark:border-[#223a2b] bg-white dark:bg-[#102216] px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111813] dark:text-primary">
+<div class="size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.0799 24L4 19.2479L9.95537 8.75216L18.04 13.4961L18.0446 4H29.9554L29.96 13.4961L38.0446 8.75216L44 19.2479L35.92 24L44 28.7521L38.0446 39.2479L29.96 34.5039L29.9554 44H18.0446L18.04 34.5039L9.95537 39.2479L4 28.7521L12.0799 24Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-tight tracking-[-0.015em]">MarketFlow</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Explorar</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Vender</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Mensagens</a>
+<a class="text-sm font-medium text-primary border-b-2 border-primary" href="#">Favoritos</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4 max-w-xl ml-8">
+<label class="flex flex-col flex-1 h-10 max-w-md">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f4f2] dark:bg-[#1a2e21]">
+<div class="text-[#61896f] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:outline-0 focus:ring-0 text-[#111813] dark:text-[#f6f8f6] placeholder:text-[#61896f] px-2 text-sm font-normal" placeholder="Pesquise por itens, marcas ou usuários" value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f4f2] dark:bg-[#1a2e21] hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary text-white">
+<span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCHdYE96Bx6FbWEdKw6rkaZYKsfR-hAnEucRrA8HNbMZz4JVZWVNtvKJeGdzX9q07GcH9FkawUk6ZS_4sBNVJVby36y-KNbQrSsQ8CZuYSz7GUrqrEVsVf0ARIRTCCL4DNVXSFG5CsPx7AnwVvXjegE9_Ew5aBvC1fTm3H24KkIiuiTVZ33MwGwE6XRWdygLHvyeyI3yoIF2gddrzm821iKomnZOfXzoaNhgj0FNOVWaOrf-DMtWtjW3Yp6z3H4U0CY4QYzdHSjeMw");'></div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto">
+<div class="max-w-[1200px] mx-auto px-6 py-8">
+<div class="flex flex-wrap items-end justify-between gap-4 mb-6">
+<div class="flex flex-col gap-1">
+<h1 class="text-[#111813] dark:text-[#f6f8f6] text-4xl font-black leading-tight tracking-[-0.033em]">Meus Favoritos</h1>
+<p class="text-[#61896f] text-sm font-medium">Acompanhe todos os itens que você amou no marketplace.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-[#1a2e21] border border-[#dbe6df] dark:border-[#223a2b] rounded-lg text-sm font-bold shadow-sm hover:bg-[#f0f4f2] transition-colors">
+<span class="material-symbols-outlined text-[18px]">share</span>
+<span>Compartilhar lista</span>
+</button>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-[#102216] rounded-lg text-sm font-bold shadow-sm hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Criar Coleção</span>
+</button>
+</div>
+</div>
+<div class="mb-4">
+<div class="flex border-b border-[#dbe6df] dark:border-[#223a2b] gap-8">
+<a class="flex items-center gap-2 border-b-[3px] border-primary text-[#111813] dark:text-[#f6f8f6] pb-3 pt-4" href="#">
+<span class="text-sm font-bold">Itens</span>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded-full text-xs">24</span>
+</a>
+<a class="flex items-center gap-2 border-b-[3px] border-transparent text-[#61896f] pb-3 pt-4 hover:text-[#111813] dark:hover:text-[#f6f8f6] transition-colors" href="#">
+<span class="text-sm font-bold">Vendedores</span>
+<span class="bg-[#f0f4f2] dark:bg-[#1a2e21] text-[#61896f] px-2 py-0.5 rounded-full text-xs">5</span>
+</a>
+<a class="flex items-center border-b-[3px] border-transparent text-[#61896f] pb-3 pt-4 hover:text-[#111813] dark:hover:text-[#f6f8f6] transition-colors" href="#">
+<span class="text-sm font-bold">Coleções</span>
+</a>
+</div>
+</div>
+<div class="flex items-center gap-3 py-4 overflow-x-auto no-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary px-5 text-[#102216] text-sm font-semibold">
+                        Todos os itens
+                    </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f2] dark:bg-[#1a2e21] px-5 hover:bg-[#e2e8e5] dark:hover:bg-[#223a2b] transition-colors">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-sm font-medium">Roupas</p>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f2] dark:bg-[#1a2e21] px-5 hover:bg-[#e2e8e5] dark:hover:bg-[#223a2b] transition-colors">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-sm font-medium">Acessórios</p>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-[#f0f4f2] dark:bg-[#1a2e21] px-5 hover:bg-[#e2e8e5] dark:hover:bg-[#223a2b] transition-colors">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-sm font-medium">Preço</p>
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+<div class="h-6 w-px bg-[#dbe6df] dark:bg-[#223a2b] mx-2"></div>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full border border-[#dbe6df] dark:border-[#223a2b] px-4 hover:bg-[#f0f4f2] transition-colors">
+<span class="material-symbols-outlined text-[18px]">sort</span>
+<p class="text-[#111813] dark:text-[#f6f8f6] text-sm font-medium">Ordenar: Recentes</p>
+</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 mt-4">
+<div class="group flex flex-col gap-3 pb-3 cursor-pointer">
+<div class="relative w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-alt="Vintage oversized leather jacket" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDuCxZdU9DQ_DHjHT4Qpr8Ma_qjmTEgMKkBVb11R1XdL_a3ZYAkfM5ftxIcqGAWgIOcG76OSfKkvQm1ot2KgObIqeeeJ42mzEkAr5oDlTBSgW0YVbVY74QSPffrisChT1KiPAlancsZR_PpHyqwQkjaIPT1AidxX2DO2dZ2ECs1F0A1Zfihsuihzkq3prKlE5xqHt_H8a51Syem-weG87J9Pdj2pt2UhJQbpfWFVoI3Rz9442ZEYUEJQM7qyHLHYMIydC7X6T-ia0Y");'>
+<button class="absolute top-3 right-3 z-10 h-9 px-3 flex items-center justify-center gap-1 rounded-full bg-white/90 dark:bg-[#102216]/90 shadow-sm transition-transform active:scale-90 group/btn">
+<span class="material-symbols-outlined heart-active text-[20px]">favorite</span>
+<span class="text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">Remover</span>
+</button>
+<div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
+<span class="bg-primary text-xs font-bold px-2 py-1 rounded text-[#102216]">Frete Grátis</span>
+</div>
+</div>
+<div class="px-1">
+<div class="flex justify-between items-start">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-none">R$ 45,00</p>
+</div>
+<p class="text-[#61896f] text-sm mt-1 line-clamp-1">Jaqueta de Couro Vintage</p>
+<p class="text-[#61896f] text-xs font-normal mt-0.5 uppercase tracking-wide">Zara • M</p>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-[#f0f4f2] dark:border-[#1a2e21]">
+<div class="size-5 rounded-full bg-cover" data-alt="Seller avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDbPY6jQF6ntcdNsQ6Fz0cSTh5HU6N2DybV3GOJw3LHL-rqStPJZlDI9RLaLklcuWkiNmF_Uukiu9KLpAuvIdrWy2EhfhgoLgIBVJuLv8DPyQHTaX2vHTrtCrdSF14ubiCVEjr3ynBd2Z9RpcYUgrAdYOJY6EYdHlhclpK7f81FdshftUrbZjkl_kyvMZOEen-En79rLmXDpbtaMzYTWorXeeHODufRHlqK0FsYbLIeQyiKlop9lryj4tLWf6cvBxmD2_96QQIrzbI");'></div>
+<span class="text-xs text-[#111813] dark:text-[#f6f8f6] font-medium">sophie_vintz</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 pb-3 cursor-pointer opacity-75">
+<div class="relative w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden shadow-sm" data-alt="Retro nike sneakers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBARvg6wZFknVI0IHtGR5B3osoZtcXbTX_d8TQjVVEhFU7arnXxuC8AjZG2FtXnd-ehwiBzCbbhJHGuiZem5X_aOzKoe2hn1IyQyuHE_mHjrEWkZmAFpHT9ErMQgq3GP9JSqyUVgSzXl29NfQiATjs1imlHtX3HmArvEPtcsYuZ5GYxlKhaCtIXU9X4Imzi4x4qJXqJjPZCoI_Ut3bS5Kzs7GfRZvlPWCWQUMKCblbXk_xf_CItqAygCixlCt-k9XKi62ZI7lK0Ehs");'>
+<button class="absolute top-3 right-3 z-10 h-9 px-3 flex items-center justify-center gap-1 rounded-full bg-white/90 dark:bg-[#102216]/90 shadow-sm transition-transform active:scale-90 group/btn">
+<span class="material-symbols-outlined heart-active text-[20px]">favorite</span>
+<span class="text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">Remover</span>
+</button>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="bg-white/90 text-black px-4 py-2 rounded-lg font-bold text-sm uppercase">Vendido</span>
+</div>
+</div>
+<div class="px-1">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-none">R$ 85,00</p>
+<p class="text-[#61896f] text-sm mt-1 line-clamp-1">Retro Nike Air Max</p>
+<p class="text-[#61896f] text-xs font-normal mt-0.5 uppercase">Nike • 42</p>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-[#f0f4f2] dark:border-[#1a2e21]">
+<div class="size-5 rounded-full bg-cover" data-alt="Seller avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC11Gf09pNH1CB4V2R215haHnFsDc8dHzwaJkLc2eu0g56Iz5I0Q3uCRXvMLtoY08MapKuddyc0tE9ko0C4gt4wRwsiUEx7xQEaRstn1J77LTZl4Ew0AVpLBl0EXe_C52Y2_Iu7Ie0k41oqVoXHRJsHwxVqn_GWirJ9J6l6g_Q0xfUEGvzgxxFPRP0iQRTmwkMIkzI2dPyyc4jXctjJTRFprOmUtqqXoHWAjbqiN8d2aJkzqjdSvN_8bSUey_b8n5nz-7QAb_hK6Ts");'></div>
+<span class="text-xs text-[#111813] dark:text-[#f6f8f6] font-medium">alex_sneaks</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 pb-3 cursor-pointer">
+<div class="relative w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-alt="Sustainable linen summer dress" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDJKglQ1vC3buh2-rwyldVl0o9e4Us0nvGAaNNHDayLZc4wIzJXLtlz_uE5RpeGWIpknyCwqzNycjs0giADf_KSbctCAMQ1n78VRPU-LELJI4Zs5Tyyq-UoaE8s9jTJYzImrQTmO6PXSopypNqyfFnR_aZ4n-RUHZrzRdDwDX7LbC1na8_u-suuBi3JoEF8X5tODRg2J-dKsb5kCPX4Wyol-yrrNI2lGQaBoCxW63VnYFGblTKXrDNu350gZIEBpgN33E1xduj2wyc");'>
+<button class="absolute top-3 right-3 z-10 h-9 px-3 flex items-center justify-center gap-1 rounded-full bg-white/90 dark:bg-[#102216]/90 shadow-sm transition-transform active:scale-90 group/btn">
+<span class="material-symbols-outlined heart-active text-[20px]">favorite</span>
+<span class="text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">Remover</span>
+</button>
+</div>
+<div class="px-1">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-none">R$ 32,00</p>
+<p class="text-[#61896f] text-sm mt-1 line-clamp-1">Vestido Boho de Linho</p>
+<p class="text-[#61896f] text-xs font-normal mt-0.5 uppercase">H&amp;M • P</p>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-[#f0f4f2] dark:border-[#1a2e21]">
+<div class="size-5 rounded-full bg-cover" data-alt="Seller avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIeRSrKyx0aqDgF9cXP2N_p3CADZK2dt7hDFZ_1Rf7g3OhsidjE_Or61VmWN6FgItLRvFywVYOcdPCHONfTQQ3UIgeRuT8wzLAn9N9LQGEEn431GZpqCXgYwP028k2VG4UHApoIFeGtAOzOnBKRm7EWKNpiTGcnLsgisqt0S4gsAwY6MzGZQzFjX3eUUrvo4ZHVzqVX7UK_psEAH_3Ehz7JR1lzyF1gHXeWNxWPh1Lf13fH9FnyH2kVQoQwRVxjp2VbdNWRXvAgN4");'></div>
+<span class="text-xs text-[#111813] dark:text-[#f6f8f6] font-medium">maria_styles</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 pb-3 cursor-pointer">
+<div class="relative w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-alt="Modern ceramic vase set" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC7bQxn0_IQQSMdx4qeU_SSQVONR1rBvkh64uzyHqtzsLnbK-cDJ-lk-6ROktJummS0U4lRaXyOtRvun_FBF6GBIFgPg0__uml4MUARYCQgShPp2oMTB1D73tCot0ilDsc2sdSDiYYJTZgL7dALKFdvF_hfbhsbGYtEeuZ1Zl8_5Gx7zXcM79RcwmBI3c1lwSvYbOWZh_QoQYfAUFm2tYjy3d5gGssthwS_KJ0hbmgUHKqCypKMD0muCsAPV5vzWbXBlawjylnTYOA");'>
+<button class="absolute top-3 right-3 z-10 h-9 px-3 flex items-center justify-center gap-1 rounded-full bg-white/90 dark:bg-[#102216]/90 shadow-sm transition-transform active:scale-90 group/btn">
+<span class="material-symbols-outlined heart-active text-[20px]">favorite</span>
+<span class="text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">Remover</span>
+</button>
+<div class="absolute top-3 left-3 bg-white/90 dark:bg-[#102216]/90 px-2 py-1 rounded text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] uppercase tracking-tighter">Novo</div>
+</div>
+<div class="px-1">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-none">R$ 24,00</p>
+<p class="text-[#61896f] text-sm mt-1 line-clamp-1">Vasos de Cerâmica Minimalistas</p>
+<p class="text-[#61896f] text-xs font-normal mt-0.5 uppercase">Artesanal • Único</p>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-[#f0f4f2] dark:border-[#1a2e21]">
+<div class="size-5 rounded-full bg-cover" data-alt="Seller avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAsUhU-BnKlvj5DGEF9KfyF8O3QPat51SvW_PZKkvEkWyDHxk0EYgrPXrgPH_CzEXPeZwPhU5GthrnvozJdNLjCTOSk3Q_ATYCvQ-fct27691_Ltl0oUmFzEccJhgAfr_JDnQp-3IZguTDUwu3Dpxh07mNKsoRTksxygP0cr3VkY0Sh2YRW-5s9_xqM_MZyUTaHvkzWAKaFQxUKUN9pWC0WJdoM-MsPX1ekueMdSCfk4PJpZjA2jXlnv7eC1q5BZzW8568eo-va6Uw");'></div>
+<span class="text-xs text-[#111813] dark:text-[#f6f8f6] font-medium">decor_hub</span>
+</div>
+</div>
+</div>
+<div class="group flex flex-col gap-3 pb-3 cursor-pointer">
+<div class="relative w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300" data-alt="High quality designer denim" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBWbT0J9_8zlIR-u7Rg5sqVHMALm5RLEGHNKAhUI3-Ln2VFLOC9Cy9lSyZ1phu4HC3FHjMFp98RpRzgHJj98eExhSh3FjSpOVmI-lVkQH8FKDyOL8rFNUz05i5Jifws0XNrj5KWiobXb39756cpztpruhLpVbFVJcJUQjL1upqE2L7dgrqb-lEN9DOIK1262_yMBrNO3c1Ou94_aTR1JZY_jVVHQlPUot2JCIAk7KkqsOVYSw-iMCEhgYAKn3Lk4PvfryqvORKYsDs");'>
+<button class="absolute top-3 right-3 z-10 h-9 px-3 flex items-center justify-center gap-1 rounded-full bg-white/90 dark:bg-[#102216]/90 shadow-sm transition-transform active:scale-90 group/btn">
+<span class="material-symbols-outlined heart-active text-[20px]">favorite</span>
+<span class="text-[10px] font-bold text-[#111813] dark:text-[#f6f8f6] opacity-0 group-hover/btn:opacity-100 transition-opacity whitespace-nowrap">Remover</span>
+</button>
+</div>
+<div class="px-1">
+<p class="text-[#111813] dark:text-[#f6f8f6] text-lg font-bold leading-none">R$ 60,00</p>
+<p class="text-[#61896f] text-sm mt-1 line-clamp-1">Levi's 501 Clássica</p>
+<p class="text-[#61896f] text-xs font-normal mt-0.5 uppercase">Levi's • 40/42</p>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-[#f0f4f2] dark:border-[#1a2e21]">
+<div class="size-5 rounded-full bg-cover" data-alt="Seller avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDIYc_vnOrsWBGIihCwmqv6yejS36zffg8QK_L5g8mj5hM4Z2cm6qxHDZDUej3SKeBWlMmI4Jg6WYgi_EUdMMtzx5CyAQx8TyoLIp3S2a10u4sp0j22NJd8Y57p49iv1PHFb5HBrmamL3JK3Lgd0GGT4rhh387p4TPPWWWXKaBwU7u_F35O15KyKAYP06jReaI1WO-ewUl3FqMcxjQtB19zuse_R13DhXNuwvJjLiCYCMmKj2daQkzwDec2ddY7bvoru49h9ki5B_A");'></div>
+<span class="text-xs text-[#111813] dark:text-[#f6f8f6] font-medium">denim_lover</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 p-8 bg-white dark:bg-[#1a2e21] rounded-2xl flex flex-col items-center text-center gap-4 shadow-sm border border-[#dbe6df] dark:border-[#223a2b]">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">loyalty</span>
+</div>
+<div>
+<h3 class="text-xl font-bold">Encontre mais itens que você ama</h3>
+<p class="text-[#61896f] max-w-md mx-auto mt-2">Personalize seu feed ainda mais explorando categorias em alta e recomendações sob medida.</p>
+</div>
+<button class="mt-2 bg-primary text-[#102216] px-8 py-3 rounded-lg font-bold hover:brightness-105 transition-all shadow-md">
+                        Começar a Comprar
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>
+
+<!-- Sell an Item Wizard -->

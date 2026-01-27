@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil do Usuário e Guarda-roupa</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111813] dark:text-white antialiased">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbe6df] dark:border-[#2a3a2e] bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111813] dark:text-primary">
+<div class="size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_543)">
+<path d="M42.1739 20.1739L27.8261 5.82609C29.1366 7.13663 28.3989 10.1876 26.2002 13.7654C24.8538 15.9564 22.9595 18.3449 20.6522 20.6522C18.3449 22.9595 15.9564 24.8538 13.7654 26.2002C10.1876 28.3989 7.13663 29.1366 5.82609 27.8261L20.1739 42.1739C21.4845 43.4845 24.5355 42.7467 28.1133 40.548C30.3042 39.2016 32.6927 37.3073 35 35C37.3073 32.6927 39.2016 30.3042 40.548 28.1133C42.7467 24.5355 43.4845 21.4845 42.1739 20.1739Z" fill="currentColor"></path>
+</g>
+</svg>
+</div>
+<h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">VintedClone</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-[#61896f] flex border-none bg-[#f0f4f2] dark:bg-[#1c2e22] items-center justify-center pl-4 rounded-l-lg" data-icon="MagnifyingGlass">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-[#f0f4f2] dark:bg-[#1c2e22] text-[#111813] dark:text-white focus:ring-0 h-full placeholder:text-[#61896f] px-4 rounded-r-lg pl-2 text-base font-normal" placeholder="Pesquisar itens..."/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<nav class="flex items-center gap-6">
+<a class="text-[#111813] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Explorar</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Vender</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium hover:text-primary transition-colors" href="#">Novidades</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex min-w-[100px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-primary text-[#111813] text-sm font-bold">
+<span>Meu Perfil</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f4f2] dark:bg-[#1c2e22] text-[#111813] dark:text-white">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#f0f4f2] dark:bg-[#1c2e22] text-[#111813] dark:text-white">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-[1200px] mx-auto w-full py-8 px-6">
+<div class="bg-white dark:bg-[#1c2e22] rounded-xl shadow-sm border border-[#dbe6df] dark:border-[#2a3a2e] mb-8 overflow-hidden">
+<div class="p-8 flex flex-col md:flex-row gap-8 items-start md:items-center">
+<div class="relative">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-white dark:border-[#1c2e22] shadow-md" data-alt="Retrato profissional do usuário com expressão amigável" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7Q9lHuHo2_an-78EprXXHb2BiTKHvAJNp1Q0r16fDgrVWuAqToAf0DHWv4m-w1_nIZ3qy3s_yC5edW8jrXhTb_IKpzz-_J-qnil7wH1adlE-3F1qBYk6b0bYQC1YACQfM8omiPsTAKC-9C3xStgnCSXt11Azj1g6QsFJMvkrjNeKsr33ujjQPTMz3WswVGbzkwERhw2kdLGvl3Ao0ol8Nb3mQSpxvRGixXvDGee-WJ_XD-VGsH5KKpkfU_N-jJL_OCFVIWorHqRc");'>
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-[#111813] rounded-full p-1 border-2 border-white dark:border-[#1c2e22]">
+<span class="material-symbols-outlined text-sm font-bold">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h1 class="text-[#111813] dark:text-white text-3xl font-extrabold tracking-tight">Alex Rivera</h1>
+<div class="flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[#61896f] text-lg">location_on</span>
+<p class="text-[#61896f] text-base font-medium">Londres, Reino Unido</p>
+<span class="text-[#dbe6df]">•</span>
+<p class="text-[#61896f] text-base">Membro desde 2021</p>
+</div>
+</div>
+<button class="flex items-center gap-2 px-6 h-11 bg-[#f0f4f2] dark:bg-[#2a3a2e] text-[#111813] dark:text-white rounded-lg font-bold text-sm hover:bg-[#dbe6df] transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            Editar Perfil
+                        </button>
+</div>
+<div class="flex flex-wrap items-center gap-x-12 gap-y-4 mt-6">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="text-2xl font-black text-[#111813] dark:text-white">4.8</span>
+<div class="flex gap-0.5 text-primary">
+<span class="material-symbols-outlined material-symbols-fill text-lg">star</span>
+<span class="material-symbols-outlined material-symbols-fill text-lg">star</span>
+<span class="material-symbols-outlined material-symbols-fill text-lg">star</span>
+<span class="material-symbols-outlined material-symbols-fill text-lg">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+</div>
+<span class="text-[#61896f] text-sm">(124 avaliações)</span>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<div class="text-center">
+<p class="text-xl font-bold text-[#111813] dark:text-white">245</p>
+<p class="text-[#61896f] text-xs font-semibold uppercase tracking-wider">Seguidores</p>
+</div>
+<div class="text-center">
+<p class="text-xl font-bold text-[#111813] dark:text-white">189</p>
+<p class="text-[#61896f] text-xs font-semibold uppercase tracking-wider">Seguindo</p>
+</div>
+<div class="text-center">
+<p class="text-xl font-bold text-[#111813] dark:text-white">42</p>
+<p class="text-[#61896f] text-xs font-semibold uppercase tracking-wider">Vendidos</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-[#dbe6df] dark:border-[#2a3a2e] px-8">
+<nav class="flex gap-10">
+<a class="flex items-center border-b-4 border-primary text-[#111813] dark:text-white h-16 transition-all" href="#">
+<span class="text-sm font-bold uppercase tracking-widest">Guarda-roupa (12)</span>
+</a>
+<a class="flex items-center border-b-4 border-transparent text-[#61896f] hover:text-[#111813] dark:hover:text-white h-16 transition-all" href="#">
+<span class="text-sm font-bold uppercase tracking-widest">Avaliações</span>
+</a>
+<a class="flex items-center border-b-4 border-transparent text-[#61896f] hover:text-[#111813] dark:hover:text-white h-16 transition-all" href="#">
+<span class="text-sm font-bold uppercase tracking-widest">Sobre</span>
+</a>
+</nav>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h3 class="text-xl font-bold">Itens Ativos</h3>
+<div class="flex gap-2">
+<button class="flex items-center gap-2 px-4 h-9 bg-white dark:bg-[#1c2e22] border border-[#dbe6df] dark:border-[#2a3a2e] rounded-lg text-sm font-medium">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                        Filtrar
+                    </button>
+<button class="flex items-center gap-2 px-4 h-9 bg-white dark:bg-[#1c2e22] border border-[#dbe6df] dark:border-[#2a3a2e] rounded-lg text-sm font-medium">
+                        Ordenar: Recentes
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<div class="absolute top-3 left-3 bg-white/90 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-tight shadow-sm z-10">Novo com etiquetas</div>
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Jaqueta de inverno verde oliva moderna" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOQloS8CvTGi2ursBlmRQxOTpkEoVBwUV6ZhTt_pzMKAsyCIbBFzwOA5KD4LRHyMaPvKtlYNWyaCmSwFdydeZlu1UzKbBhR9CB5OZJDDZjDc0h-6hOIw5OV8nqN-2pVKbwqxC0qNEkxXsd3ot4GGsCrF_u5j5qmv9tJ1qoHlQ6li2BRIhLT24BOFRmcaUHkpHL9iyaQ7LRpcVo1G0LXbR55ssBwoUT9MV9W1RjdAgpAgGLD2eSz-BMANoVejM4OGQ0qD_seeySQSI"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 245,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Patagonia Better Sweater</p>
+<p class="text-[#61896f] text-xs mt-1">G / Patagonia</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Calça jeans clássica azul índigo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlWQkn-BEwDicyzEMtJdB4VN94sOTMuONOA8oXwTqQxlGyondM7PKIg6xi1BW9kZTunOgNOnoFq-7M9ax7VMGK47phvuzDfY6V88Eeb50o7YnOZmrehHdjBT7AL8AEp8L0MHoXtRXVnDMo7LJ-6p1C_zILk9EiDtnm_8ZZ6iYivRNxU08nZ8nNEO_jdEhgW7WFoX3D7Hy29P5pIhH6DBbcNx9ztW0tKlAMCL9mifY_GsVEn5xkkYAyEO4mCgYZPIdmiBk68yur3YE"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 150,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Levi's 501 Original</p>
+<p class="text-[#61896f] text-xs mt-1">42 / Levi's</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<div class="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
+<span class="bg-white px-4 py-2 rounded-lg font-bold text-sm uppercase tracking-widest">Reservado</span>
+</div>
+<img alt="Tênis minimalistas de couro branco" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWlnHHOpDl69UyA-NMx6uuiOnxf59iZY2TEy0zADnxgc9rXfzy-myX_qHAGnue8NcdXBmZm_47QYJnQtddnqGMzACDgs3CNxDrBSu5dU-U-tI4ICoyvjmt_25BSVm9ZJUJP9mC1xAbN_VlNCgZp227BUF3kg-MxC4-mf6B0RDus0sgNaNmbu22nDzqlirix6uGxMP6UlYaGF1sqVk0vmcDcjLwP-Dz91zUFPWS3Hb854pBlCmaeHlsoP9oMQB3Mtmast7e4lR946o"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 420,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Nike Air Force 1 '07</p>
+<p class="text-[#61896f] text-xs mt-1">41 / Nike</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Camiseta preta gráfica com estampa" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmrn2w29Opo6crke14KfUjwAa3REwx8krKW6onRAcdoTTuGvSbBDpxZJ61UaARWeHQUu4dpYDQ4x8UKB2169REDUuptzc49ZZFHHxxKqwIqI6p6HBVCXmA8arnGf23J166EPAIlol8hc8L8JXaihQ6t1V_LqFU4Gz6HVxHGxQKYlySkYZEtCOBUuUS_Bth-TQgb-KxcZj9GczVhtOTivqxht8HrFkIgAdW5wEoY8IdZGeKBwq3ggDbGotFHR8fVE5ZRxukiZqb5y8"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 85,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Camiseta Vintage Oversized</p>
+<p class="text-[#61896f] text-xs mt-1">M / Vintage</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Shorts chino bege clássico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Vp5B5AUml6i9ux0Ywvop6HcO4adMBRy2HguJiQvfMgfh4ugpbYGEi1yRpG_6uD8_zUCaldbWBjAHDf9GN8H--5CZ0A3A14k9mkmwWCLbEBsyKkqM7KFm-VVwUqMXdRQJ8IWEqEWeLeHcH0bqe8qkXfxiPKqA8_0rD0LANhQB9yR0y1jfjHKBlKDPIJjjjTv4Aig3hYoh3K7veRNezj3J19eJA4RsdaSCPMYzAyvoHDdDwXXC2J3bpDB3mL2SOIoNBUedUHOv9f4"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 120,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Shorts Chino Clássico</p>
+<p class="text-[#61896f] text-xs mt-1">42 / Carhartt</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Gorro de lã azul marinho escuro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsvMo0yDQK7JM9oVngsfOcK018aclIGg7HOccO1MJLoOuGMkQ--R34HW3o478h5WEVchdFrXoRB88aAlQsikke3AJXzz2XBrQUZAo4f0MA3_DMWKQGRYT_aR13bT0Z8h1HyOsVSun4ZlNJ69dM4B4DQz1g2NhqYJLPDbRcaxODSxcw3gZvCsnspfMNcTtpRAoANz6K7doPWpBfVEzL0IrSqWFucZ6C_-8i85F9Pw9PIq0--Yz1yu7KtHJrsLz-Y5JvnrnpmQ-TD-0"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 65,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Gorro Fisherman</p>
+<p class="text-[#61896f] text-xs mt-1">Tamanho Único / ASOS</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-[#1c2e22] rounded-xl overflow-hidden border border-[#dbe6df] dark:border-[#2a3a2e] transition-all hover:shadow-md">
+<div class="relative aspect-[3/4] bg-[#f0f4f2] overflow-hidden">
+<button class="absolute top-3 right-3 bg-white/90 p-1.5 rounded-full shadow-sm z-10 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<img alt="Moletom cinza liso estilo streetwear" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGL6LIWUcL9iTJhLKHKqWnXNMB-9LNjYXzFZY9c_iY-jpCmiuGJ7o11JK6KHSIAdKbPjrjMNlTNLJarJdn2S2K5l2Xygp8LkhkeLBPq405KXGAVwK3ejFw4Z_8owbwFZIeml4a8KG-oO6fPpkG2rlFJ6bk9TAZuo4pSvRz77ldb5Jth6ZRBmkn6M9raUkBAZlYfOvIyCcamBIo4qs5L2FhG9q0GB925xgrMFnfS-YP652ytgpckedzl1Kojn9A7D46EuB0GA2kyXU"/>
+</div>
+<div class="p-3">
+<p class="text-lg font-bold text-[#111813] dark:text-white">R$ 180,00</p>
+<p class="text-[#61896f] text-sm truncate mt-0.5">Moletom Heavyweight</p>
+<p class="text-[#61896f] text-xs mt-1">G / Uniqlo</p>
+</div>
+</div>
+<div class="group cursor-pointer bg-primary/10 border-2 border-dashed border-primary/40 rounded-xl overflow-hidden flex flex-col items-center justify-center min-h-[300px] transition-all hover:bg-primary/20">
+<div class="bg-primary text-[#111813] rounded-full p-4 mb-4">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</div>
+<p class="text-lg font-bold text-[#111813] dark:text-white">Anunciar um item</p>
+<p class="text-[#61896f] text-sm mt-1 px-8 text-center">Esvazie seu guarda-roupa e ganhe dinheiro</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-[#dbe6df] dark:border-[#2a3a2e] py-12 px-10 bg-white dark:bg-background-dark">
+<div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between gap-12">
+<div class="flex flex-col gap-4 max-w-xs">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined">shopping_bag</span>
+<h2 class="text-lg font-bold text-[#111813] dark:text-white">VintedClone</h2>
+</div>
+<p class="text-[#61896f] text-sm">A melhor comunidade para moda de segunda mão. Compre e venda suas marcas favoritas com facilidade.</p>
+</div>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-12">
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-[#111813] dark:text-white">Comprar</h4>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Feminino</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Masculino</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Infantil</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-[#111813] dark:text-white">Comunidade</h4>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Fórum</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Central de Ajuda</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Segurança</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-bold text-[#111813] dark:text-white">Legal</h4>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Privacidade</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Termos</a>
+<a class="text-[#61896f] text-sm hover:text-primary" href="#">Cookies</a>
+</div>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-12 pt-8 border-t border-[#dbe6df] dark:border-[#2a3a2e] text-center text-[#61896f] text-xs">
+            © 2024 VintedClone Marketplace. Todos os direitos reservados.
+        </div>
+</footer>
+</div>
+
+</body></html>
+
+<!-- My Favorites List -->

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Criar Anúncio Passo a Passo - Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111813] dark:text-white">
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-solid border-[#e5e7eb] dark:border-[#1f2937] px-4 lg:px-40 py-3">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<h2 class="text-[#111813] dark:text-white text-xl font-bold tracking-tight">Marketplace</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Comprar</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Sobre</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Ajuda</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center bg-[#f0f4f2] dark:bg-[#1a2e20] rounded-lg px-3 py-1.5 w-64">
+<span class="material-symbols-outlined text-[#61896f] text-xl">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-[#61896f]" placeholder="Pesquisar itens..." type="text"/>
+</div>
+<button class="p-2 rounded-lg bg-[#f0f4f2] dark:bg-[#1a2e20] hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="size-9 rounded-full bg-center bg-cover border-2 border-white dark:border-background-dark shadow-sm" data-alt="User profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuABI64Zs3YyCCnI-U1w-CGOceMpk8scAzGZbtaXJ6ei6wjxeovjdEPV7jRjqvo-PzZvDersMgH8CLXotQHfdK0WhYMqcCCRh80zLZY8BRhyd6GtWTs1IVR4sGR5insXBGim1z-RTgaMBnPtPe1SR8wMlt1mGptkyv05nz6H61xUvwnJqQ7cIuxWa1HXL0lcwbYThHec84XmokTpidR-a9AOjPSD315f9J4aYZi6fZhYmyGVndtescSFy780Sf9jI4u02095rlGkjDA");'></div>
+</div>
+</div>
+</header>
+<main class="max-w-[960px] mx-auto px-4 py-10">
+<div class="mb-10">
+<div class="flex items-center justify-between mb-4">
+<h1 class="text-2xl font-bold">Vender um item</h1>
+<span class="text-sm font-medium text-[#61896f]">Etapa 1 de 4</span>
+</div>
+<div class="flex gap-2 h-2 rounded-full bg-[#dbe6df] dark:bg-[#1a2e20] overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500" style="width: 25%;"></div>
+</div>
+<div class="flex justify-between mt-3 text-xs font-semibold text-[#61896f] uppercase tracking-wider">
+<span class="text-primary">Fotos</span>
+<span>Detalhes</span>
+<span>Atributos</span>
+<span>Preço</span>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a2e20] rounded-xl shadow-sm border border-[#e5e7eb] dark:border-[#1f2937] overflow-hidden">
+<div class="p-8">
+<div class="flex flex-col gap-2 mb-6">
+<h2 class="text-xl font-bold">Adicione até 20 fotos</h2>
+<p class="text-[#61896f] text-sm">Fotos nítidas e claras ajudam os compradores a encontrar seu item. A primeira foto será a capa.</p>
+</div>
+<div class="flex flex-col items-center gap-6 rounded-xl border-2 border-dashed border-[#dbe6df] dark:border-[#2d4a35] px-6 py-16 bg-background-light dark:bg-background-dark/30 hover:border-primary transition-colors cursor-pointer group">
+<div class="size-16 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl">cloud_upload</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<p class="text-lg font-bold">Arraste e solte suas fotos aqui</p>
+<p class="text-sm text-[#61896f]">Suporta JPG, PNG até 10MB cada</p>
+</div>
+<button class="flex items-center justify-center h-11 px-8 bg-primary text-[#102216] text-sm font-bold rounded-lg hover:brightness-105 transition-all">
+                        Selecionar do dispositivo
+                    </button>
+</div>
+<div class="mt-8">
+<h3 class="text-sm font-bold text-[#61896f] uppercase tracking-wider mb-4">Fotos Enviadas (4)</h3>
+<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4">
+<div class="relative aspect-square rounded-lg bg-center bg-cover group border-2 border-primary" data-alt="Front view of a vintage jacket" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAGzrzAUAgiA8r9yl37RbPBqUpxinJT6xLz81Gg1HtsKtZTFU-OX92kRIbEbejQbJU-gDJVvA8axSld9EiU9JFc73MkEcRYT1TOU1vXshCkPhQLYT_PqlX5w-EB3KG4-xy_dARMzMb7qO9BiCq-5dPxBHllpsffqzI_l-R6Blod0BVTTGEWxoaGj9lt_-jQMM76GfcvrKOpokeG-pgXThrKKgDNNi-qnbo_uckIpA7Lotu58TQM0Uc3K7WKuTLVxQ03J-sCRheocY");'>
+<div class="absolute top-2 left-2 px-2 py-0.5 bg-primary text-[#102216] text-[10px] font-bold rounded uppercase">Capa</div>
+<button class="absolute top-2 right-2 size-7 bg-white/90 dark:bg-black/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm text-red-500">delete</span>
+</button>
+</div>
+<div class="relative aspect-square rounded-lg bg-center bg-cover group border border-transparent hover:border-primary transition-colors" data-alt="Back view of the item" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCM9E_QYKRzOPLdSdxBHsrFWapsLKCgNGwL7QLRomvdrTZpQis2sjg--VCLKr4qIOzZ63VHH08UUzAYPIbJ2tFS2o5uh03hNL1ic3ajnJ6OdERaylZ-NswTVWdu8gy-g2iIeHugVXfHSzhpD6b4nAYJgOMSNHdUSzIRtj9S_qJ7_GlmUa934nkyw2kD3IBk2xPk2wcYB8YmgQcmxXj0NqQnPNSrWlbjuQUeYe_nHaaIWMVpQ_UQ3hUbKmX_jkvXkzpz3TLu3bxxuRA");'>
+<button class="absolute top-2 right-2 size-7 bg-white/90 dark:bg-black/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm text-red-500">delete</span>
+</button>
+</div>
+<div class="relative aspect-square rounded-lg bg-center bg-cover group border border-transparent hover:border-primary transition-colors" data-alt="Label and brand detail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBEtrZZmGrdWU_ItY1zgOZfP-FxLwEWRsKuR1IMA9H-jvgaDpocdzn9ptT1RrKxW7WYtpnj7RVmaLfV9y8L2A9WiwcSr_dhffWiLpzokaNO1acACzc6IQfsGDYb6ttl434KFCawOqs66omPd40S75JvoSRme1QA3lcu3l8i-0IJp5ZVKIV3WXRo9EJvQ9fsuTL83DiUhN95ujmpLBalsHWdmKDlVWNR-RoDwEN-ZozgcGrXDAix4t16_q76lnvhMagMYZeUeDjkEXc");'>
+<button class="absolute top-2 right-2 size-7 bg-white/90 dark:bg-black/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm text-red-500">delete</span>
+</button>
+</div>
+<div class="relative aspect-square rounded-lg bg-center bg-cover group border border-transparent hover:border-primary transition-colors" data-alt="Material texture detail" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCL2qi5nypxUIvIjXeJqUZBZCXsSgm-tw0xTD_zKIxZLKACEmjDjAn-ttOpoVOuq4VIpUZ1U68mdC5AR9CP7YAdjnh7-WJ1Kx1qZwUkrJLdqaWrIAXB5cXjlckR-H_9t-QCr08c3lrpO0uCKMviSCvp9k8uPEoC3pt24z3Y9rFdh2qzfCJaRmcQ55TcQbA4rtXH4IgFp0QF5MrBYX9mNgGD9xuFPsV9nao6phgOdTLKoq_zK4a7SzvYZzkQ9V6Yy5lrmVnr1ZDxD48");'>
+<button class="absolute top-2 right-2 size-7 bg-white/90 dark:bg-black/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm text-red-500">delete</span>
+</button>
+</div>
+<div class="aspect-square rounded-lg border-2 border-dashed border-[#dbe6df] dark:border-[#2d4a35] flex items-center justify-center text-[#61896f] hover:border-primary hover:text-primary transition-all cursor-pointer">
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-8 py-5 bg-[#f9fafb] dark:bg-background-dark/50 border-t border-[#e5e7eb] dark:border-[#1f2937] flex items-center justify-between">
+<button class="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-[#61896f] hover:text-[#111813] dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+                    Descartar
+                </button>
+<button class="flex items-center gap-2 px-8 py-2.5 bg-primary text-[#102216] text-sm font-bold rounded-lg hover:shadow-lg hover:shadow-primary/20 transition-all">
+                    Próxima etapa
+                    <span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-6 opacity-60 grayscale pointer-events-none">
+<div class="bg-white dark:bg-[#1a2e20] p-6 rounded-xl border border-[#e5e7eb] dark:border-[#1f2937]">
+<div class="size-10 rounded-lg bg-[#f0f4f2] dark:bg-background-dark flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">description</span>
+</div>
+<h4 class="font-bold mb-2 text-sm uppercase tracking-wide">Título e Descrição</h4>
+<div class="h-2 w-full bg-[#f0f4f2] dark:bg-background-dark rounded mb-2"></div>
+<div class="h-2 w-2/3 bg-[#f0f4f2] dark:bg-background-dark rounded"></div>
+</div>
+<div class="bg-white dark:bg-[#1a2e20] p-6 rounded-xl border border-[#e5e7eb] dark:border-[#1f2937]">
+<div class="size-10 rounded-lg bg-[#f0f4f2] dark:bg-background-dark flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">list</span>
+</div>
+<h4 class="font-bold mb-2 text-sm uppercase tracking-wide">Categoria e Tamanho</h4>
+<div class="flex gap-2">
+<div class="h-6 w-12 bg-[#f0f4f2] dark:bg-background-dark rounded-full"></div>
+<div class="h-6 w-12 bg-[#f0f4f2] dark:bg-background-dark rounded-full"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-[#1a2e20] p-6 rounded-xl border border-[#e5e7eb] dark:border-[#1f2937]">
+<div class="size-10 rounded-lg bg-[#f0f4f2] dark:bg-background-dark flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">label</span>
+</div>
+<h4 class="font-bold mb-2 text-sm uppercase tracking-wide">Marca e Condição</h4>
+<div class="h-4 w-3/4 bg-[#f0f4f2] dark:bg-background-dark rounded"></div>
+</div>
+<div class="bg-white dark:bg-[#1a2e20] p-6 rounded-xl border border-[#e5e7eb] dark:border-[#1f2937]">
+<div class="size-10 rounded-lg bg-[#f0f4f2] dark:bg-background-dark flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h4 class="font-bold mb-2 text-sm uppercase tracking-wide">Preço e Publicar anúncio</h4>
+<div class="h-8 w-1/2 bg-[#f0f4f2] dark:bg-background-dark rounded mb-2"></div>
+</div>
+</div>
+</main>
+<div class="fixed bottom-8 right-8 max-w-xs">
+<div class="bg-primary text-[#102216] p-4 rounded-xl shadow-xl flex gap-4 items-start">
+<span class="material-symbols-outlined mt-0.5">lightbulb</span>
+<div>
+<p class="font-bold text-sm">Dica Pro</p>
+<p class="text-xs leading-relaxed opacity-90">Anunciar mais de 5 itens esta semana aumenta sua visibilidade em 40%!</p>
+</div>
+</div>
+</div>
+</body></html>
+
+<!-- Página de Login em Português -->

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Avaliações e Feedback do Usuário - Marketplace</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#111813] dark:text-white min-h-screen">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-[#e0e7e2] dark:border-[#1e3a28]">
+<div class="max-w-[1200px] mx-auto px-4 lg:px-10 h-16 flex items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-[#111813] dark:text-primary">
+<div class="size-6 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined text-lg font-bold">shopping_bag</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">EcoMarket</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-64 !h-10">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-[#f0f4f2] dark:bg-[#1e3a28]">
+<div class="text-[#61896f] flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-[#61896f] px-4 text-base" placeholder="Buscar produtos ou usuários" value=""/>
+</div>
+</label>
+</div>
+<div class="flex items-center gap-4 md:gap-8">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Explorar</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Favoritos</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Mensagens</a>
+</nav>
+<button class="bg-primary text-background-dark px-4 py-2 rounded-lg text-sm font-bold hover:brightness-110 transition-all">
+                    Vender
+                </button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" data-alt="Foto de perfil do usuário logado" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDp9InBFsbsP_aEaBAHjs3OJl2UAO--U_XzGKXygNOj5498Pn_fmsdIHHXmJX3PaqTSo3XJ--wrzpA51w3yfWKGnBHeMyKJd3M-k5BR6yawT82hNAidisRHaE_oe6YOFi2CiJz7GQmDPYUOgmveR8BQ3KA7VmuwLga3AVTzNp45cNII1fNrEyPbMGFkJ7MPFFBP8VcPoiO2JadGR-fPeMnECLewovT55_iqFQKvaUa0YNfsagwRtrkszFUbA-MGb2VRj7mPVDSOKxY");'>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[960px] mx-auto py-8 px-4">
+<!-- Breadcrumbs -->
+<nav class="flex flex-wrap gap-2 mb-6">
+<a class="text-[#61896f] hover:text-primary text-sm font-medium transition-colors" href="#">Início</a>
+<span class="text-[#61896f] text-sm">/</span>
+<a class="text-[#61896f] hover:text-primary text-sm font-medium transition-colors" href="#">Perfil</a>
+<span class="text-[#61896f] text-sm">/</span>
+<span class="text-[#111813] dark:text-white text-sm font-semibold">Avaliações de Maria Silva</span>
+</nav>
+<!-- PageHeading -->
+<div class="flex flex-col gap-2 mb-8">
+<h1 class="text-[#111813] dark:text-white text-4xl font-black leading-tight tracking-tight">Avaliações de Maria Silva</h1>
+<p class="text-[#61896f] text-lg font-normal">Confira a reputação e o feedback da comunidade sobre este membro desde 2022.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Sidebar / Summary Section -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- RatingSummary -->
+<div class="bg-white dark:bg-[#1e3a28] p-6 rounded-xl border border-[#e0e7e2] dark:border-transparent shadow-sm">
+<div class="flex flex-col gap-4">
+<div class="flex items-baseline gap-2">
+<p class="text-[#111813] dark:text-white text-5xl font-black leading-tight">4.8</p>
+<p class="text-[#61896f] text-lg font-medium">/ 5.0</p>
+</div>
+<div class="flex gap-1 text-primary">
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined fill-icon">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<p class="text-[#111813] dark:text-[#a0c4ac] text-sm font-medium">152 avaliações totais</p>
+<div class="mt-4 grid grid-cols-[20px_1fr_40px] items-center gap-y-3">
+<p class="text-sm font-medium">5</p>
+<div class="flex h-2.5 overflow-hidden rounded-full bg-[#dbe6df] dark:bg-background-dark/50">
+<div class="rounded-full bg-primary" style="width: 80%;"></div>
+</div>
+<p class="text-[#61896f] text-xs font-bold text-right">80%</p>
+<p class="text-sm font-medium">4</p>
+<div class="flex h-2.5 overflow-hidden rounded-full bg-[#dbe6df] dark:bg-background-dark/50">
+<div class="rounded-full bg-primary" style="width: 15%;"></div>
+</div>
+<p class="text-[#61896f] text-xs font-bold text-right">15%</p>
+<p class="text-sm font-medium">3</p>
+<div class="flex h-2.5 overflow-hidden rounded-full bg-[#dbe6df] dark:bg-background-dark/50">
+<div class="rounded-full bg-primary" style="width: 2%;"></div>
+</div>
+<p class="text-[#61896f] text-xs font-bold text-right">2%</p>
+<p class="text-sm font-medium">2</p>
+<div class="flex h-2.5 overflow-hidden rounded-full bg-[#dbe6df] dark:bg-background-dark/50">
+<div class="rounded-full bg-primary" style="width: 1%;"></div>
+</div>
+<p class="text-[#61896f] text-xs font-bold text-right">1%</p>
+<p class="text-sm font-medium">1</p>
+<div class="flex h-2.5 overflow-hidden rounded-full bg-[#dbe6df] dark:bg-background-dark/50">
+<div class="rounded-full bg-primary" style="width: 2%;"></div>
+</div>
+<p class="text-[#61896f] text-xs font-bold text-right">2%</p>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 dark:bg-primary/5 p-6 rounded-xl border border-primary/20">
+<h3 class="font-bold mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                        Vendedora Verificada
+                    </h3>
+<p class="text-sm text-[#4d6a56] dark:text-[#a0c4ac]">Maria Silva tem 98% de entregas no prazo e responde em média em 2 horas.</p>
+</div>
+</div>
+<!-- Content Section / Review List -->
+<div class="lg:col-span-8 flex flex-col gap-4">
+<!-- Chips / Filters -->
+<div class="flex gap-2 pb-2 overflow-x-auto no-scrollbar">
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-background-dark font-bold px-6 transition-all">
+                        Todas
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-[#1e3a28] border border-[#e0e7e2] dark:border-transparent text-[#111813] dark:text-white font-medium px-6 hover:border-primary transition-all">
+                        De compradores
+                    </button>
+<button class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-[#1e3a28] border border-[#e0e7e2] dark:border-transparent text-[#111813] dark:text-white font-medium px-6 hover:border-primary transition-all">
+                        De vendedores
+                    </button>
+</div>
+<!-- Review Feed -->
+<div class="flex flex-col gap-4">
+<!-- Review Card 1 -->
+<div class="bg-white dark:bg-[#1e3a28] p-6 rounded-xl border border-[#e0e7e2] dark:border-transparent shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-cover bg-center" data-alt="Avatar do usuário Ricardo Santos" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCEFrZDZij6lAqyDShSp7Za5KfEcsWD0LblcV0cJVTgQ4iGxws06pEjMNZUhgKPIKSGOIFBKiJj0fZVrnYlpfhdA7cb-daT6k_O4dHkUR5iE8nLsTFLP46PMrC_l4s3DKBaP_-GNsJdItkRODJuCwCpvN9hpRRzprw1TbC9hevr_13-JfXgO15MmIyPAOZiaGKNZXFANcEMvX5_hW72AYmwE4ihDCRUSpnmZFQ1WlEkJj5IorJxyM4aS228gq0ZKnNShn3ttPBybzg");'></div>
+<div>
+<h4 class="font-bold text-[#111813] dark:text-white">Ricardo Santos</h4>
+<p class="text-xs text-[#61896f] uppercase tracking-wider font-bold">Comprador</p>
+</div>
+</div>
+<span class="text-xs text-[#61896f] font-medium italic">há 2 dias</span>
+</div>
+<div class="flex gap-0.5 text-primary mb-3">
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+</div>
+<p class="text-[#111813] dark:text-white/90 leading-relaxed mb-4">
+                            "A jaqueta chegou em perfeito estado, exatamente como nas fotos. A Maria foi super atenciosa e o envio foi muito rápido. Com certeza comprarei novamente!"
+                        </p>
+<div class="flex items-center gap-2 py-2 px-3 bg-background-light dark:bg-background-dark/40 rounded-lg text-xs font-medium text-[#61896f]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Item: Jaqueta Jeans Vintage Levis
+                        </div>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-white dark:bg-[#1e3a28] p-6 rounded-xl border border-[#e0e7e2] dark:border-transparent shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-cover bg-center" data-alt="Avatar da usuária Ana Oliveira" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD34t0YhAvLzdoefNwSMCpWRkqZ0CMlUbLFJWF5tM7h0Cw13BpBj_ljVBtBTQ0BSMad9fG6i-DMYn0DI3uM5oeLbAt2-kL8yiyu-sKjG1BouoSNFDaEYTcBGVJSPLCdlOyDoQNRrcFXnzGIrsW8lSjQXVE-3HIHc2bOx8j8TOd5dcHnDo1cvscKJeZz0cONjkwYGflJuAPPidWOcU7XlmKHNW9QjOLfu3rcn04WAYyfyEp2d61DQo3VZ9xSFeaknxQqOu1v8Z_K4Ws");'></div>
+<div>
+<h4 class="font-bold text-[#111813] dark:text-white">Ana Oliveira</h4>
+<p class="text-xs text-[#61896f] uppercase tracking-wider font-bold">Vendedora</p>
+</div>
+</div>
+<span class="text-xs text-[#61896f] font-medium italic">há 1 semana</span>
+</div>
+<div class="flex gap-0.5 text-primary mb-3">
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg">star</span>
+</div>
+<p class="text-[#111813] dark:text-white/90 leading-relaxed mb-4">
+                            "Maria é uma ótima compradora. Pagamento rápido e comunicação excelente. Recomendo muito para toda a comunidade!"
+                        </p>
+<div class="flex items-center gap-2 py-2 px-3 bg-background-light dark:bg-background-dark/40 rounded-lg text-xs font-medium text-[#61896f]">
+<span class="material-symbols-outlined text-sm">sell</span>
+                            Item: Vestido Floral Midi
+                        </div>
+</div>
+<!-- Review Card 3 -->
+<div class="bg-white dark:bg-[#1e3a28] p-6 rounded-xl border border-[#e0e7e2] dark:border-transparent shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-cover bg-center" data-alt="Avatar do usuário Pedro Mendes" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAFL0dQclECabVavbaL_ht3xCi7PMv0Hx6otdV4MimFZMTlh89GD1rmCLE5prJsPC-O_dUxOzHzo5_sb0w0BFWfGSuj2sPeFFyMVkHq1KobHbXGJCYNLmibVUX8Usb5z3mrmRzrQjjB6P10-98dXNF0Nt5X4pxjkAMW4gBXPxqvFFtDXhYZ7UILkTsYOLyjJuzs79wbq-B5JvYK5KYbafLAe-vPH_r3SWSTLZE86u6ufwqeu_1xotj8z01EVcPHCQk4xGeXJnORZmU");'></div>
+<div>
+<h4 class="font-bold text-[#111813] dark:text-white">Pedro Mendes</h4>
+<p class="text-xs text-[#61896f] uppercase tracking-wider font-bold">Comprador</p>
+</div>
+</div>
+<span class="text-xs text-[#61896f] font-medium italic">há 2 semanas</span>
+</div>
+<div class="flex gap-0.5 text-primary mb-3">
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+<span class="material-symbols-outlined text-lg fill-icon">star</span>
+</div>
+<p class="text-[#111813] dark:text-white/90 leading-relaxed mb-4">
+                            "O tênis está novinho, conforme o anúncio. Muito bem embalado. Maria foi super gentil nas mensagens."
+                        </p>
+<div class="flex items-center gap-2 py-2 px-3 bg-background-light dark:bg-background-dark/40 rounded-lg text-xs font-medium text-[#61896f]">
+<span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            Item: Tênis Runner Pro 42
+                        </div>
+</div>
+<!-- Pagination / More -->
+<button class="mt-4 flex items-center justify-center gap-2 py-4 text-primary font-bold hover:underline transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+                        Carregar mais avaliações
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-12 py-10 border-t border-[#e0e7e2] dark:border-[#1e3a28] bg-white dark:bg-background-dark">
+<div class="max-w-[1200px] mx-auto px-4 text-center">
+<div class="flex justify-center gap-4 mb-4">
+<div class="size-6 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-sm">verified</span>
+</div>
+<p class="text-[#61896f] text-sm">A confiança é a nossa prioridade. Todas as avaliações são de transações reais.</p>
+</div>
+<p class="text-[#61896f] text-xs">© 2024 EcoMarket Marketplace. Todos os direitos reservados.</p>
+</div>
+</footer>
+</body></html>
+
+<!-- Central de Segurança e Denúncias -->

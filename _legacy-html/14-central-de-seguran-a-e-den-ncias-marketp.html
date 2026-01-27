@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Central de Segurança e Denúncias - Marketplace</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#13ec5b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#102216",
+              },
+              fontFamily: {
+                "display": ["Plus Jakarta Sans"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#111813] dark:text-white min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Header/NavBar -->
+<div class="px-4 md:px-40 flex flex-1 justify-center py-0 bg-white dark:bg-background-dark border-b border-[#f0f4f2] dark:border-white/10">
+<div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+<header class="flex items-center justify-between whitespace-nowrap px-4 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-[#111813] dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="shield">shield</span>
+</div>
+<h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Marketplace Seguro</h2>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 items-center">
+<div class="hidden md:flex items-center gap-9 mr-4">
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Comprar</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Vender</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Explorar</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#111813] text-sm font-bold leading-normal tracking-[0.015em]">
+<span class="truncate">Perfil</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="Avatar do usuário" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcH1NsBMsCu6V7qP0I8AhD-nTqItt2A_k4O1s2uh3ms3sAjxGBYZ52cBOxHyEVbFxEwP_d9IhKtGfAhvYP5sjP8gNKGfXTFwpbMZ14z-XYtBUtMtCy9WM8rzkEhPoBzieTj4yyi6cbuQthLZ_YE2keLye0gSaYTts3Mo1a7pCoZP0dVesLBPVsvwZQehnjNdIvpiPoVpp08Sbbf40cI8sIpXI3EBfpaE35pA8qOoH7emmgwIqvUaNEJJPXpl_L7w0lRQs1Hgp926w");'></div>
+</div>
+</header>
+</div>
+</div>
+<!-- Content Area -->
+<div class="px-4 md:px-40 flex flex-1 justify-center py-8">
+<div class="layout-content-container flex flex-col max-w-[800px] flex-1 bg-white dark:bg-[#1a2e20] rounded-xl shadow-sm border border-[#dbe6df] dark:border-white/5 overflow-hidden">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 p-6 pb-0">
+<a class="text-[#61896f] dark:text-primary/70 text-sm font-medium leading-normal hover:underline" href="#">Início</a>
+<span class="text-[#61896f] dark:text-primary/70 text-sm font-medium leading-normal">/</span>
+<a class="text-[#61896f] dark:text-primary/70 text-sm font-medium leading-normal hover:underline" href="#">Central de Ajuda</a>
+<span class="text-[#61896f] dark:text-primary/70 text-sm font-medium leading-normal">/</span>
+<span class="text-[#111813] dark:text-white text-sm font-medium leading-normal">Denunciar Item</span>
+</div>
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-start gap-3 p-6">
+<div class="flex min-w-72 flex-col gap-2">
+<p class="text-[#111813] dark:text-white text-3xl font-black leading-tight tracking-[-0.033em]">Denunciar este item</p>
+<p class="text-[#61896f] dark:text-gray-300 text-base font-normal leading-normal">Ajude-nos a manter a comunidade segura. Sua denúncia é anônima e será analisada por nossa equipe.</p>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f4f2] dark:bg-white/10 text-[#111813] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#e2e9e5] dark:hover:bg-white/20 transition-colors">
+<span class="truncate">Diretrizes da Comunidade</span>
+</button>
+</div>
+<!-- Report Form Content -->
+<div class="p-6 pt-0">
+<div class="mb-6">
+<h3 class="text-[#111813] dark:text-white text-lg font-bold mb-4">Selecione o motivo da denúncia</h3>
+<!-- Radio List -->
+<div class="flex flex-col gap-3" style="--radio-dot-svg: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(19,236,91)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e');">
+<label class="flex items-center gap-4 rounded-lg border border-solid border-[#dbe6df] dark:border-white/10 p-4 cursor-pointer hover:bg-background-light dark:hover:bg-white/5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<input checked="" class="h-5 w-5 border-2 border-[#dbe6df] dark:border-white/20 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary transition-all" name="report-reason" type="radio"/>
+<div class="flex grow flex-col">
+<p class="text-[#111813] dark:text-white text-sm font-bold leading-normal">Spam ou Fraude</p>
+<p class="text-[#61896f] dark:text-gray-400 text-sm font-normal leading-normal">O item parece um golpe, link externo suspeito ou propaganda enganosa.</p>
+</div>
+</label>
+<label class="flex items-center gap-4 rounded-lg border border-solid border-[#dbe6df] dark:border-white/10 p-4 cursor-pointer hover:bg-background-light dark:hover:bg-white/5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<input class="h-5 w-5 border-2 border-[#dbe6df] dark:border-white/20 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary transition-all" name="report-reason" type="radio"/>
+<div class="flex grow flex-col">
+<p class="text-[#111813] dark:text-white text-sm font-bold leading-normal">Produto falsificado ou réplica</p>
+<p class="text-[#61896f] dark:text-gray-400 text-sm font-normal leading-normal">O produto não é original ou infringe direitos de propriedade intelectual.</p>
+</div>
+</label>
+<label class="flex items-center gap-4 rounded-lg border border-solid border-[#dbe6df] dark:border-white/10 p-4 cursor-pointer hover:bg-background-light dark:hover:bg-white/5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<input class="h-5 w-5 border-2 border-[#dbe6df] dark:border-white/20 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary transition-all" name="report-reason" type="radio"/>
+<div class="flex grow flex-col">
+<p class="text-[#111813] dark:text-white text-sm font-bold leading-normal">Comportamento abusivo ou impróprio</p>
+<p class="text-[#61896f] dark:text-gray-400 text-sm font-normal leading-normal">Vendedor usando linguagem ofensiva, assediadora ou conteúdo explícito.</p>
+</div>
+</label>
+<label class="flex items-center gap-4 rounded-lg border border-solid border-[#dbe6df] dark:border-white/10 p-4 cursor-pointer hover:bg-background-light dark:hover:bg-white/5 transition-all focus-within:ring-2 focus-within:ring-primary/20">
+<input class="h-5 w-5 border-2 border-[#dbe6df] dark:border-white/20 bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary transition-all" name="report-reason" type="radio"/>
+<div class="flex grow flex-col">
+<p class="text-[#111813] dark:text-white text-sm font-bold leading-normal">Informação incorreta ou enganosa</p>
+<p class="text-[#61896f] dark:text-gray-400 text-sm font-normal leading-normal">O item está na categoria errada ou as fotos não correspondem ao estado real.</p>
+</div>
+</label>
+</div>
+</div>
+<!-- Additional Details -->
+<div class="mb-8">
+<label class="flex flex-col w-full">
+<p class="text-[#111813] dark:text-white text-base font-bold leading-normal pb-2">Detalhes adicionais (opcional)</p>
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111813] dark:text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#dbe6df] dark:border-white/10 bg-white dark:bg-background-dark/50 focus:border-primary min-h-36 placeholder:text-[#61896f] dark:placeholder:text-gray-500 p-4 text-base font-normal leading-normal transition-all" placeholder="Forneça mais informações que nos ajudem a entender o problema..."></textarea>
+</label>
+<p class="text-[#61896f] dark:text-gray-400 text-xs mt-2 italic flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">info</span>
+                                Sua mensagem será processada seguindo nossa política de privacidade.
+                            </p>
+</div>
+<!-- Footer Actions -->
+<div class="flex items-center justify-end gap-3 pt-6 border-t border-[#f0f4f2] dark:border-white/5">
+<button class="flex min-w-[120px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-white dark:bg-transparent border border-[#dbe6df] dark:border-white/20 text-[#111813] dark:text-white text-base font-bold transition-all hover:bg-gray-50 dark:hover:bg-white/5">
+<span class="truncate">Cancelar</span>
+</button>
+<button class="flex min-w-[160px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-[#111813] text-base font-extrabold shadow-sm hover:opacity-90 transition-all active:scale-95">
+<span class="truncate">Enviar denúncia</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Toast / Success Message Simulation (Static UI) -->
+<div class="fixed bottom-8 right-8 max-w-sm hidden"> <!-- Removed 'hidden' for demonstration of what success looks like -->
+<div class="bg-white dark:bg-[#1a2e20] border-l-4 border-primary rounded-lg shadow-xl p-4 flex items-start gap-4 animate-in fade-in slide-in-from-bottom-5">
+<span class="material-symbols-outlined text-primary bg-primary/10 rounded-full p-1" data-icon="check_circle">check_circle</span>
+<div>
+<p class="text-sm font-bold text-[#111813] dark:text-white">Denúncia recebida</p>
+<p class="text-xs text-[#61896f] dark:text-gray-300">Obrigado por ajudar a manter nossa comunidade segura. Analisaremos o caso em breve.</p>
+</div>
+<button class="text-[#61896f] hover:text-[#111813]">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</div>
+<!-- Bottom Disclaimer -->
+<footer class="px-4 md:px-40 py-8 flex justify-center">
+<div class="max-w-[960px] w-full text-center">
+<p class="text-[#61896f] text-sm">© 2023 Marketplace Seguro. Todos os direitos reservados. Denúncias falsas estão sujeitas a penalidades na plataforma.</p>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

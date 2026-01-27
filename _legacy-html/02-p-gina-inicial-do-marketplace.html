@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Página Inicial do Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-[#111813] dark:text-white">
+<header class="sticky top-0 z-50 w-full bg-white dark:bg-background-dark border-b border-solid border-[#f0f4f2] dark:border-gray-800">
+<div class="max-w-[1280px] mx-auto px-4 lg:px-10 py-3 flex items-center justify-between gap-4 lg:gap-8">
+<div class="flex items-center gap-2 shrink-0">
+<div class="text-primary size-8">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="hidden md:block text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-tight">EcoMarket</h2>
+</div>
+<div class="flex-1 max-w-xl">
+<label class="relative flex items-center w-full h-10">
+<div class="absolute left-3 text-[#61896f] dark:text-gray-400">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="w-full h-full rounded-lg text-[#111813] dark:text-white border-none bg-[#f0f4f2] dark:bg-gray-800 focus:ring-2 focus:ring-primary/50 placeholder:text-[#61896f] pl-10 pr-4 text-sm" placeholder="Pesquisar itens, marcas ou utilizadores" value=""/>
+</label>
+</div>
+<div class="flex items-center gap-2 lg:gap-4">
+<button class="hidden sm:flex bg-primary hover:bg-primary/90 text-[#111813] px-5 py-2 rounded-lg text-sm font-bold transition-colors">
+                Anunciar agora
+            </button>
+<div class="flex items-center gap-1 lg:gap-2">
+<button class="p-2 hover:bg-[#f0f4f2] dark:hover:bg-gray-800 rounded-lg text-[#111813] dark:text-white relative group" title="Favoritos">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 hover:bg-[#f0f4f2] dark:hover:bg-gray-800 rounded-lg text-[#111813] dark:text-white relative" title="Notificações">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<button class="p-2 hover:bg-[#f0f4f2] dark:hover:bg-gray-800 rounded-lg text-[#111813] dark:text-white" title="Mensagens">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-cover bg-center border border-gray-200 cursor-pointer" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHcIhU3uLjjqKeA6YS3OxFg1y7r969CYCZ6whHbmaT9sS9DQWhiMsMhfkZNyqIlH1VCGIpqxSJCZ_ufyQP17BDKfIQ7X4oeI1CECvV0oEnTAf2rYkL3hyKY1xjpWxqoM8v0HXD1EdO9LFIe7joiAqLf8kCKq05pW3GJQ0jIvjwdMDHekYGKmQoJkyIojCIJt_8IejqTsxuXiSFOc3ID8kpVxGgHl5SKVGdOrsQ9oPB3uHt-RVsgvuR-6mZ-gIxdsC2qdwdHRiu-T8");'></div>
+</div>
+</div>
+<nav class="max-w-[1280px] mx-auto px-4 lg:px-10 border-t border-[#f0f4f2] dark:border-gray-800">
+<div class="flex items-center gap-6 lg:gap-10 py-3 overflow-x-auto no-scrollbar text-sm font-medium text-[#111813] dark:text-gray-300">
+<a class="hover:text-primary transition-colors whitespace-nowrap border-b-2 border-primary pb-0.5" href="#">Mulher</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap" href="#">Homem</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap" href="#">Crianças</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap" href="#">Casa</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap" href="#">Entretenimento</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap" href="#">Animais</a>
+<a class="hover:text-primary transition-colors whitespace-nowrap text-red-500" href="#">Promoções</a>
+</div>
+</nav>
+</header>
+<main class="max-w-[1280px] mx-auto px-4 lg:px-10 py-6 space-y-8">
+<section class="relative overflow-hidden rounded-xl bg-background-dark dark:bg-black text-white min-h-[350px] flex items-center">
+<div class="absolute inset-0 z-0 opacity-60 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAWkzxrfyPir_saIgv0a0TQovCZuYraYNJXrFSsIVZyZBDcKmeXCqPJo3UBOKtxteVcWvpr0E8DKqLAxn7F6mS1sATZFsVdNyx76LfJYRv7QLn5t6PFXkFqlfemrop6V7PGuCCTjXSOWIlSBEFINj1bEprt6y4sGuHcXzkNa44n73BUI_DjSabICfow338UFRV3_V9JadjXpS2O8AxrjPjuA-ZnogAFhW_nYhvJFcpJg_2zGGTEZ3FG18wg3ladeBusJ7HBWRDxdKo');"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent z-10"></div>
+<div class="relative z-20 px-8 lg:px-16 py-12 max-w-2xl">
+<h1 class="text-4xl lg:text-6xl font-extrabold leading-tight mb-4">Transforme o seu armário em dinheiro.</h1>
+<p class="text-lg lg:text-xl text-gray-200 mb-8 font-medium">Junte-se a mais de 50M de pessoas que vendem o que já não usam. É fácil, rápido e gratuito.</p>
+<button class="bg-primary text-[#111813] px-8 py-4 rounded-xl text-lg font-bold hover:scale-105 transition-transform shadow-lg">
+                Vender agora
+            </button>
+</div>
+</section>
+<section class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold">Feed de Início</h2>
+<button class="text-primary font-bold text-sm hover:underline">Ver tudo</button>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-[#dbe6df] dark:border-gray-700 whitespace-nowrap text-sm">
+<span>Tamanho</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-[#dbe6df] dark:border-gray-700 whitespace-nowrap text-sm">
+<span>Marca</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-[#dbe6df] dark:border-gray-700 whitespace-nowrap text-sm">
+<span>Preço</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-[#dbe6df] dark:border-gray-700 whitespace-nowrap text-sm">
+<span>Estado</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-lg border border-[#dbe6df] dark:border-gray-700 whitespace-nowrap text-sm">
+<span>Cor</span>
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+<div class="h-8 w-px bg-gray-200 dark:bg-gray-700 mx-2"></div>
+<button class="text-sm font-bold text-gray-500 hover:text-black dark:hover:text-white transition-colors">Limpar tudo</button>
+</div>
+</section>
+<section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Casaco vintage" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3HdGGVkEX23orQ6o6IiJgeGY0SxWhv79JeUfTJTHe2Yslt4xCKLwTAbchgXFs66VIFQtfZxjPEv2oVqPuyJZAMxcUpoHAtQhPddpVEZZKoC29JJS42hxr3SxnDwMDYVbwOi_Ooq30MJTxMZlF67-JTfsSUf4NQER8J5X_5GcuIoAfOYZReBI9LEsAaCPKNJZzcyB-BLsDdUqYMw3xUYwLcix6xE8lYEdLHyoFsIO9cTZzqIe-ZjWbPTHTNu1rRZsIl3J-NAV8s_A"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="absolute bottom-3 left-3 bg-white/90 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider text-black">Novo</div>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">45,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Levis</p>
+<p class="text-xs text-gray-400">Tam. M • Excelente</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDkXb0g1NMgZMpkVljlWLw2CSjt8al6Kk5onJp0iNJs3DVhmvlAPYkpNpDV_GZTv9JJygUNEzpek9NYwzCaMzGDojLWMexP-cwapDTNhRQGYbf9YAKinVt8cL9YxrA44O3J-E9FVrgHGBdvqBmZaySPeL4RMzv0Qz9tA41SOsbVEsXUy3faCGTYgwhE-98QlcxE_1KrwAQ4OtVy9SP2nFNPakEotbJYqwaPen5T-6rQHSmKdCZOf5bIVpTGiOqlWtawkPAaP71PrIE');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">alexa_styles</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Mala de couro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABnva2RnRw7vvw_aHhRQen2A_PcrdzK3Ep3AJ0mnocUtwvuP_tIbvZdmN5nK5avCTm5gDbOXhoZbl0Q-tfMp7pVYsM5ieIMrAkKNwO9nXvJh-H3TGhWhXrqwO13VjJbkuZyuNOfv7wXwY76Y7Uxxa4PhZMsXRoPwn94yYRmm41AqpjDEugvpnWEThjRKdHGVTPtgem2NAXK5NY84SSH0yL7QsHL3j4iDM0adPCYN4_F_j_CJ_VrL2z-ru2otYNrDDNY4zdAuj7YA8"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm text-red-500">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">120,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Gucci Vintage</p>
+<p class="text-xs text-gray-400">Tam. Único • Bom</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDheuLeNw_owUbsP_AC5tZwcFCQqjnQvH_OmKS5y6HnDsK1g-s1Yf8h2KWVjsPAsYhgQ3L6Eq0H3xD_qnSaFKX8NTsutPutRrli1cdwKtazvcKSxlBNyIDCiC8ktKFS1JIpB8hgb8qfvxOnSFR66-4POMLxYmmAF4opTzoeTfi1O2CR2Nv4ueNMeVSL2JHjT1AoSnHrE5380MJJx97Z0kHHeFf0N9dvqNuUCnmJ-Yq5wCE5tjh92MXNiQTkSdAhu1eqoWUZicFE04Q');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">vntg_collector</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Ténis de corrida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkK9duroBBdrmYT4W1wKbThQ9vwZ1a7LeaLBWYg6LUcKYTLruEhOQP5iJgmvR42DLoGunollvZRXlaBFT7Dvf7iISe4whbSI_azk0bppsaBAuc3XqquiqvO-Rh3ZUrmhUN5jHfVdmf3Sq7aZUE2oEH55auhjRke8bEo7Kz9exyHA8mk16to2tuZv2Dvrl-LTE5aVK6SQ7FegTXaH4wTHfhXbWJ7AaesLRovCl_9Xhqxn4RicAwFUmtuDg4jRWBceMq80USkBAmDbU"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">89,99 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Nike</p>
+<p class="text-xs text-gray-400">Tam. 42 • Novo com etiquetas</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhdjg3Ly-rcrvj20yB4Sb9vWS6DIJ67Ovotern5nDpQX3aseZJ_sDOCtiwwkBMuTUXi_e01jwE3PKLU9WpSCZPu7OjkUA_EfnJEWPs8AsxealP0muZKiHV9ZIXpVR0RsIV_K259apPUyyX2LdprL4OuCXB-M3WXrUj5EYk7Pcsm3woNDlNH5vgJhwRfoEHA4xdAOJXaFVP8ASwKtf32xcPioI6ir9zXwAU4bQV0ToH-TW1HAtiMDTseHaPNW-04624w6PsAVHUPyQ');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">kicks_hub</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="T-shirt preta" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh_DVVi6W_asDXhaTy4QCXmH8tygN4FEKq5nc2O0Fkm2pr2SZIwSZsWI0cLs3yy4mqFbJ8zncFFgbDbyATG2weOOduf1VtLQALncmP-jKEHInk1aXO4MvWnbgcS5Hhxsq0RrjO1SWM9qlYn2Zenhjyo46fZf81wHqeDra7QwrmM40fFZRzilxTxxeqmsXSWV-Q4tdLgqDZu9DG0_v5kAnKvTk_PohNcTj3U4oxuFfPZJZKN2r-5-cXjP4kQsk36ivGur1vvnXJzUg"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">25,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Everlane</p>
+<p class="text-xs text-gray-400">Tam. S • Muito bom</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcV_C4KTeQvSoGS4I6zmqkK6Dr-Ez4HG8aBHhZoA8RzwvQJWlteYfCbwaomiyXume7HWdx1awYmelbRsroRwIcntITboHS3kMQVo9yt_RfCkrqtwE4Pvyql1V8i7S65ja0tRAAVGqgpxZwmHyVtknjxXL9TRnOfGky3_-upkLpQpKuqGua_i7FahqoV1Pqb-SbG2h1DpSvu3SIGC5ucqJ7Po5BGvOzT65GaPabcESZgGgaULetRczvI2es2h0BqTJIhsCrOzl0DfI');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">minimal_closet</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Sweatshirt branca" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzlOvG_klFN00zN7JqfgE89wUbnonTwGLR2hCXlt7w8DOStibrOi1n_DsBMLy56jMj7zPy4ildqqxdw0TL-sxwu3T2ZCo_XKO4m07X9dBTc4xxVHmEG7aBidfNu-oYOJ1lVv7aimUCV-QoxY3WpdgL9eSqe5YeyDKvcYZ7CwYBodhf3fAS86YhjcpeEG5p56-ao50kSphaPeiXZVhaabsw01HboSsXX9VdrBtcz_6uk52d72NzJOaMg1WMeTVwU07eOcTP3s-sgL8"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">38,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Champion</p>
+<p class="text-xs text-gray-400">Tam. L • Satisfatório</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyeeJ5mlh9T6f1b_DqXz1KQYkjCZDeZdVinDwCU_qLS2ojWGWEyDr-ia2DIFNw4Ff-Q_M5wBguUqO9KfG3HDQrLMwfMJSJyD6KeTHj8nJ17Yl4USW2tuct2DuDkwy5n7vaN0LydP4SKBBpcei5jkkz1n_J8C0nLLs3cWt74fXY0Y5NjDMxiaGYjXvgkTKGhw-2JTq2ZicECS7Oydh5S-h8IzNMHrRXHQf4swf5jZL8Fy8jsbDvFmhVeTIJdiZGXxWIeqzEnjus_WA');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">sarah_thrift</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Blazer azul" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBda8ical1l8kRlKA91gD3lj9Sm0Ft407YkciFBpEwoISdNB0TgAx3XCNFB6rommzw7UzpHowT1ElQmS0QlWn5n04hUNVlOrtxkPzmJfM-jKVKX0TkV_h31cUO-QEF2VsFLgWcN8cK8qanUs4y1Txh5R-E7pbacTK-0ut-0nOFVpSUAcq-LNAugpsSIW_kcOLUDX9kgZ_bofzuePyi7yGaCmCfZKzA-jCgRs-rkRezbE2WNxKVazJyJIjKwzfFkluOJHmYHiuW8m1I"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">65,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Zara</p>
+<p class="text-xs text-gray-400">Tam. M • Excelente</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCZ5sKdz_VCAlmgNdp8zblpi9NH_XXeM-6a8iSsF4VrIREwIskmA9D-29m5wbXXzgk7XglLXEYDApo-M8QS3a-HBQi_UL-bgRJ4wuPKFqyqHiupV7FD_QoF0KOylU3EYgbMMq-x8JtEW1sYNd2BkxvGvp8m4jfft7tePJDizTA2v1b9o27JmDd96cTRnx6Bc9g01UxuEeaakLro1MqSucjBJtBnuxOFp1ewEx3pbR8HF8X7GswJU3w5tNUSB959yUiLsIpyOqOI48M');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">gent_wear</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Camisola colorida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6NZ1IWS_TSXTFBoXf2ukt5byt_yatnbbjDnwKg9UoPupKvwxAT5H06jkk-1Fbvqu31gjYA8-JAbmOtGa13HGt2J_9RJx8dJBVI9viY2U1F3LLrKuwLT9yTd35_Mb2TvYoCnF5P17YWd1BlATDGp81xkI9UOXifRjfmM2RsL65vv3is7tcM3kpEREscnvoRgwmGg33NmbHNooT7GIYdja7PTdwi_tH090ku2MhwzTT1U7l5z9ZMxRCVnoFUSsMub3X8E69ZYch8O8"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">42,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Handmade</p>
+<p class="text-xs text-gray-400">Tam. L • Muito bom</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuASv6Gfs2bqE0oYCfpueXrIeIsHwThhHH25nFH3Hgem2KmwBkM2CDjWVDBXzkOfMOpHNx7NN1FjMPB6YMBbM-gVzu05XpuQDoORsUXM_SvNI1hfGqlY_QiNxdP5s6PNhVXnXK72AiP-7L2byBlUmtO1JWwUkQnSsbhAU1S6uGQGDEbFdiu9V81-O0uKQuV3nCoh3onUBiFt7kjy0OeDgfLvJXZ8FbaVZ-lHqd38CqNtH9i22oQ0wRiBW931Kh607TfV25zX8x0qm6c');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">knit_by_em</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Ténis brancos" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlicmtNzyDW09hK6jiq4034ouCsnVNMXQI56XTpPPqkfTbmuO8mDQTvCwUsKGvXlIWOgO3Z_dEdx3HCWqqZWOhUhFY8ksSeH2AJWbX1zo619p-K87TOD6FIBPw0ztwh1PfkOMqn6WM5K8so6EXLu-jjOWe3mZCWF2aYsMjy5fkMBn5p-6y0_b56diz28-KrKpoD1ZN3V2OMJas5kRh0kXfGxyfWD2pySMIiKEhDujna2MScJutkj-eZjfZTZLjOmnxUEwRYD6hJsc"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">75,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Adidas</p>
+<p class="text-xs text-gray-400">Tam. 41 • Novo sem etiquetas</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPJgtpWTUIwGNRO16RSoka-iSzsQB-76EDkhVK_Ncp_4rnNsm6-vbSzgHWarUkz5RzAn2Uyx5oUheohhCpKpWT0Wxp_GQanurO65vj9SwURVLLX-uKYLFwqa6D9TH6vhXeBvYmWEYHrbGOC6SUjdJPrKxVYWxG7aY3vdkG7Dc4uoSP3Ea2nKPEg25M0s1JSa2aawKY6rUjEIAuFgHBUoQQEO8HS-Jvg7eyCf5pJKvMrlB7NO8GpnKY2LVBpN569_1RN2QIMJ7ISuA');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">sneaker_head</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Calças de ganga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnonMan4FB3Rl71iyUsulcLBO8dAtQJYt_0_a_XDE7r_s1SRJabOGKWCLNQoJd8thpaOZaO8JSzDijIbSFzavd77U3gN_bgDUI46DaP-_b-HpU_d5WRaAwEraiTBOd6MoQAa-xeJvZOdn3qsAeaFQ09ttsA26Tbw2m_aHR3Ji1FtX_Z9ZyN7H6L_GR7n0uU-euC4zSrpn4iwcPYiqjE0B5ty2BqQS8eMiPSZttm6EHXiWpMhjk8jsbJGLXlSBOUtcLulhlQ7z0Kv4"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">30,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">Mango</p>
+<p class="text-xs text-gray-400">Tam. 36 • Bom</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAaL7CgNH1PHcl0w7D2-6daYs98PrQW3GbhFAaM5rJ6xw3xepNDYO_HP6vmc2OPk3gP5vDOSxkfUPKHr7WZOQvZ-eGnuJYcVe8fLjBMX5hEgAFJMzT4FMyntTNZiPnR-9ZwKwftKA6qAlUhktwTW14GonJTmiU6x9318e06U-yD86-q_DmSkt3tzBn6Lqa6xxGcq6VtvaLiAwjQIti54Cn7-Wq-EQqwRhai0kyJ4Cz0VJaCeF4UrdX7a-8ttrImHYpRHgX7TnlVGQo');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">denim_obsessed</span>
+</div>
+</div>
+<div class="group flex flex-col cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-100">
+<img alt="Vestido floral" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4XyKzLV71SC0fn8HD9KkumtRGAXETLhZGvfNoUFgexfdK9H7lSOTvjQU8iEi3oOmNHh75TM7Ijw25A301oo8KRuQC36ZfxtViMAb08TJvDeg6yd0CFaCGv7tKj1PhfeVS0l__booXWG68tQtOC2g-f38iB3z4xZyp4blIC8dCnMUu-PvcrpZ6ecZxNrnDs4KCT3mfFk1hxNUyXbD_Apdw0BlIirzYy74WxpY_97l8PVutq4DHNUcxCfDHQizfD-4Y-W024q6KvLE"/>
+<button class="absolute top-3 right-3 p-1.5 bg-white rounded-full shadow-sm">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<span class="text-lg font-bold">55,00 €</span>
+</div>
+<p class="text-sm text-gray-500 line-clamp-1">&amp; Other Stories</p>
+<p class="text-xs text-gray-400">Tam. M • Excelente</p>
+</div>
+<div class="flex items-center gap-2 mt-3 pt-3 border-t border-gray-100 dark:border-gray-800">
+<div class="w-5 h-5 rounded-full bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTtcMyra9K9oOmArj-KcgwBbS-iYJ8bN1cr8WvaYmE20tGfRuj9MgBAtGPEXoHcsPD-LAReGdwHwNWmJhR0S1Y5zDuAGyjDYi6720Gkmck3yyKQkzpon2nCN1ldsjxlStrkD71eTUhWcLnuUX3tNzo_I7H2F1kA7jsYnudkfpqU7vJFzjzaMFRuKZ7N-ewfjHXBca1e5MOBwfB5wRi7rCL8ODhT_2ynH-dE0AIgUoOVEgu0b62SaY0lcB2-KayCnB8PwjF5qGZaHU');"></div>
+<span class="text-[11px] font-medium text-gray-600 dark:text-gray-400">flora_chic</span>
+</div>
+</div>
+</section>
+<div class="flex justify-center py-10">
+<button class="border-2 border-primary text-[#111813] dark:text-white px-8 py-2 rounded-lg font-bold hover:bg-primary/10 transition-colors">
+            Carregar mais itens
+        </button>
+</div>
+</main>
+<footer class="bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800 py-12">
+<div class="max-w-[1280px] mx-auto px-4 lg:px-10">
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
+<div class="col-span-2 lg:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="text-primary size-6">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+<h2 class="text-[#111813] dark:text-white text-lg font-bold">EcoMarket</h2>
+</div>
+<p class="text-sm text-gray-500">O mercado favorito do mundo para moda circular.</p>
+</div>
+<div>
+<h3 class="font-bold mb-4">Comprar</h3>
+<ul class="space-y-2 text-sm text-gray-500">
+<li><a class="hover:text-primary" href="#">Mulher</a></li>
+<li><a class="hover:text-primary" href="#">Homem</a></li>
+<li><a class="hover:text-primary" href="#">Crianças</a></li>
+<li><a class="hover:text-primary" href="#">Casa</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold mb-4">Vender</h3>
+<ul class="space-y-2 text-sm text-gray-500">
+<li><a class="hover:text-primary" href="#">Como funciona</a></li>
+<li><a class="hover:text-primary" href="#">Guia do vendedor</a></li>
+<li><a class="hover:text-primary" href="#">Contas profissionais</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold mb-4">Suporte</h3>
+<ul class="space-y-2 text-sm text-gray-500">
+<li><a class="hover:text-primary" href="#">Centro de ajuda</a></li>
+<li><a class="hover:text-primary" href="#">Segurança</a></li>
+<li><a class="hover:text-primary" href="#">Política de cookies</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-bold mb-4">Comunidade</h3>
+<ul class="space-y-2 text-sm text-gray-500">
+<li><a class="hover:text-primary" href="#">Fórum</a></li>
+<li><a class="hover:text-primary" href="#">Carreiras</a></li>
+<li><a class="hover:text-primary" href="#">Imprensa</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+<p>© 2024 EcoMarket Inc. Todos os direitos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="#">Termos de Serviço</a>
+<a class="hover:text-primary" href="#">Privacidade</a>
+<a class="hover:text-primary" href="#">Segurança e Confiança</a>
+</div>
+</div>
+</div>
+</footer>
+<button class="sm:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-[#111813] rounded-full shadow-lg flex items-center justify-center z-40">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+
+</body></html>
+
+<!-- Central de Ajuda e FAQ -->

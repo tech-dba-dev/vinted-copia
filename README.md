@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MarketplaceMoc Frontend
 
-## Getting Started
+Migração do HTML estático para Next.js (App Router) + React + TypeScript, mantendo conteúdo, seções e fluxos originais.
 
-First, run the development server:
+## Como rodar
 
 ```bash
+cd web
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Rotas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` Página inicial
+- `/meus-pedidos`
+- `/central-de-ajuda`
+- `/cadastro`
+- `/perfil`
+- `/favoritos`
+- `/criar-anuncio`
+- `/entrar`
+- `/mensagens`
+- `/produto`
+- `/buscar`
+- `/recuperar-senha`
+- `/avaliacoes`
+- `/central-de-seguranca-e-denuncias`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Renderização (SSR/SSG/ISR)
 
-## Learn More
+- Todas as páginas são estáticas (SSG padrão do App Router) porque o conteúdo é totalmente estático no HTML original.
+- Não há ISR ou SSR dinâmico, pois não existe conteúdo dependente de dados externos.
 
-To learn more about Next.js, take a look at the following resources:
+## SEO implementado
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `metadata` por rota (title, description, canonical, OG, Twitter).
+- `sitemap.xml` e `robots.txt` gerados via `src/app/sitemap.ts` e `src/app/robots.ts`.
+- JSON-LD:
+  - Home: `WebSite` com `SearchAction`.
+  - Produto: `Product` com preço e imagem.
+- Otimização de imagens com `next/image` e fontes via `next/font`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Performance
 
-## Deploy on Vercel
+- Code splitting automático por rota (App Router).
+- Imagens com `next/image` via `InlineImage`/`ImageBlock`.
+- CSS com Tailwind e classes reaproveitadas onde possível.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Acessibilidade
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- HTML semântico preservado.
+- Campos de formulário com `required` e `type` apropriado.
+- Ícones com texto e botões navegáveis por teclado.
+
+## Segurança (front)
+
+- Nenhum segredo no client.
+- Evitado `dangerouslySetInnerHTML` (usado apenas para JSON-LD).
+- Recomenda-se CSP, por exemplo:
+
+```
+default-src 'self';
+script-src 'self' 'unsafe-inline';
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com;
+img-src 'self' https://lh3.googleusercontent.com data:;
+```
+
+## Observações
+
+- Atualize `metadataBase` em `src/app/layout.tsx` e o `baseUrl` em `src/app/sitemap.ts`/`robots.ts` com o domínio real.
+- Dependências extras usadas: `@tailwindcss/forms` (estilização de inputs) e `prettier` (formatação).

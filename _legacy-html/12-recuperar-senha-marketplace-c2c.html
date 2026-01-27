@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recuperar Senha - Marketplace C2C</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#13ec5b",
+                "background-light": "#f6f8f6",
+                "background-dark": "#102216",
+              },
+              fontFamily: {
+                "display": ["Plus Jakarta Sans", "Noto Sans", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#dbe6df] dark:border-[#2d3d32] bg-white dark:bg-background-dark px-10 py-3">
+<div class="flex items-center gap-4 text-[#111813] dark:text-white">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">local_mall</span>
+</div>
+<h2 class="text-[#111813] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Marketplace C2C</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9">
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Comprar</a>
+<a class="text-[#111813] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Vender</a>
+</div>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-[#111813] text-sm font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity">
+<span class="truncate">Entrar</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex flex-1 flex-col items-center justify-center px-4 py-12">
+<div class="w-full max-w-[480px] bg-white dark:bg-[#1a2e21] p-8 rounded-xl shadow-sm border border-[#dbe6df] dark:border-[#2d3d32]">
+<!-- Headline Section -->
+<div class="flex flex-col items-center mb-8">
+<div class="bg-primary/10 p-4 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">lock_reset</span>
+</div>
+<h1 class="text-[#111813] dark:text-white tracking-tight text-[32px] font-bold leading-tight text-center">Recuperar senha</h1>
+<p class="text-[#4f735a] dark:text-[#a3b8aa] text-base font-normal leading-relaxed text-center mt-3">
+                        Insira o seu e-mail e enviaremos um link para você criar uma nova senha.
+                    </p>
+</div>
+<!-- Form Section -->
+<form class="flex flex-col gap-6" onsubmit="event.preventDefault();">
+<div class="flex flex-col gap-2">
+<label class="flex flex-col w-full">
+<p class="text-[#111813] dark:text-white text-base font-medium leading-normal pb-2">E-mail</p>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#61896f] dark:text-[#a3b8aa]">mail</span>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111813] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-[#dbe6df] dark:border-[#2d3d32] bg-white dark:bg-[#102216] focus:border-primary h-14 placeholder:text-[#61896f] dark:placeholder:text-[#61896f] pl-12 pr-4 text-base font-normal leading-normal transition-all" placeholder="exemplo@email.com" required="" type="email"/>
+</div>
+</label>
+</div>
+<!-- Single Button -->
+<div class="flex flex-col gap-4">
+<button class="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-5 bg-primary text-[#111813] text-base font-bold leading-normal tracking-[0.015em] hover:opacity-90 transition-opacity active:scale-[0.98]" type="submit">
+<span class="truncate">Enviar link de recuperação</span>
+</button>
+<!-- Return Link -->
+<a class="flex items-center justify-center gap-2 text-[#4f735a] dark:text-[#a3b8aa] text-sm font-semibold hover:text-[#111813] dark:hover:text-primary transition-colors py-2" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                            Voltar para o login
+                        </a>
+</div>
+</form>
+</div>
+<!-- Footer Decorative/Info (Optional) -->
+<div class="mt-8 text-center">
+<p class="text-[#61896f] text-sm">
+                    Ainda não tem conta? <a class="text-primary font-bold hover:underline" href="#">Cadastre-se</a>
+</p>
+</div>
+</main>
+<!-- Minimal Footer -->
+<footer class="py-6 border-t border-[#dbe6df] dark:border-[#2d3d32] bg-white dark:bg-background-dark px-10">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[#61896f] text-xs">© 2024 Marketplace C2C Brasil. Todos os direitos reservados.</p>
+<div class="flex gap-6">
+<a class="text-[#61896f] text-xs hover:text-[#111813] dark:hover:text-white" href="#">Privacidade</a>
+<a class="text-[#61896f] text-xs hover:text-[#111813] dark:hover:text-white" href="#">Termos de uso</a>
+<a class="text-[#61896f] text-xs hover:text-[#111813] dark:hover:text-white" href="#">Ajuda</a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
+
+<!-- Avaliações e Feedback do Usuário -->
