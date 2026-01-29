@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { InlineImage } from "@/components/InlineImage";
 import { useMarketplace } from "@/components/MarketplaceProvider";
-import type { Product } from "@/lib/mockData";
+import type { Product } from "@/components/MarketplaceProvider";
 
 export type ProductCardProps = {
   product: Product;

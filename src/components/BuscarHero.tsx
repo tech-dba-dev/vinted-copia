@@ -1,12 +1,16 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useMarketplace } from "@/components/MarketplaceProvider";
 
 export function BuscarHero() {
   const searchParams = useSearchParams();
-  const categoryKey = (searchParams.get("categoria") ?? "moda").toLowerCase();
+  const { products } = useMarketplace();
+  const searchQuery = searchParams.get("q") || "";
+  const categoryKey = (searchParams.get("categoria") ?? "").toLowerCase();
   const subKey = (searchParams.get("sub") ?? "tudo").toLowerCase();
+
   const categoryLabels: Record<string, string> = {
     moda: "Moda",
     eletronicos: "Eletrônicos",
@@ -71,11 +75,33 @@ export function BuscarHero() {
     },
   };
 
+  // Contar resultados filtrados
+  const filteredCount = products.filter((product) => {
+    if (searchQuery) {
+      const searchableText = `${product.title} ${product.brand} ${product.description || ""} ${product.seller}`.toLowerCase();
+      if (!searchableText.includes(searchQuery.toLowerCase())) {
+        return false;
+      }
+    }
+    if (categoryKey && product.category !== categoryKey) {
+      return false;
+    }
+    if (subKey && subKey !== "tudo" && product.subcategory !== subKey) {
+      return false;
+    }
+    return true;
+  }).length;
+
   const subcategoryLabel =
     subcategoryLabels[categoryKey]?.[subKey] ??
     subcategoryLabels[categoryKey]?.tudo ??
     "Tudo";
   const breadcrumbLabel = categoryLabels[categoryKey] ?? "Marketplace";
+
+  // Título da página
+  const pageTitle = searchQuery
+    ? `Resultados para "${searchQuery}"`
+    : subcategoryLabel;
 
   return (
     <>
@@ -86,16 +112,26 @@ export function BuscarHero() {
         <span className="material-symbols-outlined text-xs text-[#61896f]">
           chevron_right
         </span>
-        <span className="text-[#111813] ">{breadcrumbLabel}</span>
-        <span className="material-symbols-outlined text-xs text-[#61896f]">
-          chevron_right
-        </span>
-        <span className="font-bold">{subcategoryLabel}</span>
+        {searchQuery ? (
+          <span className="text-[#111813]">Busca</span>
+        ) : (
+          <>
+            <span className="text-[#111813] ">{breadcrumbLabel}</span>
+            <span className="material-symbols-outlined text-xs text-[#61896f]">
+              chevron_right
+            </span>
+            <span className="font-bold">{subcategoryLabel}</span>
+          </>
+        )}
       </div>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-bold tracking-tight">{subcategoryLabel}</h1>
-          <p className="text-[#61896f] text-sm">1.240 resultados para a sua pesquisa</p>
+          <h1 className="text-3xl font-bold tracking-tight">{pageTitle}</h1>
+          <p className="text-[#61896f] text-sm">
+            {filteredCount === 1
+              ? "1 resultado encontrado"
+              : `${filteredCount} resultados encontrados`}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <p className="text-sm font-medium whitespace-nowrap">Ordenar por:</p>

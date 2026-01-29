@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "../styles/globals.css";
-import { SiteHeader } from "@/components/SiteHeader";
+import { AuthProvider } from "@/components/AuthProvider";
 import { MarketplaceProvider } from "@/components/MarketplaceProvider";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -35,10 +35,11 @@ export default function RootLayout({
       <body
         className={`${plusJakarta.variable} bg-background-light text-[#111813] min-h-screen antialiased`}
       >
-        <MarketplaceProvider>
-          <SiteHeader />
-          {children}
-        </MarketplaceProvider>
+        <AuthProvider>
+          <MarketplaceProvider>
+            {children}
+          </MarketplaceProvider>
+        </AuthProvider>
       </body>
     </html>
   );

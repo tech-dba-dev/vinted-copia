@@ -1,7 +1,6 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Script from "next/script";
-import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/mockData";
+import { ProductGrid } from "@/components/ProductGrid";
 
 export const metadata = {
   title: "Página Inicial do Marketplace",
@@ -39,7 +38,6 @@ const jsonLd = {
 };
 
 export default function Page() {
-  const featuredProducts = products.slice(0, 10);
   return (
     <>
       <Script
@@ -87,11 +85,7 @@ export default function Page() {
 <Link className="text-sm font-bold text-gray-500 hover:text-black transition-colors" href="/buscar">Limpar tudo</Link>
 </div>
 </section>
-<section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-{featuredProducts.map((product) => (
-  <ProductCard key={product.id} product={product} variant="home" />
-))}
-</section>
+<ProductGrid limit={10} />
 <div className="flex justify-center py-10">
 <Link className="border-2 border-primary text-[#111813] px-8 py-2 rounded-lg font-bold hover:bg-primary/10 transition-colors" href="/buscar">Carregar mais itens</Link>
 </div>
