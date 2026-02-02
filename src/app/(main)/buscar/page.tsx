@@ -56,7 +56,7 @@ export default function Page({ searchParams }: PageProps) {
 </div>
 <BuscarResults />
 <div className="flex justify-center items-center gap-2 py-10 mt-4">
-<button className="flex items-center justify-center size-10 rounded-lg border border-[#f0f4f2] hover:bg-primary transition-colors disabled:opacity-50" disabled="">
+<button className="flex items-center justify-center size-10 rounded-lg border border-[#f0f4f2] hover:bg-primary transition-colors disabled:opacity-50" disabled type="button">
 <span className="material-symbols-outlined">chevron_left</span>
 </button>
 <button className="size-10 rounded-lg bg-primary text-[#111813] font-bold">1</button>
