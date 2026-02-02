@@ -11,6 +11,14 @@ export function BuscarResults() {
   const categoryKey = searchParams.get("categoria")?.toLowerCase() || "";
   const subKey = searchParams.get("sub")?.toLowerCase() || "";
 
+  // Filtros adicionais
+  const minPrice = searchParams.get("min_price");
+  const maxPrice = searchParams.get("max_price");
+  const brands = searchParams.get("brands")?.split(",").filter(Boolean) || [];
+  const sizes = searchParams.get("sizes")?.split(",").filter(Boolean) || [];
+  const conditions = searchParams.get("conditions")?.split(",").filter(Boolean) || [];
+  const colors = searchParams.get("colors")?.split(",").filter(Boolean) || [];
+
   const filtered = products.filter((product) => {
     // Filtro por texto de busca
     if (searchQuery) {
@@ -27,6 +35,41 @@ export function BuscarResults() {
     if (subKey && subKey !== "tudo" && product.subcategory !== subKey) {
       return false;
     }
+
+    // Filtro por preço mínimo
+    if (minPrice && product.price < parseFloat(minPrice)) {
+      return false;
+    }
+
+    // Filtro por preço máximo
+    if (maxPrice && product.price > parseFloat(maxPrice)) {
+      return false;
+    }
+
+    // Filtro por marcas
+    if (brands.length > 0 && !brands.includes(product.brand)) {
+      return false;
+    }
+
+    // Filtro por tamanhos
+    if (sizes.length > 0 && !sizes.includes(product.size)) {
+      return false;
+    }
+
+    // Filtro por condição
+    if (conditions.length > 0 && !conditions.includes(product.condition)) {
+      return false;
+    }
+
+    // Filtro por cor (simplificado - verifica se o nome da cor está na descrição ou atributos)
+    if (colors.length > 0) {
+      const productText = `${product.title} ${product.description || ""}`.toLowerCase();
+      const hasMatchingColor = colors.some((color) => productText.includes(color));
+      if (!hasMatchingColor) {
+        return false;
+      }
+    }
+
     return true;
   });
 

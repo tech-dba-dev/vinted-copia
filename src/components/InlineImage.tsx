@@ -17,6 +17,11 @@ export function InlineImage({
   priority = false,
   ...rest
 }: InlineImageProps) {
+  // Não renderizar se src estiver vazio
+  if (!src || src === "") {
+    return null;
+  }
+
   return (
     <span className={`relative block overflow-hidden ${className ?? ""}`} {...rest}>
       <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />

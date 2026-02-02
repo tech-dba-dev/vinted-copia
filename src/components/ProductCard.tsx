@@ -7,13 +7,60 @@ import type { Product } from "@/components/MarketplaceProvider";
 
 export type ProductCardProps = {
   product: Product;
-  variant?: "home" | "search" | "compact";
+  variant?: "home" | "search" | "compact" | "profile";
+  onEdit?: (productId: string) => void;
+  onDelete?: (productId: string) => void;
 };
 
-export function ProductCard({ product, variant = "home" }: ProductCardProps) {
+export function ProductCard({ product, variant = "home", onEdit, onDelete }: ProductCardProps) {
   const { favorites, toggleFavorite } = useMarketplace();
   const isFavorite = favorites.includes(product.id);
   const priceLabel = `${product.price.toFixed(2).replace(".", ",")} ${product.currency === "EUR" ? "€" : product.currency}`;
+
+  if (variant === "profile") {
+    return (
+      <div className="group flex flex-col gap-3 bg-white rounded-xl border border-[#f0f4f2] overflow-hidden hover:shadow-lg transition-all">
+        <Link href={`/produto?id=${product.id}`} className="contents">
+          <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+            <InlineImage
+              src={product.image}
+              alt={product.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute top-3 right-3 flex gap-2">
+              <button
+                className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-primary hover:text-white transition-colors"
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onEdit?.(product.id);
+                }}
+                title="Editar anúncio"
+              >
+                <span className="material-symbols-outlined text-[18px]">edit</span>
+              </button>
+              <button
+                className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-red-500 hover:text-white transition-colors"
+                type="button"
+                onClick={(event) => {
+                  event.preventDefault();
+                  onDelete?.(product.id);
+                }}
+                title="Deletar anúncio"
+              >
+                <span className="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </div>
+          </div>
+          <div className="p-3 flex flex-col gap-1">
+            <p className="text-lg font-bold">{priceLabel}</p>
+            <p className="text-xs text-[#61896f] font-medium">{product.size} · {product.brand}</p>
+            <p className="text-sm text-gray-800 truncate">{product.title}</p>
+          </div>
+        </Link>
+      </div>
+    );
+  }
 
   if (variant === "search") {
     return (

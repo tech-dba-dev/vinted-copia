@@ -458,6 +458,10 @@ export type Database = {
           id: string
           rating: number | null
           username: string
+          location: string | null
+          reviews_count: number | null
+          followers_count: number | null
+          following_count: number | null
         }
         Insert: {
           avatar_url?: string | null
@@ -467,6 +471,10 @@ export type Database = {
           id: string
           rating?: number | null
           username: string
+          location?: string | null
+          reviews_count?: number | null
+          followers_count?: number | null
+          following_count?: number | null
         }
         Update: {
           avatar_url?: string | null
@@ -476,6 +484,10 @@ export type Database = {
           id?: string
           rating?: number | null
           username?: string
+          location?: string | null
+          reviews_count?: number | null
+          followers_count?: number | null
+          following_count?: number | null
         }
         Relationships: []
       }

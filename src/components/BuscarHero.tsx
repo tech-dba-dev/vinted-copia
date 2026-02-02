@@ -10,68 +10,72 @@ export function BuscarHero() {
   const searchQuery = searchParams.get("q") || "";
   const categoryKey = (searchParams.get("categoria") ?? "").toLowerCase();
   const subKey = (searchParams.get("sub") ?? "tudo").toLowerCase();
+  const itemKey = (searchParams.get("item") ?? "").toLowerCase();
 
   const categoryLabels: Record<string, string> = {
-    moda: "Moda",
-    eletronicos: "Eletrônicos",
+    mulher: "Mulher",
+    homem: "Homem",
+    crianca: "Criança",
     casa: "Casa",
-    esporte: "Esporte",
-    livros: "Livros",
-    automotivo: "Automotivo",
-    infantil: "Infantil",
-    promocoes: "Promoções",
+    entretenimento: "Entretenimento",
+    hobbies: "Hobbies",
+    esportes: "Esportes",
   };
   const subcategoryLabels: Record<string, Record<string, string>> = {
-    moda: {
+    mulher: {
       tudo: "Tudo",
-      roupas: "Roupas",
-      calcados: "Calçados",
-      acessorios: "Acessórios",
+      roupa: "Roupa",
+      calçado: "Calçado",
+      bolsas: "Bolsas",
+      acessórios: "Acessórios",
+      beleza: "Beleza",
     },
-    eletronicos: {
+    homem: {
       tudo: "Tudo",
-      smartphones: "Smartphones",
-      notebooks: "Notebooks",
-      tvs: "TVs",
-      audio: "Áudio",
-      games: "Games",
+      roupa: "Roupa",
+      calçado: "Calçado",
+      bolsas: "Bolsas",
+      acessórios: "Acessórios",
+      beleza: "Beleza",
+    },
+    crianca: {
+      tudo: "Tudo",
+      meninas: "Meninas",
+      meninos: "Meninos",
+      bebês: "Bebês",
+      calçados: "Calçados",
+      acessórios: "Acessórios",
     },
     casa: {
       tudo: "Tudo",
-      decoracao: "Decoração",
+      decoração: "Decoração",
       cozinha: "Cozinha",
-      organizacao: "Organização",
-      moveis: "Móveis",
-      eletrodomesticos: "Eletrodomésticos",
+      "cama e banho": "Cama e Banho",
+      móveis: "Móveis",
     },
-    esporte: {
+    entretenimento: {
       tudo: "Tudo",
-      ciclismo: "Ciclismo",
+      livros: "Livros",
+      "filmes e séries": "Filmes e Séries",
+      música: "Música",
+      games: "Games",
+      colecionáveis: "Colecionáveis",
+    },
+    hobbies: {
+      tudo: "Tudo",
+      instrumentos: "Instrumentos",
+      arte: "Arte",
+      artesanato: "Artesanato",
+      jardinagem: "Jardinagem",
+      fotografia: "Fotografia",
+    },
+    esportes: {
+      tudo: "Tudo",
       fitness: "Fitness",
       futebol: "Futebol",
-      aventura: "Aventura",
-    },
-    livros: {
-      tudo: "Tudo",
-      literatura: "Literatura",
-      didaticos: "Didáticos",
-      colecoes: "Coleções",
-    },
-    automotivo: {
-      tudo: "Tudo",
-      pecas: "Peças",
-      acessorios: "Acessórios",
-      ferramentas: "Ferramentas",
-    },
-    infantil: {
-      tudo: "Tudo",
-      brinquedos: "Brinquedos",
-      roupas: "Roupas",
-      bebe: "Bebê",
-      escola: "Escola",
-    },
-    promocoes: {
-      tudo: "Promoções",
+      natação: "Natação",
+      ciclismo: "Ciclismo",
+      tênis: "Tênis",
     },
   };
 
@@ -98,10 +102,15 @@ export function BuscarHero() {
     "Tudo";
   const breadcrumbLabel = categoryLabels[categoryKey] ?? "Marketplace";
 
+  // Capitalizar primeira letra do item
+  const itemLabel = itemKey
+    ? itemKey.charAt(0).toUpperCase() + itemKey.slice(1)
+    : "";
+
   // Título da página
   const pageTitle = searchQuery
     ? `Resultados para "${searchQuery}"`
-    : subcategoryLabel;
+    : itemLabel || subcategoryLabel;
 
   return (
     <>
@@ -116,11 +125,31 @@ export function BuscarHero() {
           <span className="text-[#111813]">Busca</span>
         ) : (
           <>
-            <span className="text-[#111813] ">{breadcrumbLabel}</span>
+            <Link
+              className="text-[#61896f] hover:text-primary transition-colors"
+              href={`/buscar?categoria=${categoryKey}`}
+            >
+              {breadcrumbLabel}
+            </Link>
             <span className="material-symbols-outlined text-xs text-[#61896f]">
               chevron_right
             </span>
-            <span className="font-bold">{subcategoryLabel}</span>
+            {itemLabel ? (
+              <>
+                <Link
+                  className="text-[#61896f] hover:text-primary transition-colors"
+                  href={`/buscar?categoria=${categoryKey}&sub=${subKey}`}
+                >
+                  {subcategoryLabel}
+                </Link>
+                <span className="material-symbols-outlined text-xs text-[#61896f]">
+                  chevron_right
+                </span>
+                <span className="font-bold">{itemLabel}</span>
+              </>
+            ) : (
+              <span className="font-bold">{subcategoryLabel}</span>
+            )}
           </>
         )}
       </div>

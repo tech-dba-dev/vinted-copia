@@ -217,24 +217,39 @@ function ProductContent() {
               <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
                 Sobre o vendedor
               </h4>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 flex items-center justify-center text-xl font-bold">
-                  <span>
-                    {(product.seller?.full_name || product.seller?.username || "U")
-                      .charAt(0)
-                      .toUpperCase()}
-                  </span>
+              <Link
+                href={`/perfil/${product.seller?.username}`}
+                className="flex items-center gap-4 mb-4 group"
+              >
+                <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 flex items-center justify-center text-xl font-bold group-hover:bg-primary/30 transition-colors">
+                  {product.seller?.avatar_url ? (
+                    <img
+                      src={product.seller.avatar_url}
+                      alt={product.seller.username || "Vendedor"}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <span>
+                      {(product.seller?.full_name || product.seller?.username || "U")
+                        .charAt(0)
+                        .toUpperCase()}
+                    </span>
+                  )}
                 </div>
-                <div>
-                  <h4 className="font-bold">
+                <div className="flex-1">
+                  <h4 className="font-bold group-hover:text-primary transition-colors">
                     {product.seller?.username || "Vendedor"}
                   </h4>
                   <div className="flex items-center gap-1 text-sm text-gray-500">
-                    <span className="material-symbols-outlined text-[16px]">star</span>
-                    <span>{product.seller?.rating || 0}</span>
+                    <span className="material-symbols-outlined text-[16px] text-yellow-400 fill-current">star</span>
+                    <span>{(product.seller?.rating || 0).toFixed(1)}</span>
+                    <span className="text-xs">({product.seller?.reviews_count || 0})</span>
                   </div>
                 </div>
-              </div>
+                <span className="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">
+                  chevron_right
+                </span>
+              </Link>
             </div>
           </div>
         </aside>

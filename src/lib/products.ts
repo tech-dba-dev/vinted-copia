@@ -16,6 +16,9 @@ export async function createProduct(
   data: CreateProductData
 ): Promise<Product | null> {
   try {
+    console.log('[createProduct] Criando produto com seller_id:', sellerId);
+    console.log('[createProduct] Dados:', data);
+
     const { data: product, error } = await supabase
       .from('products')
       .insert({
@@ -32,13 +35,14 @@ export async function createProduct(
       .single()
 
     if (error) {
-      console.error('Erro ao criar produto:', error)
+      console.error('[createProduct] Erro ao criar produto:', error)
       return null
     }
 
+    console.log('[createProduct] Produto criado com sucesso:', product);
     return product
   } catch (error) {
-    console.error('Erro ao criar produto:', error)
+    console.error('[createProduct] Erro ao criar produto:', error)
     return null
   }
 }

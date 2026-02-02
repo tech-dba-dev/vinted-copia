@@ -36,6 +36,63 @@ export function CreateListingWizard() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [subcategories, setSubcategories] = useState<Category[]>([]);
 
+  // Categorias hardcoded temporárias (até popular o banco)
+  const tempCategories = [
+    { id: "mulher", name: "Mulher", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "homem", name: "Homem", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "crianca", name: "Criança", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "casa", name: "Casa", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "entretenimento", name: "Entretenimento", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "hobbies", name: "Hobbies", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+    { id: "esportes", name: "Esportes", created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
+  ];
+
+  const tempSubcategories: Record<string, Category[]> = {
+    mulher: [
+      { id: "roupa", name: "Roupa", created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
+      { id: "calcado", name: "Calçado", created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
+      { id: "bolsas", name: "Bolsas", created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
+      { id: "acessorios", name: "Acessórios", created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
+      { id: "beleza", name: "Beleza", created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
+    ],
+    homem: [
+      { id: "roupa-homem", name: "Roupa", created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
+      { id: "calcado-homem", name: "Calçado", created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
+      { id: "bolsas-homem", name: "Bolsas", created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
+      { id: "acessorios-homem", name: "Acessórios", created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
+    ],
+    crianca: [
+      { id: "meninas", name: "Meninas", created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
+      { id: "meninos", name: "Meninos", created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
+      { id: "bebes", name: "Bebês", created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
+      { id: "calcados-crianca", name: "Calçados", created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
+    ],
+    casa: [
+      { id: "decoracao", name: "Decoração", created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
+      { id: "cozinha", name: "Cozinha", created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
+      { id: "cama-banho", name: "Cama e Banho", created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
+      { id: "moveis", name: "Móveis", created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
+    ],
+    entretenimento: [
+      { id: "livros", name: "Livros", created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
+      { id: "filmes", name: "Filmes e Séries", created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
+      { id: "musica", name: "Música", created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
+      { id: "games", name: "Games", created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
+    ],
+    hobbies: [
+      { id: "instrumentos", name: "Instrumentos", created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
+      { id: "arte", name: "Arte", created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
+      { id: "artesanato", name: "Artesanato", created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
+      { id: "jardinagem", name: "Jardinagem", created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
+    ],
+    esportes: [
+      { id: "fitness", name: "Fitness", created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
+      { id: "futebol", name: "Futebol", created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
+      { id: "natacao", name: "Natação", created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
+      { id: "ciclismo", name: "Ciclismo", created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
+    ],
+  };
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Redirecionar se não estiver logado
@@ -49,7 +106,14 @@ export function CreateListingWizard() {
   useEffect(() => {
     async function loadCategories() {
       const cats = await getRootCategories();
-      setCategories(cats);
+      // Se não houver categorias no banco, usar as temporárias
+      if (cats.length === 0) {
+        console.log("[CreateListingWizard] Banco vazio, usando categorias hardcoded");
+        setCategories(tempCategories);
+      } else {
+        console.log("[CreateListingWizard] Categorias carregadas do banco:", cats.length);
+        setCategories(cats);
+      }
     }
     loadCategories();
   }, []);
@@ -59,7 +123,14 @@ export function CreateListingWizard() {
     async function loadSubcategories() {
       if (categoryId) {
         const subs = await getSubcategories(categoryId);
-        setSubcategories(subs);
+        // Se não houver subcategorias no banco, usar as temporárias
+        if (subs.length === 0 && tempSubcategories[categoryId]) {
+          console.log("[CreateListingWizard] Usando subcategorias hardcoded para:", categoryId);
+          setSubcategories(tempSubcategories[categoryId]);
+        } else {
+          console.log("[CreateListingWizard] Subcategorias carregadas do banco:", subs.length);
+          setSubcategories(subs);
+        }
         setSubcategoryId("");
       } else {
         setSubcategories([]);
@@ -116,6 +187,8 @@ export function CreateListingWizard() {
   const handleSubmit = async () => {
     if (!user || !canProceed || isSubmitting) return;
 
+    console.log('[CreateListingWizard] Iniciando publicação com user.id:', user.id);
+
     setIsSubmitting(true);
     setError(null);
 
@@ -128,11 +201,13 @@ export function CreateListingWizard() {
       let imageUrls: string[] = [];
 
       if (filesToUpload.length > 0) {
+        console.log('[CreateListingWizard] Fazendo upload de', filesToUpload.length, 'imagens');
         imageUrls = await uploadProductImages(filesToUpload, user.id);
 
         if (imageUrls.length === 0) {
           throw new Error("Falha ao fazer upload das imagens");
         }
+        console.log('[CreateListingWizard] Upload concluído:', imageUrls.length, 'imagens');
       }
 
       // 2. Criar o produto
@@ -143,6 +218,7 @@ export function CreateListingWizard() {
         throw new Error("Selecione uma categoria");
       }
 
+      console.log('[CreateListingWizard] Criando produto...');
       const product = await createProduct(user.id, {
         title,
         description,

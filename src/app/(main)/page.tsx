@@ -61,7 +61,7 @@ export default function Page() {
 <Link className="text-primary font-bold text-sm hover:underline" href="/buscar">Ver tudo</Link>
 </div>
 <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/criar-anuncio">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Tamanho</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
@@ -69,18 +69,18 @@ export default function Page() {
 <span>Marca</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
-<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/criar-anuncio">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Preço</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
-<button className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Estado</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
-</button>
-<button className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm">
+</Link>
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Cor</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
-</button>
+</Link>
 <div className="h-8 w-px bg-gray-200 mx-2"></div>
 <Link className="text-sm font-bold text-gray-500 hover:text-black transition-colors" href="/buscar">Limpar tudo</Link>
 </div>
