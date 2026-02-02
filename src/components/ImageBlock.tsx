@@ -17,6 +17,11 @@ export function ImageBlock({
   sizes = "100vw",
   priority = false,
 }: ImageBlockProps) {
+  // Não renderizar se src estiver vazio
+  if (!src || src === "") {
+    return null;
+  }
+
   return (
     <div className={`relative overflow-hidden ${className ?? ""}`}>
       <Image

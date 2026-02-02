@@ -50,25 +50,35 @@ export default function Page() {
 {/*Right Side (Registration Form)*/}
 <div className="flex-1 flex flex-col justify-center items-center p-6 md:p-12 bg-white ">
 <div className="w-full max-w-[480px]">
+{/*Back to Home Button*/}
+<div className="mb-6">
+<Link href="/" className="inline-flex items-center gap-2 text-[#61896f] hover:text-primary transition-colors text-sm font-medium">
+<span className="material-symbols-outlined text-lg">arrow_back</span>
+Voltar ao início
+</Link>
+</div>
 {/*Headline & Subtext*/}
 <div className="mb-8 text-center lg:text-left">
 <h1 className="text-[#111813] tracking-light text-[32px] font-bold leading-tight pb-2">Criar conta</h1>
 <p className="text-[#61896f] text-base font-normal leading-normal">Junte-se à maior comunidade de compra e venda de itens.</p>
 </div>
 {/*Registration Form*/}
-<RegisterForm>
+<RegisterForm
+  submitLabel="Criar conta"
+  submitClassName="w-full bg-primary text-[#111813] py-3 rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-sm"
+>
 {/*Name Field*/}
 <div className="flex flex-col gap-2">
 <label className="flex flex-col w-full">
 <p className="text-[#111813] text-sm font-medium leading-normal pb-2">Nome completo</p>
-<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all" placeholder="Como você quer ser chamado?" required type="text"/>
+<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all" placeholder="Como você quer ser chamado?" name="name" required type="text"/>
 </label>
 </div>
 {/*Email Field*/}
 <div className="flex flex-col gap-2">
 <label className="flex flex-col w-full">
 <p className="text-[#111813] text-sm font-medium leading-normal pb-2">E-mail</p>
-<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all" name="email" placeholder="seu@email.com" required />
+<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all" name="email" type="email" placeholder="seu@email.com" required />
 </label>
 </div>
 {/*Password Field*/}
@@ -76,10 +86,19 @@ export default function Page() {
 <label className="flex flex-col w-full relative">
 <p className="text-[#111813] text-sm font-medium leading-normal pb-2">Senha</p>
 <div className="relative">
-<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12" placeholder="Mínimo 8 caracteres" required type="password"/>
+<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12" placeholder="Mínimo 6 caracteres" name="password" required type="password"/>
 <button className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 flex items-center" type="button">
 <span className="material-symbols-outlined text-xl">visibility</span>
 </button>
+</div>
+</label>
+</div>
+{/*Confirm Password Field*/}
+<div className="flex flex-col gap-2">
+<label className="flex flex-col w-full relative">
+<p className="text-[#111813] text-sm font-medium leading-normal pb-2">Confirmar senha</p>
+<div className="relative">
+<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12" placeholder="Repita a senha" name="confirmPassword" required type="password"/>
 </div>
 </label>
 </div>
@@ -92,10 +111,6 @@ export default function Page() {
                             Li e aceito os <Link className="text-primary font-semibold hover:underline" href="/central-de-ajuda">Termos e Condições</Link> e a <Link className="text-primary font-semibold hover:underline" href="/central-de-ajuda">Política de Privacidade</Link>.
                         </label>
 </div>
-{/*Submit Button*/}
-<button className="flex w-full items-center justify-center rounded-lg h-14 px-6 bg-primary text-[#111813] text-base font-bold leading-normal tracking-[0.015em] hover:brightness-105 shadow-lg shadow-primary/20 transition-all mt-4" type="submit">
-<span className="truncate">Cadastrar</span>
-</button>
 </RegisterForm>
 {/*Redirect to Login*/}
 <div className="mt-8 text-center">

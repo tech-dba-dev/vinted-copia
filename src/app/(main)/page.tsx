@@ -1,7 +1,6 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import Script from "next/script";
-import { ProductCard } from "@/components/ProductCard";
-import { products } from "@/lib/mockData";
+import { ProductGrid } from "@/components/ProductGrid";
 
 export const metadata = {
   title: "Página Inicial do Marketplace",
@@ -39,7 +38,6 @@ const jsonLd = {
 };
 
 export default function Page() {
-  const featuredProducts = products.slice(0, 10);
   return (
     <>
       <Script
@@ -63,7 +61,7 @@ export default function Page() {
 <Link className="text-primary font-bold text-sm hover:underline" href="/buscar">Ver tudo</Link>
 </div>
 <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/criar-anuncio">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Tamanho</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
@@ -71,27 +69,23 @@ export default function Page() {
 <span>Marca</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
-<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/criar-anuncio">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Preço</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
 </Link>
-<button className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm">
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Estado</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
-</button>
-<button className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm">
+</Link>
+<Link className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-[#dbe6df] whitespace-nowrap text-sm" href="/buscar">
 <span>Cor</span>
 <span className="material-symbols-outlined text-lg">expand_more</span>
-</button>
+</Link>
 <div className="h-8 w-px bg-gray-200 mx-2"></div>
 <Link className="text-sm font-bold text-gray-500 hover:text-black transition-colors" href="/buscar">Limpar tudo</Link>
 </div>
 </section>
-<section className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-{featuredProducts.map((product) => (
-  <ProductCard key={product.id} product={product} variant="home" />
-))}
-</section>
+<ProductGrid limit={10} />
 <div className="flex justify-center py-10">
 <Link className="border-2 border-primary text-[#111813] px-8 py-2 rounded-lg font-bold hover:bg-primary/10 transition-colors" href="/buscar">Carregar mais itens</Link>
 </div>

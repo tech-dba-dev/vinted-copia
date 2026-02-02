@@ -45,3 +45,7 @@ next-env.d.ts
 .vscode/
 .claude/
 .idea/
+
+# Development logs and migrations
+dev.log
+migrations/

@@ -1,81 +1,116 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { useMarketplace } from "@/components/MarketplaceProvider";
 
 export function BuscarHero() {
   const searchParams = useSearchParams();
-  const categoryKey = (searchParams.get("categoria") ?? "moda").toLowerCase();
+  const { products } = useMarketplace();
+  const searchQuery = searchParams.get("q") || "";
+  const categoryKey = (searchParams.get("categoria") ?? "").toLowerCase();
   const subKey = (searchParams.get("sub") ?? "tudo").toLowerCase();
+  const itemKey = (searchParams.get("item") ?? "").toLowerCase();
+
   const categoryLabels: Record<string, string> = {
-    moda: "Moda",
-    eletronicos: "Eletrônicos",
+    mulher: "Mulher",
+    homem: "Homem",
+    crianca: "Criança",
     casa: "Casa",
-    esporte: "Esporte",
-    livros: "Livros",
-    automotivo: "Automotivo",
-    infantil: "Infantil",
-    promocoes: "Promoções",
+    entretenimento: "Entretenimento",
+    hobbies: "Hobbies",
+    esportes: "Esportes",
   };
   const subcategoryLabels: Record<string, Record<string, string>> = {
-    moda: {
+    mulher: {
       tudo: "Tudo",
-      roupas: "Roupas",
-      calcados: "Calçados",
-      acessorios: "Acessórios",
+      roupa: "Roupa",
+      calçado: "Calçado",
+      bolsas: "Bolsas",
+      acessórios: "Acessórios",
+      beleza: "Beleza",
     },
-    eletronicos: {
+    homem: {
       tudo: "Tudo",
-      smartphones: "Smartphones",
-      notebooks: "Notebooks",
-      tvs: "TVs",
-      audio: "Áudio",
-      games: "Games",
+      roupa: "Roupa",
+      calçado: "Calçado",
+      bolsas: "Bolsas",
+      acessórios: "Acessórios",
+      beleza: "Beleza",
+    },
+    crianca: {
+      tudo: "Tudo",
+      meninas: "Meninas",
+      meninos: "Meninos",
+      bebês: "Bebês",
+      calçados: "Calçados",
+      acessórios: "Acessórios",
     },
     casa: {
       tudo: "Tudo",
-      decoracao: "Decoração",
+      decoração: "Decoração",
       cozinha: "Cozinha",
-      organizacao: "Organização",
-      moveis: "Móveis",
-      eletrodomesticos: "Eletrodomésticos",
+      "cama e banho": "Cama e Banho",
+      móveis: "Móveis",
     },
-    esporte: {
+    entretenimento: {
       tudo: "Tudo",
-      ciclismo: "Ciclismo",
+      livros: "Livros",
+      "filmes e séries": "Filmes e Séries",
+      música: "Música",
+      games: "Games",
+      colecionáveis: "Colecionáveis",
+    },
+    hobbies: {
+      tudo: "Tudo",
+      instrumentos: "Instrumentos",
+      arte: "Arte",
+      artesanato: "Artesanato",
+      jardinagem: "Jardinagem",
+      fotografia: "Fotografia",
+    },
+    esportes: {
+      tudo: "Tudo",
       fitness: "Fitness",
       futebol: "Futebol",
-      aventura: "Aventura",
-    },
-    livros: {
-      tudo: "Tudo",
-      literatura: "Literatura",
-      didaticos: "Didáticos",
-      colecoes: "Coleções",
-    },
-    automotivo: {
-      tudo: "Tudo",
-      pecas: "Peças",
-      acessorios: "Acessórios",
-      ferramentas: "Ferramentas",
-    },
-    infantil: {
-      tudo: "Tudo",
-      brinquedos: "Brinquedos",
-      roupas: "Roupas",
-      bebe: "Bebê",
-      escola: "Escola",
-    },
-    promocoes: {
-      tudo: "Promoções",
+      natação: "Natação",
+      ciclismo: "Ciclismo",
+      tênis: "Tênis",
     },
   };
+
+  // Contar resultados filtrados
+  const filteredCount = products.filter((product) => {
+    if (searchQuery) {
+      const searchableText = `${product.title} ${product.brand} ${product.description || ""} ${product.seller}`.toLowerCase();
+      if (!searchableText.includes(searchQuery.toLowerCase())) {
+        return false;
+      }
+    }
+    if (categoryKey && product.category !== categoryKey) {
+      return false;
+    }
+    if (subKey && subKey !== "tudo" && product.subcategory !== subKey) {
+      return false;
+    }
+    return true;
+  }).length;
 
   const subcategoryLabel =
     subcategoryLabels[categoryKey]?.[subKey] ??
     subcategoryLabels[categoryKey]?.tudo ??
     "Tudo";
   const breadcrumbLabel = categoryLabels[categoryKey] ?? "Marketplace";
+
+  // Capitalizar primeira letra do item
+  const itemLabel = itemKey
+    ? itemKey.charAt(0).toUpperCase() + itemKey.slice(1)
+    : "";
+
+  // Título da página
+  const pageTitle = searchQuery
+    ? `Resultados para "${searchQuery}"`
+    : itemLabel || subcategoryLabel;
 
   return (
     <>
@@ -86,16 +121,46 @@ export function BuscarHero() {
         <span className="material-symbols-outlined text-xs text-[#61896f]">
           chevron_right
         </span>
-        <span className="text-[#111813] ">{breadcrumbLabel}</span>
-        <span className="material-symbols-outlined text-xs text-[#61896f]">
-          chevron_right
-        </span>
-        <span className="font-bold">{subcategoryLabel}</span>
+        {searchQuery ? (
+          <span className="text-[#111813]">Busca</span>
+        ) : (
+          <>
+            <Link
+              className="text-[#61896f] hover:text-primary transition-colors"
+              href={`/buscar?categoria=${categoryKey}`}
+            >
+              {breadcrumbLabel}
+            </Link>
+            <span className="material-symbols-outlined text-xs text-[#61896f]">
+              chevron_right
+            </span>
+            {itemLabel ? (
+              <>
+                <Link
+                  className="text-[#61896f] hover:text-primary transition-colors"
+                  href={`/buscar?categoria=${categoryKey}&sub=${subKey}`}
+                >
+                  {subcategoryLabel}
+                </Link>
+                <span className="material-symbols-outlined text-xs text-[#61896f]">
+                  chevron_right
+                </span>
+                <span className="font-bold">{itemLabel}</span>
+              </>
+            ) : (
+              <span className="font-bold">{subcategoryLabel}</span>
+            )}
+          </>
+        )}
       </div>
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2">
         <div className="flex flex-col gap-1">
-          <h1 className="text-3xl font-bold tracking-tight">{subcategoryLabel}</h1>
-          <p className="text-[#61896f] text-sm">1.240 resultados para a sua pesquisa</p>
+          <h1 className="text-3xl font-bold tracking-tight">{pageTitle}</h1>
+          <p className="text-[#61896f] text-sm">
+            {filteredCount === 1
+              ? "1 resultado encontrado"
+              : `${filteredCount} resultados encontrados`}
+          </p>
         </div>
         <div className="flex items-center gap-3">
           <p className="text-sm font-medium whitespace-nowrap">Ordenar por:</p>
