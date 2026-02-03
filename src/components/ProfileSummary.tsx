@@ -1,10 +1,10 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { useMarketplace } from "@/components/MarketplaceProvider";
+import { useAuth } from "@/components/AuthProvider";
 
 export function ProfileSummary() {
-  const { user } = useMarketplace();
+  const { user, profile } = useAuth();
 
   if (!user) {
     return (
@@ -17,13 +17,15 @@ export function ProfileSummary() {
     );
   }
 
+  const displayName = profile?.full_name || profile?.username || user.email?.split('@')[0] || 'Usuário';
+
   return (
     <div className="flex items-center gap-3">
       <div className="size-12 rounded-full bg-primary/20 text-[#111813] font-bold flex items-center justify-center">
-        {user.name.slice(0, 1).toUpperCase()}
+        {displayName.slice(0, 1).toUpperCase()}
       </div>
       <div>
-        <p className="text-lg font-bold">{user.name}</p>
+        <p className="text-lg font-bold">{displayName}</p>
         <p className="text-sm text-[#61896f]">{user.email}</p>
       </div>
     </div>
