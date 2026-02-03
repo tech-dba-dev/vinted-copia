@@ -1,5 +1,5 @@
 import { supabase } from './supabase'
-import type { Product, Category } from '@/types/database'
+import type { Product, Category, Json } from '@/types/database'
 
 export type CreateProductData = {
   title: string
@@ -28,7 +28,7 @@ export async function createProduct(
         price: data.price,
         category_id: data.category_id,
         images: data.images,
-        dynamic_attributes: data.dynamic_attributes || {},
+        dynamic_attributes: (data.dynamic_attributes || {}) as Json,
         status: 'available',
       })
       .select()
@@ -152,7 +152,14 @@ export async function updateProduct(
   try {
     const { data: product, error } = await supabase
       .from('products')
-      .update(data)
+      .update({
+        ...(data.title !== undefined && { title: data.title }),
+        ...(data.description !== undefined && { description: data.description }),
+        ...(data.price !== undefined && { price: data.price }),
+        ...(data.category_id !== undefined && { category_id: data.category_id }),
+        ...(data.images !== undefined && { images: data.images }),
+        ...(data.dynamic_attributes !== undefined && { dynamic_attributes: data.dynamic_attributes as Json }),
+      })
       .eq('id', productId)
       .eq('seller_id', sellerId) // Garantir que só o dono pode editar
       .select()
