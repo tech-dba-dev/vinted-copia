@@ -202,14 +202,15 @@ export function ProfilePage() {
   };
 
   const handleDeleteProduct = async (productId: string) => {
+    if (!profile?.id) return;
     if (!confirm("Tem certeza que deseja deletar este anúncio?")) return;
 
     try {
-      const { error } = await supabase
+      const { error} = await supabase
         .from("products")
         .update({ status: "deleted" })
         .eq("id", productId)
-        .eq("seller_id", profile?.id);
+        .eq("seller_id", profile.id);
 
       if (error) throw error;
 
@@ -301,7 +302,7 @@ export function ProfilePage() {
   }
 
   // Calcular estatísticas
-  const soldCount = userProducts.filter(p => p.status === "sold").length;
+  const soldCount = 0; // TODO: implementar contagem de vendas quando houver checkout
   const memberSince = profile.created_at
     ? new Date(profile.created_at).getFullYear()
     : new Date().getFullYear();

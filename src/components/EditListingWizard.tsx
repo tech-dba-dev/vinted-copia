@@ -40,6 +40,8 @@ export function EditListingWizard() {
     }
 
     async function loadProduct() {
+      if (!productId) return;
+
       try {
         const { data, error } = await supabase
           .from("products")

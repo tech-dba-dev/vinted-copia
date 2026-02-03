@@ -56,7 +56,7 @@ export default function Page() {
 <div className="mb-6">
 <h3 className="text-[#111813] text-lg font-bold mb-4">Selecione o motivo da denúncia</h3>
 {/*Radio List*/}
-<div className="flex flex-col gap-3" style={{ "--radio-dot-svg": "url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(19,236,91)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e')" }}>
+<div className="flex flex-col gap-3" style={{ "--radio-dot-svg": "url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27rgb(19,236,91)%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%273%27/%3e%3c/svg%3e')" } as React.CSSProperties}>
 <label className="flex items-center gap-4 rounded-lg border border-solid border-[#dbe6df] p-4 cursor-pointer hover:bg-background-light transition-all focus-within:ring-2 focus-within:ring-primary/20">
 <input defaultChecked className="h-5 w-5 border-2 border-[#dbe6df] bg-transparent text-transparent checked:border-primary checked:bg-[image:--radio-dot-svg] focus:outline-none focus:ring-0 focus:ring-offset-0 checked:focus:border-primary transition-all" name="report-reason" type="radio"/>
 <div className="flex grow flex-col">
