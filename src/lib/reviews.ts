@@ -23,7 +23,7 @@ export async function getUserReviews(userId: string): Promise<ReviewWithReviewer
     return [];
   }
 
-  return (data || []) as ReviewWithReviewer[];
+  return (data || []) as unknown as ReviewWithReviewer[];
 }
 
 /**
@@ -44,7 +44,7 @@ export async function getReviewsByUser(userId: string): Promise<ReviewWithReview
     return [];
   }
 
-  return data || [];
+  return (data || []) as unknown as ReviewWithReviewer[];
 }
 
 /**

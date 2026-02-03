@@ -110,7 +110,7 @@ export async function getUserConversations(
       })
     )
 
-    return conversationsWithDetails
+    return conversationsWithDetails as unknown as ConversationWithDetails[]
   } catch (error) {
     console.error('Erro:', error)
     return []
@@ -136,7 +136,7 @@ export async function getConversationMessages(
       return []
     }
 
-    return data || []
+    return (data || []) as unknown as MessageWithSender[]
   } catch (error) {
     console.error('Erro:', error)
     return []
