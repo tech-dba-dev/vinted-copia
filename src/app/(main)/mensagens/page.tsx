@@ -73,7 +73,13 @@ export default function MensagensPage() {
     if (!selectedConversation) return;
 
     const unsubscribe = subscribeToMessages(selectedConversation.id, (newMessage) => {
-      setMessages((prev) => [...prev, newMessage as MessageWithSender]);
+      setMessages((prev) => {
+        // Evitar duplicatas (mensagem já adicionada via optimistic update)
+        if (prev.some((m) => m.id === newMessage.id)) {
+          return prev;
+        }
+        return [...prev, newMessage as MessageWithSender];
+      });
     });
 
     return unsubscribe;
@@ -90,11 +96,29 @@ export default function MensagensPage() {
     if (!messageText.trim() || !selectedConversation || !user || isSending) return;
 
     setIsSending(true);
-    const message = await sendMessage(selectedConversation.id, user.id, messageText.trim());
+    const content = messageText.trim();
+    setMessageText("");
+
+    const message = await sendMessage(selectedConversation.id, user.id, content);
 
     if (message) {
-      setMessageText("");
-      // A mensagem será adicionada automaticamente via realtime subscription
+      // Adicionar mensagem localmente (optimistic update)
+      setMessages((prev) => {
+        if (prev.some((m) => m.id === message.id)) return prev;
+        return [...prev, { ...message, sender: profile } as MessageWithSender];
+      });
+
+      // Atualizar última mensagem na lista de conversas
+      setConversations((prev) =>
+        prev.map((conv) =>
+          conv.id === selectedConversation.id
+            ? { ...conv, last_message: message }
+            : conv
+        )
+      );
+    } else {
+      // Se falhou, restaurar o texto
+      setMessageText(content);
     }
 
     setIsSending(false);
@@ -119,7 +143,7 @@ export default function MensagensPage() {
             Você precisa estar logado para ver suas mensagens.
           </p>
           <Link
-            href="/auth/login"
+            href="/entrar"
             className="mt-4 inline-block px-6 py-2 bg-primary text-black font-bold rounded-lg hover:brightness-105"
           >
             Fazer Login
