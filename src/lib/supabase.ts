@@ -4,7 +4,14 @@ import type { Database } from '@/types/database'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true, // Mantém a sessão mesmo após fechar o navegador
+    autoRefreshToken: true, // Renova o token automaticamente antes de expirar
+    detectSessionInUrl: true, // Detecta sessão em URLs (útil para OAuth)
+    storage: typeof window !== 'undefined' ? window.localStorage : undefined,
+  },
+})
 
 // Tipos de autenticação
 export type AuthError = {

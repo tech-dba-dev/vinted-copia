@@ -66,24 +66,79 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Escutar mudanças na autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, newSession) => {
-        if (newSession?.user) {
-          const userProfile = await fetchProfile(newSession.user.id);
-          setUser(newSession.user);
-          setProfile(userProfile);
-          setSession(newSession);
-        } else {
+        console.log('[AuthProvider] Auth state changed:', event);
+
+        // Eventos que indicam login bem-sucedido ou token renovado
+        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
+          if (newSession?.user) {
+            const userProfile = await fetchProfile(newSession.user.id);
+            setUser(newSession.user);
+            setProfile(userProfile);
+            setSession(newSession);
+          }
+        }
+        // Eventos que indicam logout
+        else if (event === 'SIGNED_OUT') {
+          console.log('[AuthProvider] User signed out');
           setUser(null);
           setProfile(null);
           setSession(null);
         }
+        // Para INITIAL_SESSION, verificar se há sessão
+        else if (event === 'INITIAL_SESSION') {
+          if (newSession?.user) {
+            const userProfile = await fetchProfile(newSession.user.id);
+            setUser(newSession.user);
+            setProfile(userProfile);
+            setSession(newSession);
+          }
+        }
+
         setIsLoading(false);
       }
     );
 
+    // Verificar sessão quando a página volta a ter foco
+    const handleVisibilityChange = async () => {
+      if (document.visibilityState === 'visible') {
+        console.log('[AuthProvider] Page became visible, checking session...');
+        const { data: { session: currentSession } } = await supabase.auth.getSession();
+
+        if (!currentSession && user) {
+          console.log('[AuthProvider] Session expired, logging out');
+          setUser(null);
+          setProfile(null);
+          setSession(null);
+        } else if (currentSession && !user) {
+          console.log('[AuthProvider] Session restored');
+          const userProfile = await fetchProfile(currentSession.user.id);
+          setUser(currentSession.user);
+          setProfile(userProfile);
+          setSession(currentSession);
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Verificar sessão periodicamente (a cada 30 segundos)
+    const intervalId = setInterval(async () => {
+      const { data: { session: currentSession } } = await supabase.auth.getSession();
+
+      if (!currentSession && user) {
+        console.log('[AuthProvider] Session expired during periodic check');
+        setUser(null);
+        setProfile(null);
+        setSession(null);
+      }
+    }, 30000); // 30 segundos
+
     return () => {
       subscription.unsubscribe();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      clearInterval(intervalId);
     };
-  }, [fetchProfile]);
+  }, [fetchProfile, user]);
 
   // Login
   const signIn = async (email: string, password: string) => {
