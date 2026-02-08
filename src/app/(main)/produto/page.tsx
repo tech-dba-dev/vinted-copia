@@ -75,7 +75,7 @@ function ProductContent() {
 
   async function handleContactSeller() {
     if (!user || !product) {
-      router.push("/auth/login");
+      router.push("/entrar");
       return;
     }
 
@@ -168,7 +168,7 @@ function ProductContent() {
               <div className="flex justify-between items-start mb-4">
                 <div>
                   <h2 className="text-3xl font-bold tracking-tight text-[#111813]">
-                    {product.price.toFixed(2)} €
+                    {(product.price ?? 0).toFixed(2)} €
                   </h2>
                 </div>
               </div>
@@ -218,7 +218,7 @@ function ProductContent() {
                 Sobre o vendedor
               </h4>
               <Link
-                href={`/perfil/${product.seller?.username}`}
+                href={product.seller?.username ? `/perfil/${product.seller.username}` : "#"}
                 className="flex items-center gap-4 mb-4 group"
               >
                 <div className="w-12 h-12 rounded-full overflow-hidden bg-primary/20 flex items-center justify-center text-xl font-bold group-hover:bg-primary/30 transition-colors">
