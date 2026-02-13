@@ -1,18 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useMarketplace } from "@/components/MarketplaceProvider";
 import { useAuth } from "@/components/AuthProvider";
 import { MegaMenu } from "@/components/MegaMenu";
+import { getUnreadMessagesCount, subscribeToUnreadMessages } from "@/lib/messages";
 
 export function SiteHeader() {
   const router = useRouter();
   const { favorites } = useMarketplace();
-  const { profile, isAuthenticated, signOut, isLoading } = useAuth();
+  const { profile, isAuthenticated, signOut, isLoading, user } = useAuth();
   const favoritesCount = favorites.length;
   const [searchQuery, setSearchQuery] = useState("");
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  // Carregar contagem de mensagens não lidas
+  useEffect(() => {
+    if (!user) {
+      setUnreadCount(0);
+      return;
+    }
+
+    // Carregar contagem inicial
+    getUnreadMessagesCount(user.id).then(setUnreadCount);
+
+    // Subscribe para atualizações em tempo real
+    const unsubscribe = subscribeToUnreadMessages(user.id, setUnreadCount);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [user]);
 
   const handleLogout = async () => {
     await signOut();
@@ -91,11 +111,16 @@ export function SiteHeader() {
                   <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white "></span>
                 </Link>
                 <Link
-                  className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] "
+                  className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative"
                   href="/mensagens"
                   title="Mensagens"
                 >
                   <span className="material-symbols-outlined">chat_bubble</span>
+                  {unreadCount > 0 && (
+                    <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                      {unreadCount > 99 ? '99+' : unreadCount}
+                    </span>
+                  )}
                 </Link>
               </div>
               {/* Avatar e botão sair */}

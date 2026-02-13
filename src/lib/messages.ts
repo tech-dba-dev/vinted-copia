@@ -143,14 +143,14 @@ export async function getConversationMessages(
   }
 }
 
-// Enviar mensagem
+// Enviar mensagem (com retry automático se JWT expirou)
 export async function sendMessage(
   conversationId: string,
   senderId: string,
   content: string
 ): Promise<Message | null> {
-  try {
-    const { data, error } = await supabase
+  async function doInsert() {
+    return supabase
       .from('messages')
       .insert({
         conversation_id: conversationId,
@@ -160,8 +160,32 @@ export async function sendMessage(
       })
       .select()
       .single()
+  }
+
+  try {
+    const { data, error } = await doInsert()
 
     if (error) {
+      // Se for erro de auth (JWT expirado), tentar refresh e reenviar
+      const isAuthError =
+        error.code === 'PGRST301' ||
+        error.message?.includes('JWT') ||
+        error.code === '401'
+
+      if (isAuthError) {
+        console.log('[sendMessage] JWT expirado, tentando refresh...')
+        const { error: refreshError } = await supabase.auth.refreshSession()
+
+        if (!refreshError) {
+          const { data: retryData, error: retryError } = await doInsert()
+          if (retryError) {
+            console.error('[sendMessage] Retry falhou:', retryError)
+            return null
+          }
+          return retryData
+        }
+      }
+
       console.error('Erro ao enviar mensagem:', error)
       return null
     }
@@ -198,23 +222,120 @@ export async function markMessagesAsRead(
   }
 }
 
-// Subscribe para novas mensagens em tempo real
+// Contar total de mensagens não lidas do usuário
+export async function getUnreadMessagesCount(userId: string): Promise<number> {
+  try {
+    // Buscar todas as conversas do usuário
+    const { data: conversations } = await supabase
+      .from('conversations')
+      .select('id')
+      .or(`buyer_id.eq.${userId},seller_id.eq.${userId}`)
+
+    if (!conversations || conversations.length === 0) {
+      return 0
+    }
+
+    // Contar mensagens não lidas em todas as conversas
+    const conversationIds = conversations.map((c) => c.id)
+    const { count } = await supabase
+      .from('messages')
+      .select('*', { count: 'exact', head: true })
+      .in('conversation_id', conversationIds)
+      .neq('sender_id', userId)
+      .eq('is_read', false)
+
+    return count || 0
+  } catch (error) {
+    console.error('Erro ao contar mensagens não lidas:', error)
+    return 0
+  }
+}
+
+// Subscribe para novas mensagens em tempo real (com reconexão robusta)
 export function subscribeToMessages(
   conversationId: string,
   onNewMessage: (message: Message) => void
 ) {
+  let retryTimeout: ReturnType<typeof setTimeout> | null = null
+  let isReconnecting = false
+  let retryCount = 0
+  let disposed = false
+  const MAX_RETRIES = 5
+  const channelName = `messages:${conversationId}`
+
+  function createAndSubscribe() {
+    const channel = supabase
+      .channel(channelName)
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'messages',
+          filter: `conversation_id=eq.${conversationId}`,
+        },
+        (payload) => {
+          onNewMessage(payload.new as Message)
+        }
+      )
+      .subscribe((status) => {
+        console.log(`[Realtime] ${channelName} status:`, status)
+
+        if (status === 'SUBSCRIBED') {
+          // Conexão OK — resetar contadores
+          retryCount = 0
+          isReconnecting = false
+        }
+
+        if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+          if (disposed || isReconnecting || retryCount >= MAX_RETRIES) return
+          isReconnecting = true
+          retryCount++
+
+          // Backoff exponencial: 3s, 6s, 12s, 24s, 48s
+          const delay = Math.min(3000 * Math.pow(2, retryCount - 1), 48000)
+          console.log(`[Realtime] Reconectando em ${delay / 1000}s (tentativa ${retryCount}/${MAX_RETRIES})`)
+
+          retryTimeout = setTimeout(() => {
+            if (disposed) return
+            // Limpar canal zumbi e criar um novo
+            supabase.removeChannel(channel)
+            isReconnecting = false
+            currentChannel = createAndSubscribe()
+          }, delay)
+        }
+      })
+
+    return channel
+  }
+
+  let currentChannel = createAndSubscribe()
+
+  return () => {
+    disposed = true
+    if (retryTimeout) clearTimeout(retryTimeout)
+    supabase.removeChannel(currentChannel)
+  }
+}
+
+// Subscribe para mudanças em mensagens não lidas (global)
+export function subscribeToUnreadMessages(
+  userId: string,
+  onUnreadCountChange: (count: number) => void
+) {
   const channel = supabase
-    .channel(`messages:${conversationId}`)
+    .channel('unread-messages')
     .on(
       'postgres_changes',
       {
-        event: 'INSERT',
+        event: '*',
         schema: 'public',
         table: 'messages',
-        filter: `conversation_id=eq.${conversationId}`,
       },
-      (payload) => {
-        onNewMessage(payload.new as Message)
+      async () => {
+        // Recarregar contagem quando houver mudanças
+        const count = await getUnreadMessagesCount(userId)
+        onUnreadCountChange(count)
       }
     )
     .subscribe()

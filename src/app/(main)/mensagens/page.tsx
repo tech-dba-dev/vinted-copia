@@ -16,7 +16,7 @@ import {
 } from "@/lib/messages";
 
 export default function MensagensPage() {
-  const { user, profile } = useAuth();
+  const { user, profile, isLoading: isAuthLoading } = useAuth();
   const [conversations, setConversations] = useState<ConversationWithDetails[]>([]);
   const [selectedConversation, setSelectedConversation] = useState<ConversationWithDetails | null>(null);
   const [messages, setMessages] = useState<MessageWithSender[]>([]);
@@ -25,13 +25,14 @@ export default function MensagensPage() {
   const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Carregar conversas
+  // Carregar conversas (depende de user.id, não do objeto user inteiro)
+  const userId = user?.id;
   useEffect(() => {
     async function loadConversations() {
-      if (!user) return;
+      if (!userId) return;
 
       setIsLoading(true);
-      const data = await getUserConversations(user.id);
+      const data = await getUserConversations(userId);
       setConversations(data);
       setIsLoading(false);
 
@@ -42,23 +43,24 @@ export default function MensagensPage() {
     }
 
     loadConversations();
-  }, [user]);
+  }, [userId]);
 
   // Carregar mensagens quando selecionar conversa
+  const selectedConversationId = selectedConversation?.id;
   useEffect(() => {
     async function loadMessages() {
-      if (!selectedConversation || !user) return;
+      if (!selectedConversationId || !userId) return;
 
-      const data = await getConversationMessages(selectedConversation.id);
+      const data = await getConversationMessages(selectedConversationId);
       setMessages(data);
 
       // Marcar como lidas
-      await markMessagesAsRead(selectedConversation.id, user.id);
+      await markMessagesAsRead(selectedConversationId, userId);
 
       // Atualizar contagem de não lidas na lista
       setConversations((prev) =>
         prev.map((conv) =>
-          conv.id === selectedConversation.id
+          conv.id === selectedConversationId
             ? { ...conv, unread_count: 0 }
             : conv
         )
@@ -66,15 +68,14 @@ export default function MensagensPage() {
     }
 
     loadMessages();
-  }, [selectedConversation, user]);
+  }, [selectedConversationId, userId]);
 
-  // Subscribe para novas mensagens em tempo real
+  // Subscribe para novas mensagens em tempo real (com reconexão)
   useEffect(() => {
-    if (!selectedConversation) return;
+    if (!selectedConversationId) return;
 
-    const unsubscribe = subscribeToMessages(selectedConversation.id, (newMessage) => {
+    const unsubscribe = subscribeToMessages(selectedConversationId, (newMessage) => {
       setMessages((prev) => {
-        // Evitar duplicatas (mensagem já adicionada via optimistic update)
         if (prev.some((m) => m.id === newMessage.id)) {
           return prev;
         }
@@ -83,7 +84,7 @@ export default function MensagensPage() {
     });
 
     return unsubscribe;
-  }, [selectedConversation]);
+  }, [selectedConversationId]);
 
   // Scroll automático para última mensagem
   useEffect(() => {
@@ -133,6 +134,17 @@ export default function MensagensPage() {
     } catch {
       return "";
     }
+  }
+
+  // Enquanto auth está carregando, mostrar spinner (evita flash de "Fazer Login")
+  if (isAuthLoading) {
+    return (
+      <main className="max-w-[1200px] mx-auto px-4 lg:px-0 py-6">
+        <div className="flex items-center justify-center py-20">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </main>
+    );
   }
 
   if (!user) {

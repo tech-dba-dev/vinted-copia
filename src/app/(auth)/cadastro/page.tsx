@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { InlineImage } from "@/components/InlineImage";
 import { RegisterForm } from "@/components/AuthForms";
+import { PasswordInput } from "@/components/PasswordInput";
 
 export const metadata = {
   title: "Página de Cadastro - Marketplace de Moda Circular",
@@ -85,21 +86,22 @@ Voltar ao início
 <div className="flex flex-col gap-2">
 <label className="flex flex-col w-full relative">
 <p className="text-[#111813] text-sm font-medium leading-normal pb-2">Senha</p>
-<div className="relative">
-<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12" placeholder="Mínimo 6 caracteres" name="password" required type="password"/>
-<button className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 flex items-center" type="button">
-<span className="material-symbols-outlined text-xl">visibility</span>
-</button>
-</div>
+<PasswordInput
+  name="password"
+  placeholder="Mínimo 6 caracteres"
+  className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12"
+/>
 </label>
 </div>
 {/*Confirm Password Field*/}
 <div className="flex flex-col gap-2">
 <label className="flex flex-col w-full relative">
 <p className="text-[#111813] text-sm font-medium leading-normal pb-2">Confirmar senha</p>
-<div className="relative">
-<input className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12" placeholder="Repita a senha" name="confirmPassword" required type="password"/>
-</div>
+<PasswordInput
+  name="confirmPassword"
+  placeholder="Repita a senha"
+  className="form-input flex w-full rounded-lg text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] p-[15px] text-base font-normal transition-all pr-12"
+/>
 </label>
 </div>
 {/*Terms Checkbox*/}

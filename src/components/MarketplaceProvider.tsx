@@ -5,7 +5,14 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/components/AuthProvider";
 import type { Product as DBProduct, Profile, Category } from "@/types/database";
 import { getProducts } from "@/lib/products";
-import type { Order } from "@/lib/mockData";
+import {
+  createOrder as createOrderInDB,
+  getBuyerOrders,
+  getSellerOrders,
+  updateOrderStatus as updateOrderStatusInDB,
+  cancelOrder as cancelOrderInDB,
+  type OrderWithDetails,
+} from "@/lib/orders";
 
 // Tipo do produto para a UI (compatível com componentes existentes)
 export type Product = {
@@ -29,12 +36,16 @@ export type Product = {
 export type MarketplaceContextValue = {
   products: Product[];
   favorites: string[];
-  orders: Order[];
+  buyerOrders: OrderWithDetails[];
+  sellerOrders: OrderWithDetails[];
   isLoadingProducts: boolean;
   isLoadingFavorites: boolean;
+  isLoadingOrders: boolean;
   refreshProducts: () => Promise<void>;
   toggleFavorite: (id: string) => Promise<void>;
   addOrder: (productId: string) => Promise<void>;
+  updateOrderStatus: (orderId: string, status: 'shipped' | 'delivered') => Promise<boolean>;
+  cancelOrder: (orderId: string, productId: string) => Promise<boolean>;
   isFavorite: (id: string) => boolean;
 };
 
@@ -75,9 +86,11 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
   const { user, isAuthenticated } = useAuth();
   const [products, setProducts] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [buyerOrders, setBuyerOrders] = useState<OrderWithDetails[]>([]);
+  const [sellerOrders, setSellerOrders] = useState<OrderWithDetails[]>([]);
   const [isLoadingProducts, setIsLoadingProducts] = useState(true);
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(false);
+  const [isLoadingOrders, setIsLoadingOrders] = useState(false);
 
   // Carregar produtos do Supabase
   const loadProducts = useCallback(async () => {
@@ -102,12 +115,14 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (!isAuthenticated || !user) {
       setFavorites([]);
-      setOrders([]);
+      setBuyerOrders([]);
+      setSellerOrders([]);
       return;
     }
 
     const loadUserData = async () => {
       setIsLoadingFavorites(true);
+      setIsLoadingOrders(true);
       try {
         // Carregar favoritos
         const { data: favoritesData } = await supabase
@@ -119,27 +134,19 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
           setFavorites(favoritesData.map((f) => f.product_id));
         }
 
-        // Carregar pedidos
-        const { data: ordersData } = await supabase
-          .from("orders")
-          .select("*")
-          .eq("buyer_id", user.id)
-          .order("created_at", { ascending: false });
+        // Carregar pedidos como comprador e vendedor em paralelo
+        const [buyer, seller] = await Promise.all([
+          getBuyerOrders(user.id),
+          getSellerOrders(user.id),
+        ]);
 
-        if (ordersData) {
-          setOrders(
-            ordersData.map((o) => ({
-              id: o.id,
-              productId: o.product_id,
-              status: mapOrderStatus(o.status),
-              createdAt: o.created_at,
-            }))
-          );
-        }
+        setBuyerOrders(buyer);
+        setSellerOrders(seller);
       } catch (error) {
         console.error("Erro ao carregar dados do usuário:", error);
       } finally {
         setIsLoadingFavorites(false);
+        setIsLoadingOrders(false);
       }
     };
 
@@ -188,33 +195,46 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
     if (!product) return;
 
     try {
-      const { data, error } = await supabase
-        .from("orders")
-        .insert({
-          product_id: productId,
-          buyer_id: user.id,
-          seller_id: product.sellerId,
-          amount: product.price,
-          status: "pending",
-        })
-        .select()
-        .single();
+      const order = await createOrderInDB(productId, user.id, product.sellerId, product.price);
 
-      if (error) throw error;
-
-      if (data) {
-        const newOrder: Order = {
-          id: data.id,
-          productId: data.product_id,
-          status: "Em processamento",
-          createdAt: data.created_at,
-        };
-        setOrders((prev) => [newOrder, ...prev]);
+      if (order) {
+        setBuyerOrders((prev) => [order, ...prev]);
+        // Remover produto da lista (agora está vendido)
+        setProducts((prev) => prev.filter((p) => p.id !== productId));
       }
     } catch (error) {
       console.error("Erro ao criar pedido:", error);
     }
   }, [user, products]);
+
+  // Atualizar status do pedido (vendedor)
+  const updateOrderStatus = useCallback(async (orderId: string, status: 'shipped' | 'delivered'): Promise<boolean> => {
+    const success = await updateOrderStatusInDB(orderId, status);
+    if (success) {
+      // Atualizar na lista de vendas
+      setSellerOrders((prev) =>
+        prev.map((o) => (o.id === orderId ? { ...o, status } : o))
+      );
+      // Atualizar na lista de compras também (caso exista)
+      setBuyerOrders((prev) =>
+        prev.map((o) => (o.id === orderId ? { ...o, status } : o))
+      );
+    }
+    return success;
+  }, []);
+
+  // Cancelar pedido (comprador)
+  const cancelOrder = useCallback(async (orderId: string, productId: string): Promise<boolean> => {
+    const success = await cancelOrderInDB(orderId, productId);
+    if (success) {
+      setBuyerOrders((prev) =>
+        prev.map((o) => (o.id === orderId ? { ...o, status: 'cancelled' } : o))
+      );
+      // Recarregar produtos para mostrar o restaurado
+      loadProducts();
+    }
+    return success;
+  }, [loadProducts]);
 
   // Verificar se é favorito
   const isFavorite = useCallback((id: string) => favorites.includes(id), [favorites]);
@@ -223,15 +243,19 @@ export function MarketplaceProvider({ children }: { children: React.ReactNode })
     () => ({
       products,
       favorites,
-      orders,
+      buyerOrders,
+      sellerOrders,
       isLoadingProducts,
       isLoadingFavorites,
+      isLoadingOrders,
       refreshProducts: loadProducts,
       toggleFavorite,
       addOrder,
+      updateOrderStatus,
+      cancelOrder,
       isFavorite,
     }),
-    [products, favorites, orders, isLoadingProducts, isLoadingFavorites, loadProducts, toggleFavorite, addOrder, isFavorite]
+    [products, favorites, buyerOrders, sellerOrders, isLoadingProducts, isLoadingFavorites, isLoadingOrders, loadProducts, toggleFavorite, addOrder, updateOrderStatus, cancelOrder, isFavorite]
   );
 
   return (
@@ -249,14 +273,32 @@ export function useMarketplace() {
   return ctx;
 }
 
-// Mapear status do banco para o formato da UI
-function mapOrderStatus(status: string | null): Order["status"] {
+// Mapear status do banco para texto em português
+export function mapOrderStatus(status: string | null): string {
   switch (status) {
     case "shipped":
       return "Enviado";
     case "delivered":
       return "Entregue";
+    case "cancelled":
+      return "Cancelado";
+    case "pending":
     default:
       return "Em processamento";
+  }
+}
+
+// Cor do badge de status
+export function getStatusColor(status: string | null): string {
+  switch (status) {
+    case "shipped":
+      return "bg-blue-100 text-blue-600";
+    case "delivered":
+      return "bg-primary/20 text-primary";
+    case "cancelled":
+      return "bg-red-100 text-red-600";
+    case "pending":
+    default:
+      return "bg-amber-100 text-amber-600";
   }
 }
