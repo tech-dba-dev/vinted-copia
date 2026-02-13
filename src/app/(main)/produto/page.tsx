@@ -17,7 +17,7 @@ type ProductWithRelations = Product & {
 function ProductContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const { toggleFavorite, isFavorite } = useMarketplace();
+  const { toggleFavorite, isFavorite, addOrder } = useMarketplace();
   const { user } = useAuth();
 
   const productId = searchParams.get("id");
@@ -25,6 +25,7 @@ function ProductContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCreatingConversation, setIsCreatingConversation] = useState(false);
+  const [isPurchasing, setIsPurchasing] = useState(false);
 
   useEffect(() => {
     async function loadProduct() {
@@ -98,6 +99,29 @@ function ProductContent() {
     }
 
     setIsCreatingConversation(false);
+  }
+
+  async function handleBuyNow() {
+    if (!user || !product) {
+      router.push("/entrar");
+      return;
+    }
+
+    if (product.seller_id === user.id) {
+      alert("Você não pode comprar seu próprio produto");
+      return;
+    }
+
+    setIsPurchasing(true);
+    try {
+      await addOrder(product.id);
+      router.push("/meus-pedidos");
+    } catch (error) {
+      console.error("Erro ao comprar:", error);
+      alert("Erro ao processar a compra. Tente novamente.");
+    } finally {
+      setIsPurchasing(false);
+    }
   }
 
   return (
@@ -199,8 +223,12 @@ function ProductContent() {
               </div>
 
               <div className="mt-6 space-y-3">
-                <button className="w-full h-12 bg-primary text-black font-bold rounded-lg hover:brightness-105 transition-all shadow-md active:scale-95">
-                  Comprar agora
+                <button
+                  onClick={handleBuyNow}
+                  disabled={isPurchasing || product.seller_id === user?.id || product.status === 'sold'}
+                  className="w-full h-12 bg-primary text-black font-bold rounded-lg hover:brightness-105 transition-all shadow-md active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isPurchasing ? "Processando..." : product.status === 'sold' ? "Produto vendido" : "Comprar agora"}
                 </button>
                 <button
                   onClick={handleContactSeller}

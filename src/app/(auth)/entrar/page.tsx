@@ -1,6 +1,7 @@
 ﻿import Link from "next/link";
 import { LoginForm } from "@/components/AuthForms";
 import { InlineImage } from "@/components/InlineImage";
+import { PasswordInput } from "@/components/PasswordInput";
 
 export const metadata = {
   title: "Entrar - Marketplace",
@@ -53,12 +54,7 @@ Voltar ao início
 {/*Password Field*/}
 <div className="flex flex-col gap-2">
 <label className="text-[#111813] text-base font-medium leading-normal">Senha</label>
-<div className="relative flex items-stretch">
-<input className="form-input flex w-full rounded-xl text-[#111813] focus:outline-0 focus:ring-2 focus:ring-primary border border-[#dbe6df] bg-white h-14 placeholder:text-[#61896f] px-4 pr-12 text-base font-normal" placeholder="Sua senha" type="password" name="password" required/>
-<button className="absolute right-4 top-1/2 -translate-y-1/2 text-[#61896f] hover:text-primary" type="button">
-<span className="material-symbols-outlined">visibility</span>
-</button>
-</div>
+<PasswordInput name="password" placeholder="Sua senha" />
 </div>
 {/*Forgot Password*/}
 <div className="text-right">

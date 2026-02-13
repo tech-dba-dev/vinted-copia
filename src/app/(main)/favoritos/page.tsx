@@ -46,11 +46,9 @@ export default function Page() {
 <div className="flex border-b border-[#dbe6df] gap-8">
 <Link className="flex items-center gap-2 border-b-[3px] border-primary text-[#111813] pb-3 pt-4" href="/favoritos">
 <span className="text-sm font-bold">Itens</span>
-<span className="bg-primary/20 text-primary px-2 py-0.5 rounded-full text-xs">24</span>
 </Link>
 <Link className="flex items-center gap-2 border-b-[3px] border-transparent text-[#61896f] pb-3 pt-4 hover:text-[#111813] transition-colors" href="/favoritos">
 <span className="text-sm font-bold">Vendedores</span>
-<span className="bg-[#f0f4f2] text-[#61896f] px-2 py-0.5 rounded-full text-xs">5</span>
 </Link>
 <Link className="flex items-center border-b-[3px] border-transparent text-[#61896f] pb-3 pt-4 hover:text-[#111813] transition-colors" href="/favoritos">
 <span className="text-sm font-bold">Coleções</span>

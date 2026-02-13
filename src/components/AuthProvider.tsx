@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
+import React, { createContext, useContext, useEffect, useState, useCallback, useRef } from "react";
 import { supabase } from "@/lib/supabase";
 import type { User, Session } from "@supabase/supabase-js";
 import type { Profile } from "@/types/database";
@@ -42,51 +42,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return data;
   }, []);
 
-  // Inicializar autenticação
+  // Ref para acessar o user atual sem causar re-render do useEffect
+  const userRef = useRef<User | null>(null);
+  userRef.current = user;
+
+  // Inicializar autenticação (executa apenas UMA vez)
   useEffect(() => {
-    const initAuth = async () => {
-      try {
-        const { data: { session: currentSession } } = await supabase.auth.getSession();
-
-        if (currentSession?.user) {
-          const userProfile = await fetchProfile(currentSession.user.id);
-          setUser(currentSession.user);
-          setProfile(userProfile);
-          setSession(currentSession);
-        }
-      } catch (error) {
-        console.error("Erro ao inicializar auth:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    initAuth();
-
     // Escutar mudanças na autenticação
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, newSession) => {
-        console.log('[AuthProvider] Auth state changed:', event);
+        console.log('[AuthProvider] Auth event:', event, 'has session:', !!newSession);
 
-        // Eventos que indicam login bem-sucedido ou token renovado
-        if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED' || event === 'USER_UPDATED') {
-          if (newSession?.user) {
-            const userProfile = await fetchProfile(newSession.user.id);
-            setUser(newSession.user);
-            setProfile(userProfile);
-            setSession(newSession);
-          }
-        }
-        // Eventos que indicam logout
-        else if (event === 'SIGNED_OUT') {
-          console.log('[AuthProvider] User signed out');
+        // Só limpar estado no logout EXPLÍCITO
+        if (event === 'SIGNED_OUT') {
           setUser(null);
           setProfile(null);
           setSession(null);
+          setIsLoading(false);
+          return;
         }
-        // Para INITIAL_SESSION, verificar se há sessão
-        else if (event === 'INITIAL_SESSION') {
-          if (newSession?.user) {
+
+        // Para qualquer evento com sessão válida, atualizar estado
+        if (newSession?.user) {
+          // Se o user ID é o mesmo, só atualizar a session (não recriar user/profile)
+          // Isso evita re-renders desnecessários no TOKEN_REFRESHED
+          if (userRef.current?.id === newSession.user.id) {
+            setSession(newSession);
+          } else {
+            // Novo user (login ou troca de conta)
             const userProfile = await fetchProfile(newSession.user.id);
             setUser(newSession.user);
             setProfile(userProfile);
@@ -98,47 +81,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     );
 
-    // Verificar sessão quando a página volta a ter foco
-    const handleVisibilityChange = async () => {
-      if (document.visibilityState === 'visible') {
-        console.log('[AuthProvider] Page became visible, checking session...');
-        const { data: { session: currentSession } } = await supabase.auth.getSession();
-
-        if (!currentSession && user) {
-          console.log('[AuthProvider] Session expired, logging out');
-          setUser(null);
-          setProfile(null);
-          setSession(null);
-        } else if (currentSession && !user) {
-          console.log('[AuthProvider] Session restored');
-          const userProfile = await fetchProfile(currentSession.user.id);
-          setUser(currentSession.user);
-          setProfile(userProfile);
-          setSession(currentSession);
-        }
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Verificar sessão periodicamente (a cada 30 segundos)
-    const intervalId = setInterval(async () => {
-      const { data: { session: currentSession } } = await supabase.auth.getSession();
-
-      if (!currentSession && user) {
-        console.log('[AuthProvider] Session expired during periodic check');
-        setUser(null);
-        setProfile(null);
-        setSession(null);
-      }
-    }, 30000); // 30 segundos
-
     return () => {
       subscription.unsubscribe();
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-      clearInterval(intervalId);
     };
-  }, [fetchProfile, user]);
+  }, [fetchProfile]);
 
   // Login
   const signIn = async (email: string, password: string) => {

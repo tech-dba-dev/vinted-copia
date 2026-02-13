@@ -26,12 +26,15 @@ export function SearchFilters() {
   const sizes = ["XS", "S", "M", "L", "XL", "36", "38", "40", "42", "44"];
   const conditions = ["Novo", "Muito Bom", "Bom", "Razoável"];
   const colors = [
-    { name: "Branco", value: "white", hex: "#FFFFFF" },
-    { name: "Preto", value: "black", hex: "#000000" },
-    { name: "Vermelho", value: "red", hex: "#EF4444" },
-    { name: "Azul", value: "blue", hex: "#3B82F6" },
-    { name: "Verde", value: "green", hex: "#10B981" },
-    { name: "Amarelo", value: "yellow", hex: "#FBBF24" },
+    { name: "Branco", value: "Branco", hex: "#FFFFFF" },
+    { name: "Preto", value: "Preto", hex: "#000000" },
+    { name: "Vermelho", value: "Vermelho", hex: "#EF4444" },
+    { name: "Azul", value: "Azul", hex: "#3B82F6" },
+    { name: "Verde", value: "Verde", hex: "#10B981" },
+    { name: "Amarelo", value: "Amarelo", hex: "#FBBF24" },
+    { name: "Marrom", value: "Marrom", hex: "#92400E" },
+    { name: "Rosa", value: "Rosa", hex: "#EC4899" },
+    { name: "Bege", value: "Bege", hex: "#D2B48C" },
   ];
 
   const toggleSelection = (value: string, list: string[], setter: (v: string[]) => void) => {
@@ -190,7 +193,7 @@ export function SearchFilters() {
               }`}
               style={{
                 backgroundColor: color.hex,
-                border: color.value === "white" ? "1px solid #e5e7eb" : "none",
+                border: color.value === "Branco" ? "1px solid #e5e7eb" : "none",
               }}
               onClick={() => toggleSelection(color.value, selectedColors, setSelectedColors)}
               title={color.name}
