@@ -4,10 +4,16 @@ import { render } from '@react-email/render'
 import NewMessageNotification from '@/emails/NewMessageNotification'
 import { supabase } from '@/lib/supabase'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: NextRequest) {
   try {
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: 'RESEND_API_KEY não configurada' },
+        { status: 503 }
+      )
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY)
     const body = await request.json()
     const { messageId, conversationId } = body
 
