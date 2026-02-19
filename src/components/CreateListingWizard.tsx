@@ -25,6 +25,7 @@ export function CreateListingWizard() {
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [subcategoryId, setSubcategoryId] = useState("");
+  const [subSubcategoryId, setSubSubcategoryId] = useState("");
   const [size, setSize] = useState("");
   const [brand, setBrand] = useState("");
   const [condition, setCondition] = useState("");
@@ -35,63 +36,7 @@ export function CreateListingWizard() {
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [subcategories, setSubcategories] = useState<Category[]>([]);
-
-  // Categorias hardcoded temporárias (até popular o banco)
-  const tempCategories = [
-    { id: "mulher", name: "Mulher", slug: "mulher", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "homem", name: "Homem", slug: "homem", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "crianca", name: "Criança", slug: "crianca", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "casa", name: "Casa", slug: "casa", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "entretenimento", name: "Entretenimento", slug: "entretenimento", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "hobbies", name: "Hobbies", slug: "hobbies", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-    { id: "esportes", name: "Esportes", slug: "esportes", path: null, created_at: new Date().toISOString(), parent_id: null, attribute_group_id: null },
-  ];
-
-  const tempSubcategories: Record<string, Category[]> = {
-    mulher: [
-      { id: "roupa", name: "Roupa", slug: "roupa", path: null, created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
-      { id: "calcado", name: "Calçado", slug: "calcado", path: null, created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
-      { id: "bolsas", name: "Bolsas", slug: "bolsas", path: null, created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
-      { id: "acessorios", name: "Acessórios", slug: "acessorios", path: null, created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
-      { id: "beleza", name: "Beleza", slug: "beleza", path: null, created_at: new Date().toISOString(), parent_id: "mulher", attribute_group_id: null },
-    ],
-    homem: [
-      { id: "roupa-homem", name: "Roupa", slug: "roupa-homem", path: null, created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
-      { id: "calcado-homem", name: "Calçado", slug: "calcado-homem", path: null, created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
-      { id: "bolsas-homem", name: "Bolsas", slug: "bolsas-homem", path: null, created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
-      { id: "acessorios-homem", name: "Acessórios", slug: "acessorios-homem", path: null, created_at: new Date().toISOString(), parent_id: "homem", attribute_group_id: null },
-    ],
-    crianca: [
-      { id: "meninas", name: "Meninas", slug: "meninas", path: null, created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
-      { id: "meninos", name: "Meninos", slug: "meninos", path: null, created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
-      { id: "bebes", name: "Bebês", slug: "bebes", path: null, created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
-      { id: "calcados-crianca", name: "Calçados", slug: "calcados-crianca", path: null, created_at: new Date().toISOString(), parent_id: "crianca", attribute_group_id: null },
-    ],
-    casa: [
-      { id: "decoracao", name: "Decoração", slug: "decoracao", path: null, created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
-      { id: "cozinha", name: "Cozinha", slug: "cozinha", path: null, created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
-      { id: "cama-banho", name: "Cama e Banho", slug: "cama-banho", path: null, created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
-      { id: "moveis", name: "Móveis", slug: "moveis", path: null, created_at: new Date().toISOString(), parent_id: "casa", attribute_group_id: null },
-    ],
-    entretenimento: [
-      { id: "livros", name: "Livros", slug: "livros", path: null, created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
-      { id: "filmes", name: "Filmes e Séries", slug: "filmes", path: null, created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
-      { id: "musica", name: "Música", slug: "musica", path: null, created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
-      { id: "games", name: "Games", slug: "games", path: null, created_at: new Date().toISOString(), parent_id: "entretenimento", attribute_group_id: null },
-    ],
-    hobbies: [
-      { id: "instrumentos", name: "Instrumentos", slug: "instrumentos", path: null, created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
-      { id: "arte", name: "Arte", slug: "arte", path: null, created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
-      { id: "artesanato", name: "Artesanato", slug: "artesanato", path: null, created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
-      { id: "jardinagem", name: "Jardinagem", slug: "jardinagem", path: null, created_at: new Date().toISOString(), parent_id: "hobbies", attribute_group_id: null },
-    ],
-    esportes: [
-      { id: "fitness", name: "Fitness", slug: "fitness", path: null, created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
-      { id: "futebol", name: "Futebol", slug: "futebol", path: null, created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
-      { id: "natacao", name: "Natação", slug: "natacao", path: null, created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
-      { id: "ciclismo", name: "Ciclismo", slug: "ciclismo", path: null, created_at: new Date().toISOString(), parent_id: "esportes", attribute_group_id: null },
-    ],
-  };
+  const [subSubcategories, setSubSubcategories] = useState<Category[]>([]);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -106,14 +51,7 @@ export function CreateListingWizard() {
   useEffect(() => {
     async function loadCategories() {
       const cats = await getRootCategories();
-      // Se não houver categorias no banco, usar as temporárias
-      if (cats.length === 0) {
-        console.log("[CreateListingWizard] Banco vazio, usando categorias hardcoded");
-        setCategories(tempCategories);
-      } else {
-        console.log("[CreateListingWizard] Categorias carregadas do banco:", cats.length);
-        setCategories(cats);
-      }
+      setCategories(cats);
     }
     loadCategories();
   }, []);
@@ -123,25 +61,31 @@ export function CreateListingWizard() {
     async function loadSubcategories() {
       if (categoryId) {
         const subs = await getSubcategories(categoryId);
-        if (subs.length > 0) {
-          setSubcategories(subs);
-        } else {
-          // Fallback: buscar por slug na lista temporária
-          const selectedCat = categories.find((c) => c.id === categoryId);
-          const slug = selectedCat?.slug || categoryId;
-          if (tempSubcategories[slug]) {
-            setSubcategories(tempSubcategories[slug]);
-          } else {
-            setSubcategories([]);
-          }
-        }
+        setSubcategories(subs);
         setSubcategoryId("");
+        setSubSubcategoryId("");
+        setSubSubcategories([]);
       } else {
         setSubcategories([]);
+        setSubSubcategories([]);
       }
     }
     loadSubcategories();
-  }, [categoryId, categories]);
+  }, [categoryId]);
+
+  // Carregar sub-subcategorias quando subcategoria muda
+  useEffect(() => {
+    async function loadSubSubcategories() {
+      if (subcategoryId) {
+        const subs = await getSubcategories(subcategoryId);
+        setSubSubcategories(subs);
+        setSubSubcategoryId("");
+      } else {
+        setSubSubcategories([]);
+      }
+    }
+    loadSubSubcategories();
+  }, [subcategoryId]);
 
   const progress = useMemo(() => ((step + 1) / STEP_LABELS.length) * 100, [step]);
 
@@ -153,13 +97,13 @@ export function CreateListingWizard() {
       return title.trim().length > 2 && description.trim().length > 10;
     }
     if (step === 2) {
-      return (categoryId || subcategoryId) && condition;
+      return categoryId && condition;
     }
     if (step === 3) {
       return price.trim().length > 0 && parseFloat(price.replace(",", ".")) > 0;
     }
     return true;
-  }, [step, images.length, title, description, categoryId, subcategoryId, condition, price]);
+  }, [step, images.length, title, description, categoryId, condition, price]);
 
   const handleFiles = (files: FileList | null) => {
     if (!files) return;
@@ -216,7 +160,7 @@ export function CreateListingWizard() {
 
       // 2. Criar o produto
       const priceNumber = parseFloat(price.replace(",", "."));
-      const finalCategoryId = subcategoryId || categoryId;
+      const finalCategoryId = subSubcategoryId || subcategoryId || categoryId;
 
       if (!finalCategoryId) {
         throw new Error("Selecione uma categoria");
@@ -443,8 +387,25 @@ export function CreateListingWizard() {
                       value={subcategoryId}
                       onChange={(event) => setSubcategoryId(event.target.value)}
                     >
-                      <option value="">Selecione (opcional)</option>
+                      <option value="">Selecione uma subcategoria</option>
                       {subcategories.map((sub) => (
+                        <option key={sub.id} value={sub.id}>
+                          {sub.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                {subSubcategories.length > 0 && (
+                  <label className="flex flex-col gap-2">
+                    <span className="text-sm font-semibold">Tipo</span>
+                    <select
+                      className="h-12 rounded-lg border border-[#dbe6df] px-4 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                      value={subSubcategoryId}
+                      onChange={(event) => setSubSubcategoryId(event.target.value)}
+                    >
+                      <option value="">Selecione o tipo (opcional)</option>
+                      {subSubcategories.map((sub) => (
                         <option key={sub.id} value={sub.id}>
                           {sub.name}
                         </option>
