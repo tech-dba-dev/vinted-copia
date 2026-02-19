@@ -91,54 +91,58 @@ export function SiteHeader() {
               >
                 Anunciar agora
               </Link>
-              <div className="flex items-center gap-1 lg:gap-2">
+              <div className="flex items-center gap-1">
                 <Link
-                  className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative group"
+                  className="w-9 h-9 flex items-center justify-center hover:bg-[#f0f4f2] rounded-full text-[#111813] relative transition-colors"
                   href="/favoritos"
                   title="Favoritos"
                 >
-                  <span className="material-symbols-outlined">favorite</span>
-                  {favoritesCount > 0 ? (
-                    <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#111813] text-[10px] font-bold text-white">{favoritesCount}</span>
-                  ) : null}
+                  <span className="material-symbols-outlined text-[22px]">favorite</span>
+                  {favoritesCount > 0 && (
+                    <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">{favoritesCount}</span>
+                  )}
                 </Link>
                 <Link
-                  className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative"
+                  className="w-9 h-9 flex items-center justify-center hover:bg-[#f0f4f2] rounded-full text-[#111813] relative transition-colors"
                   href="/meus-pedidos"
                   title="Meus Pedidos"
                 >
-                  <span className="material-symbols-outlined">shopping_bag</span>
+                  <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
                 </Link>
                 <Link
-                  className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative"
+                  className="w-9 h-9 flex items-center justify-center hover:bg-[#f0f4f2] rounded-full text-[#111813] relative transition-colors"
                   href="/mensagens"
                   title="Mensagens"
                 >
-                  <span className="material-symbols-outlined">chat_bubble</span>
+                  <span className="material-symbols-outlined text-[22px]">chat_bubble</span>
                   {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">
+                    <span className="absolute -top-0.5 -right-0.5 flex h-4 min-w-[16px] px-1 items-center justify-center rounded-full bg-red-500 text-[9px] font-bold text-white">
                       {unreadCount > 99 ? '99+' : unreadCount}
                     </span>
                   )}
                 </Link>
-              </div>
-              {/* Avatar e botão sair */}
-              <div className="flex items-center gap-2">
+                <div className="w-px h-5 bg-[#dbe6df] mx-1 hidden lg:block" />
                 <Link
-                  className="w-8 h-8 rounded-full bg-cover bg-center border border-gray-200 flex items-center justify-center text-xs font-bold text-[#111813] bg-primary/60 overflow-hidden"
+                  className="w-9 h-9 rounded-full overflow-hidden flex items-center justify-center shrink-0 ring-2 ring-transparent hover:ring-primary/30 transition-all"
                   href="/perfil"
+                  title="Meu Perfil"
                 >
                   {profile.avatar_url ? (
                     <img src={profile.avatar_url} alt={profile.username} className="w-full h-full object-cover" />
                   ) : (
-                    (profile.full_name || profile.username || "U").slice(0, 1).toUpperCase()
+                    <div className="w-full h-full bg-gradient-to-br from-primary to-emerald-600 flex items-center justify-center">
+                      <span className="text-white text-sm font-bold">
+                        {(profile.full_name || profile.username || "U").charAt(0).toUpperCase()}
+                      </span>
+                    </div>
                   )}
                 </Link>
                 <button
-                  className="hidden lg:block text-xs font-semibold text-[#61896f] hover:text-primary"
+                  className="hidden lg:flex items-center gap-1 text-xs font-semibold text-[#61896f] hover:text-red-500 transition-colors ml-1"
                   type="button"
                   onClick={handleLogout}
                 >
+                  <span className="material-symbols-outlined text-[16px]">logout</span>
                   Sair
                 </button>
               </div>
