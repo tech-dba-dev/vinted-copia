@@ -314,7 +314,7 @@ export function ProfilePage() {
         <div className="p-8 flex flex-col md:flex-row gap-8 items-start md:items-center">
           {/* Avatar */}
           <div className="relative">
-            <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 border-4 border-white shadow-md flex items-center justify-center text-4xl font-bold text-[#111813] bg-primary/60 overflow-hidden">
+            <div className="aspect-square rounded-full w-32 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden">
               {profile.avatar_url ? (
                 <img
                   src={profile.avatar_url}
@@ -322,9 +322,13 @@ export function ProfilePage() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                (profile.full_name || profile.username || "U")
-                  .charAt(0)
-                  .toUpperCase()
+                <div className="w-full h-full bg-gradient-to-br from-primary via-primary/70 to-emerald-600 flex items-center justify-center">
+                  <span className="text-white text-5xl font-black drop-shadow-sm">
+                    {(profile.full_name || profile.username || "U")
+                      .charAt(0)
+                      .toUpperCase()}
+                  </span>
+                </div>
               )}
             </div>
           </div>
