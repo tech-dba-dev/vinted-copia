@@ -121,24 +121,6 @@ Voltar ao início
                         <Link className="text-[#111813] font-bold hover:text-primary transition-colors ml-1" href="/entrar">Entre</Link>
 </p>
 </div>
-{/*Alternative Social Logins (Optional Enhancement)*/}
-<div className="mt-10 flex flex-col items-center gap-6">
-<div className="w-full flex items-center gap-4 text-[#dbe6df]">
-<div className="h-px flex-1 bg-current"></div>
-<span className="text-xs font-bold text-gray-400 tracking-widest uppercase">Ou continue com</span>
-<div className="h-px flex-1 bg-current"></div>
-</div>
-<div className="flex gap-4 w-full">
-<button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-12 border border-[#dbe6df] bg-white text-sm font-semibold hover:bg-gray-50 transition-all">
-<InlineImage src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOxls5j9Y3Ou2DNoY8XXYM1NB0fUW0hixom5tEfidLltevL4FkMbvvi1AkDVtjeGUNjbKBmtN17PHokStJjmRyVktkEion4-JXfjCe1Os-aZv0r565jBYQf6r0A1Bc9Gu-7lRhx6Do-E3HxmRweKWfK0NOEA8f7FUKW-utXXdMIVOxfHM0WLOZDidE50haBcLKDNDg-8SgThdEDbh9yF1LEoKILSD6_eaGMSnHup9EdAm-jSL8ZT_73aIpERVCEeFuaRpzjuzIzvc" alt="Google" className="size-5" data-alt="Google Logo" />
-                            Google
-                        </button>
-<button className="flex-1 flex items-center justify-center gap-2 rounded-lg h-12 border border-[#dbe6df] bg-white text-sm font-semibold hover:bg-gray-50 transition-all">
-<span className="material-symbols-outlined text-[#1877F2]">social_leaderboard</span>
-                            Facebook
-                        </button>
-</div>
-</div>
 </div>
 </div>
 </main>

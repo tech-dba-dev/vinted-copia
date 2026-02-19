@@ -105,10 +105,9 @@ export function SiteHeader() {
                 <Link
                   className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative"
                   href="/meus-pedidos"
-                  title="Notificações"
+                  title="Meus Pedidos"
                 >
-                  <span className="material-symbols-outlined">notifications</span>
-                  <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white "></span>
+                  <span className="material-symbols-outlined">shopping_bag</span>
                 </Link>
                 <Link
                   className="p-2 hover:bg-[#f0f4f2] rounded-lg text-[#111813] relative"

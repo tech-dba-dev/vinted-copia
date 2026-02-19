@@ -327,12 +327,6 @@ export function ProfilePage() {
                   .toUpperCase()
               )}
             </div>
-            {/* Badge verificado (placeholder) */}
-            <div className="absolute bottom-1 right-1 bg-primary text-[#111813] rounded-full p-1 border-2 border-white">
-              <span className="material-symbols-outlined text-sm font-bold">
-                verified
-              </span>
-            </div>
           </div>
 
           {/* Informações do perfil */}
@@ -448,11 +442,6 @@ export function ProfilePage() {
                 Avaliações
               </span>
             </Link>
-            <button className="flex items-center border-b-4 border-transparent text-[#61896f] hover:text-[#111813] h-16 transition-all">
-              <span className="text-sm font-bold uppercase tracking-widest">
-                Sobre
-              </span>
-            </button>
           </nav>
         </div>
       </div>
@@ -460,18 +449,7 @@ export function ProfilePage() {
       {/* Grid de produtos */}
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold">Itens Ativos</h3>
-          <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 h-9 bg-white border border-[#dbe6df] rounded-lg text-sm font-medium">
-              <span className="material-symbols-outlined text-lg">
-                filter_list
-              </span>
-              Filtrar
-            </button>
-            <button className="flex items-center gap-2 px-4 h-9 bg-white border border-[#dbe6df] rounded-lg text-sm font-medium">
-              Ordenar: Recentes
-            </button>
-          </div>
+          <h3 className="text-xl font-bold">Itens Ativos ({userProducts.length})</h3>
         </div>
 
         {isLoadingProducts ? (
