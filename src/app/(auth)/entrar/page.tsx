@@ -61,27 +61,6 @@ Voltar ao início
 <Link className="text-[#61896f] text-sm font-normal leading-normal hover:underline" href="/recuperar-senha">Esqueci minha senha</Link>
 </div>
 </LoginForm>
-{/*Social Login Divider*/}
-<div className="relative flex py-8 items-center">
-<div className="flex-grow border-t border-[#dbe6df] "></div>
-<span className="flex-shrink mx-4 text-[#61896f] text-sm font-medium">ou entre com</span>
-<div className="flex-grow border-t border-[#dbe6df] "></div>
-</div>
-{/*Social Login Buttons*/}
-<div className="grid grid-cols-1 gap-3">
-<button className="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] bg-white text-[#111813] font-medium hover:bg-background-light transition-colors">
-<InlineImage src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJj3ZfX--bmO7qKIH6reNmfwHuNiNwZySBNsMMqIVDpvajh1FgIwiUDmvnwDLcvsaE0-4vUMFZdqHPahV8nxykw4c1mNnxM5o-cX3csbCrNGlW-XhdvyI1RmQ6dWew_2jM6lfLvA_U94hDqfVj_m4mKc-0qtTCFRIpEqzmbZ4fZvnIBYcxRRDqwZbOF0IeUxSzjiaq15JmFCq28mwH18L83xIcjpwUan4sYRkKE19RNLnLMI_XAxFXYXGdjbYxLKID3UXjwgzYGV8" alt="" className="w-5 h-5" data-alt="Google colorful logo icon" />
-<span>Continuar com Google</span>
-</button>
-<button className="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] bg-white text-[#111813] font-medium hover:bg-background-light transition-colors">
-<span className="material-symbols-outlined text-[#1877F2]">social_leaderboard</span>
-<span>Continuar com Facebook</span>
-</button>
-<button className="flex items-center justify-center gap-3 w-full h-12 rounded-xl border border-[#dbe6df] bg-white text-[#111813] font-medium hover:bg-background-light transition-colors">
-<span className="material-symbols-outlined">ios</span>
-<span>Continuar com Apple</span>
-</button>
-</div>
 {/*Footer Link*/}
 <div className="mt-10 text-center">
 <p className="text-[#111813] text-sm">

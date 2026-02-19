@@ -239,9 +239,13 @@ export default function MensagensPage() {
                         </div>
                       )}
                       <div className="absolute -bottom-1 -right-1 bg-white p-0.5 rounded-full">
-                        <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold">
-                          {other?.username?.charAt(0).toUpperCase() || "U"}
-                        </div>
+                        {other?.avatar_url ? (
+                          <img src={other.avatar_url} alt={other.username || ""} className="w-6 h-6 rounded-full object-cover" />
+                        ) : (
+                          <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold">
+                            {other?.username?.charAt(0).toUpperCase() || "U"}
+                          </div>
+                        )}
                       </div>
                     </div>
                     <div className="flex flex-col justify-center flex-1 min-w-0 text-left">
@@ -324,11 +328,19 @@ export default function MensagensPage() {
                         isMine ? "self-end flex-row-reverse" : ""
                       }`}
                     >
-                      <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
-                        {isMine
+                      {(() => {
+                        const avatarUrl = isMine ? profile?.avatar_url : otherUser?.avatar_url;
+                        const initial = isMine
                           ? profile?.username?.charAt(0).toUpperCase() || "U"
-                          : otherUser?.username?.charAt(0).toUpperCase() || "U"}
-                      </div>
+                          : otherUser?.username?.charAt(0).toUpperCase() || "U";
+                        return avatarUrl ? (
+                          <img src={avatarUrl} alt="" className="w-8 h-8 rounded-full object-cover shrink-0 mt-1" />
+                        ) : (
+                          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                            {initial}
+                          </div>
+                        );
+                      })()}
                       <div className={`flex flex-col ${isMine ? "items-end" : ""}`}>
                         <p className={`text-[10px] text-gray-500 mb-1 ${isMine ? "mr-1" : "ml-1"} font-bold`}>
                           {isMine ? "Você" : otherUser?.username || "Usuário"}

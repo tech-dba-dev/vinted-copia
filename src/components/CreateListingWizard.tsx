@@ -123,13 +123,17 @@ export function CreateListingWizard() {
     async function loadSubcategories() {
       if (categoryId) {
         const subs = await getSubcategories(categoryId);
-        // Se não houver subcategorias no banco, usar as temporárias
-        if (subs.length === 0 && tempSubcategories[categoryId]) {
-          console.log("[CreateListingWizard] Usando subcategorias hardcoded para:", categoryId);
-          setSubcategories(tempSubcategories[categoryId]);
-        } else {
-          console.log("[CreateListingWizard] Subcategorias carregadas do banco:", subs.length);
+        if (subs.length > 0) {
           setSubcategories(subs);
+        } else {
+          // Fallback: buscar por slug na lista temporária
+          const selectedCat = categories.find((c) => c.id === categoryId);
+          const slug = selectedCat?.slug || categoryId;
+          if (tempSubcategories[slug]) {
+            setSubcategories(tempSubcategories[slug]);
+          } else {
+            setSubcategories([]);
+          }
         }
         setSubcategoryId("");
       } else {
@@ -137,7 +141,7 @@ export function CreateListingWizard() {
       }
     }
     loadSubcategories();
-  }, [categoryId]);
+  }, [categoryId, categories]);
 
   const progress = useMemo(() => ((step + 1) / STEP_LABELS.length) * 100, [step]);
 
